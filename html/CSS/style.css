@@ -339,3 +339,41 @@ body {
     background-color: #a56c6c;
     transform: translateY(-2px);
   }
+  /*logo pagina dois que faltou */
+  .fancy-logo {
+    width: 120px;
+    height: 120px;
+    border: 1px solid white;
+    border-radius: 50%;
+    font-family: 'Great Vibes', cursive;
+    font-size: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative;
+    color: white;
+  }
+  
+  .fancy-logo::before,
+  .fancy-logo::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 1px;
+    background: white;
+  }
+  
+  .fancy-logo::before {
+    left: -60px;
+    transform: translateY(-50%) rotate(5deg);
+    border-radius: 2px;
+  }
+  
+  .fancy-logo::after {
+    right: -60px;
+    transform: translateY(-50%) rotate(-5deg);
+    border-radius: 2px;
+  }
+  
