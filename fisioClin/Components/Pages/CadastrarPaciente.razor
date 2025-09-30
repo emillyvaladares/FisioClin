@@ -1,0 +1,218 @@
+﻿@page "/cadastrarpaciente"
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Paciente</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Menu superior -->
+    <header class="navbar">
+        <button>Funcionário</button>
+        <button>Pacientes</button>
+        <button>Salas</button>
+        <button>Prontuários</button>
+        <button>Agenda</button>
+        <button>Financeiro</button>
+        <button>Cargos</button>
+        <div class="logout">⎋</div>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main>
+        <h1>Cadastrar Paciente</h1>
+        <section class="form-box">
+            <form>
+                <label>Nome completo</label>
+                <input type="text" placeholder="Digite o nome completo">
+
+                <div class="form-grid">
+                    <div>
+                        <label>CPF</label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label>CEP</label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label>Laudos Médicos</label>
+                        <input type="file">
+                    </div>
+                    <div>
+                        <label>RG</label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label>Bairro</label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label>Data de Nascimento</label>
+                        <input type="date">
+                    </div>
+                    <div>
+                        <label>Rua</label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label>Número</label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label>Sexo</label>
+                        <select>
+                            <option>Selecione</option>
+                            <option>Masculino</option>
+                            <option>Feminino</option>
+                            <option>Outro</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Email</label>
+                        <input type="email">
+                    </div>
+                    <div>
+                        <label>Telefone</label>
+                        <input type="tel">
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="cadastrar">Cadastrar</button>
+                    <button type="reset" class="excluir">Excluir</button>
+                </div>
+            </form>
+
+            <!-- Ícone lateral -->
+            <div class="upload-icon">
+                <span>+</span>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+
+ body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  background-color: #6b0010;
+  padding: 10px;
+}
+
+.navbar button {
+  background: #8b0015;
+  color: white;
+  border: none;
+  margin: 0 5px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.navbar button:hover {
+  background: #a3001c;
+}
+
+.logout {
+  margin-left: auto;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+main {
+  padding: 20px;
+}
+
+h1 {
+  color: #6b0010;
+}
+
+.form-box {
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+form {
+  flex: 1;
+}
+
+form label {
+  display: block;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+form input,
+form select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+.buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.cadastrar {
+  background: #8b0015;
+  color: white;
+}
+
+.cadastrar:hover {
+  background: #a3001c;
+}
+
+.excluir {
+  background: #444;
+  color: white;
+}
+
+.excluir:hover {
+  background: #222;
+}
+
+.upload-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #a3001c, #6b0010);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 28px;
+  margin-left: 20px;
+  cursor: pointer;
+}
