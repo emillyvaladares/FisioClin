@@ -1,105 +1,96 @@
-﻿<h3>DadosdoPaciente</h3>
-@page "/DadosPaciente"
-@code {
+﻿@page "/DadosPaciente"
 
-}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dados Pacientes</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados Pacientes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container container-box mt-4">
+        <h3 class="mb-4">Dados Pacientes</h3>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text">Pesquisar Paciente</span>
+            <input type="text" class="form-control" id="inputPaciente" placeholder="Digite o nome do paciente" />
+            <button class="btn btn-outline-secondary" id="btnBuscarPaciente" type="button">🔍</button>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaPacientes">
+                <!-- Resultados serão inseridos aqui -->
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-end">
+            <a href="/paciente" class="btn-consultar">CONSULTAR PACIENTES</a>
+        </div>
+    </div>
+
     <style>
         body {
-          background-color: #f4f1f1;
+            background-color: #f4f1f1;
         }
-        .navbar-custom {
-          background-color: #600000;
-        }
-        .navbar-custom .nav-link,
-        .navbar-custom .navbar-brand {
-          color: #fff;
-        }
-        .nav-item button {
-          background-color: #800000;
-          border: none;
-          border-radius: 10px;
-          margin: 0 5px;
-          padding: 10px 20px;
-          color: #fff;
-        }
+
         .container-box {
-          background-color: #f0eded;
-          padding: 30px;
-          border-radius: 10px;
-          margin-top: 20px;
+            background-color: #f0eded;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 20px;
         }
-        .btn-cadastrar {
-          background-color: #800000;
-          color: white;
-          border-radius: 8px;
-        }
-        .btn-cadastrar:hover {
-          background-color: #600000;
-        }
+
         .table th {
-          background-color: #fff;
+            background-color: #fff;
         }
+
+        /* Botão consultar estilizado */
+        .btn-consultar {
+            background-color: #800000;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            text-decoration: none; /* remove sublinhado */
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+            .btn-consultar:hover {
+                background-color: #600000;
+                color: #fff;
+            }
     </style>
-</head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-custom">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><button class="nav-link">Pacientes</button></li>
-                        <li class="nav-item"><button class="nav-link">Funcionário</button></li>
-                        <li class="nav-item"><button class="nav-link">Salas</button></li>
-                        <li class="nav-item"><button class="nav-link">Prontuários</button></li>
-                        <li class="nav-item"><button class="nav-link">Agenda</button></li>
-                        <li class="nav-item"><button class="nav-link">Financeiro</button></li>
-                        <li class="nav-item"><button class="nav-link">Cargos</button></li>
-                    </ul>
-                    <a href="#" class="btn btn-outline-light">⎋</a>
-                </div>
-            </div>
-        </nav>
-        <div class="container container-box">
-            <h3 class="mb-4">Dados Pacientes</h3>
-            <div class="input-group mb-3">
-                <span class="input-group-text">Pesquisar Paciente</span>
-                <input type="text" class="form-control" placeholder="Renata Leticia Chagas">
-                <button class="btn btn-outline-secondary" type="button">✖</button>
-            </div>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nome</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>234</td>
-                        <td>Renata Leticia Chagas</td>
-                    </tr>
-                    <tr>
-                        <td>479</td>
-                        <td>Renata Silva</td>
-                    </tr>
-                    <tr>
-                        <td>903</td>
-                        <td>Renata Zendaya</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="d-flex justify-content-end">
-                <button class="btn btn-cadastrar">Cadastrar Paciente</button>
-            </div>
-        </div>
-    </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Botão buscar paciente (apenas exemplo, não conecta ao banco)
+        document.getElementById('btnBuscarPaciente').addEventListener('click', () => {
+            const nome = document.getElementById('inputPaciente').value.trim();
+
+            if (nome === '') {
+                alert('Digite um nome para pesquisar.');
+                return;
+            }
+
+            const tabela = document.getElementById('tabelaPacientes');
+            tabela.innerHTML = `
+                <tr>
+                  <td colspan="4" class="text-center text-muted">Buscando no banco de dados...</td>
+                </tr>
+              `;
+        });
+    </script>
+</body>
 </html>

@@ -7,7 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
     <PackageReference Include="MySql.Data" Version="9.4.0" />
+=======
+    <Content Remove="Components\Pages\DadosFunciSel.razor" />
+>>>>>>> 55bdd6fd219d69dce7500c2c9e3df25c6d0717ea
   </ItemGroup>
 
 </Project>
