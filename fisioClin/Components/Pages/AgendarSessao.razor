@@ -1,0 +1,149 @@
+﻿ @page "/agendarsessao"
+
+ <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Sessão</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Navbar personalizada */
+        .navbar-custom {
+            background-color: #660F0F;
+        }
+        .navbar-custom .nav-link {
+            color: #fff;
+            margin-right: 10px;
+        }
+        .navbar-custom .nav-link.active {
+            background-color: #7D1B1B;
+            border-radius: 5px;
+        }
+        .sidebar-toggle {
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Card do formulário */
+        .card-agendamento {
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        /* Botão agendar */
+        .btn-agendar {
+            background-color: #660F0F;
+            color: #fff;
+        }
+        .btn-agendar:hover {
+            background-color: #7D1B1B;
+            color: #fff;
+        }
+
+        /* Título */
+        .titulo-form {
+            color: #660F0F;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        /* Campos do formulário */
+        .form-control, .form-select {
+            border-radius: 5px;
+        }
+
+        /* Espaçamento entre campos */
+        .mb-3 {
+            margin-bottom: 15px !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom px-3">
+        <span class="sidebar-toggle">&#9776;</span>
+        <div class="collapse navbar-collapse ms-3">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="#">Paciente</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#">Funcionário</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Salas</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Prontuários</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Agenda</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Financeiro</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Cargos</a></li>
+            </ul>
+            <a href="#" class="text-white text-decoration-none">Sair</a>
+        </div>
+    </nav>
+
+    <!-- Conteúdo -->
+    <div class="container mt-4">
+        <div class="card card-agendamento mx-auto" style="max-width: 800px;">
+            <h4 class="titulo-form">Agendar Sessão</h4>
+            <form>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="data" class="form-label">Data</label>
+                        <input type="date" class="form-control" id="data">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="horario" class="form-label">Horário</label>
+                        <select class="form-select" id="horario">
+                            <option selected>Selecione</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="sala" class="form-label">Sala</label>
+                        <select class="form-select" id="sala">
+                            <option selected>Selecione</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="profissional" class="form-label">Profissional</label>
+                        <select class="form-select" id="profissional">
+                            <option selected>Selecione</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="tipo" class="form-label">Tipo de sessão</label>
+                        <select class="form-select" id="tipo">
+                            <option selected>Selecione</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="paciente" class="form-label">Nome do paciente</label>
+                    <select class="form-select" id="paciente">
+                        <option selected>Selecione</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="observacao" class="form-label">Observação</label>
+                    <textarea class="form-control" id="observacao" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-agendar float-end">Agendar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
