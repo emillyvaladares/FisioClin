@@ -1,6 +1,6 @@
-﻿ @page "/agendarsessao"
+﻿@page "/agendarsessao"
 
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -16,29 +16,12 @@
             font-family: 'Roboto', sans-serif;
         }
 
-        /* Navbar personalizada */
-        .navbar-custom {
-            background-color: #660F0F;
-        }
-        .navbar-custom .nav-link {
-            color: #fff;
-            margin-right: 10px;
-        }
-        .navbar-custom .nav-link.active {
-            background-color: #7D1B1B;
-            border-radius: 5px;
-        }
-        .sidebar-toggle {
-            color: #fff;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
         /* Card do formulário */
         .card-agendamento {
             border-radius: 10px;
             padding: 20px;
             background-color: #fff;
+            margin-top: 40px;
         }
 
         /* Botão agendar */
@@ -46,10 +29,11 @@
             background-color: #660F0F;
             color: #fff;
         }
-        .btn-agendar:hover {
-            background-color: #7D1B1B;
-            color: #fff;
-        }
+
+            .btn-agendar:hover {
+                background-color: #7D1B1B;
+                color: #fff;
+            }
 
         /* Título */
         .titulo-form {
@@ -70,25 +54,9 @@
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom px-3">
-        <span class="sidebar-toggle">&#9776;</span>
-        <div class="collapse navbar-collapse ms-3">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="#">Paciente</a></li>
-                <li class="nav-item"><a class="nav-link active" href="#">Funcionário</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Salas</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Prontuários</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Agenda</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Financeiro</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Cargos</a></li>
-            </ul>
-            <a href="#" class="text-white text-decoration-none">Sair</a>
-        </div>
-    </nav>
 
     <!-- Conteúdo -->
-    <div class="container mt-4">
+    <div class="container">
         <div class="card card-agendamento mx-auto" style="max-width: 800px;">
             <h4 class="titulo-form">Agendar Sessão</h4>
             <form>
