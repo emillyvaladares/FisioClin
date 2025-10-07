@@ -9,46 +9,36 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #fff; /* fundo branco */
+            background-color: #ffffff; /* fundo branco */
             font-family: Arial, sans-serif;
+        }
+
+        .page-header {
+            /* se quiser manter algo no topo, mas você disse pra remover menu superior */
+            /* deixar vazio ou remover se não quiser nada */
+        }
+
+        .content-container {
+            max-width: 900px;
+            margin: 40px auto;
             padding: 20px;
         }
 
-        h2 {
-            color: #6b0010; /* vinho escuro */
-            margin-bottom: 20px;
-        }
-
         .form-box {
-            background: #fff;
+            background: #ffffff;
             border-radius: 10px;
             padding: 25px;
             box-shadow: 0px 3px 6px rgba(0,0,0,0.1);
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
-            max-width: 900px;
-            margin: 0 auto;
         }
-
-        form {
-            flex-grow: 1;
-        }
-
-        .btn-maroon {
-            background: #8b0015;
-            color: white;
-        }
-
-            .btn-maroon:hover {
-                background: #a3001c;
-            }
 
         .upload-icon {
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background-color: #8b0015;
+            background-color: #8b0015; /* vinho escuro */
             color: white;
             font-size: 32px;
             display: flex;
@@ -58,63 +48,74 @@
             flex-shrink: 0;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             margin-left: 20px;
-            margin-top: 40px; /* Alinha com o topo do formulário */
+            margin-top: 40px;
             user-select: none;
         }
+
+        .title-color {
+            color: #6b0010; /* um vinho mais claro ou ajuste que quiser */
+        }
+
+        .btn-maroon {
+            background-color: #8b0015;
+            color: white;
+        }
+
+            .btn-maroon:hover {
+                background-color: #a3001c;
+            }
     </style>
 </head>
 <body>
 
-    <main class="container">
-        <h2>Cadastrar Paciente</h2>
+    <div class="content-container">
+        <h2 class="title-color mb-4">Cadastrar Paciente</h2>
 
         <section class="form-box">
-            <form>
-                <!-- Nome completo -->
+            <form class="flex-grow-1">
                 <div class="mb-3">
-                    <label class="form-label">Nome completo</label>
-                    <input type="text" class="form-control" />
+                    <label for="nome" class="form-label">Nome completo</label>
+                    <input type="text" id="nome" class="form-control" />
                 </div>
 
-                <!-- Campos em grid -->
                 <div class="row g-3">
                     <div class="col-md-4">
-                        <label class="form-label">CPF</label>
-                        <input type="text" class="form-control" />
+                        <label for="cpf" class="form-label">CPF</label>
+                        <input type="text" id="cpf" class="form-control" />
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label">CEP</label>
-                        <input type="text" class="form-control" />
+                        <label for="cep" class="form-label">CEP</label>
+                        <input type="text" id="cep" class="form-control" />
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label">Laudos Médicos</label>
-                        <input type="file" class="form-control" />
+                        <label for="laudos" class="form-label">Laudos Médicos</label>
+                        <input type="file" id="laudos" class="form-control" />
                     </div>
 
                     <div class="col-md-4">
-                        <label class="form-label">RG</label>
-                        <input type="text" class="form-control" />
+                        <label for="rg" class="form-label">RG</label>
+                        <input type="text" id="rg" class="form-control" />
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label">Bairro</label>
-                        <input type="text" class="form-control" />
+                        <label for="bairro" class="form-label">Bairro</label>
+                        <input type="text" id="bairro" class="form-control" />
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label">Data de Nascimento</label>
-                        <input type="date" class="form-control" />
+                        <label for="nascimento" class="form-label">Data de Nascimento</label>
+                        <input type="date" id="nascimento" class="form-control" />
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label">Rua</label>
-                        <input type="text" class="form-control" />
+                        <label for="rua" class="form-label">Rua</label>
+                        <input type="text" id="rua" class="form-control" />
                     </div>
                     <div class="col-md-3">
-                        <label class="form-label">Número</label>
-                        <input type="text" class="form-control" />
+                        <label for="numero" class="form-label">Número</label>
+                        <input type="text" id="numero" class="form-control" />
                     </div>
                     <div class="col-md-3">
-                        <label class="form-label">Sexo</label>
-                        <select class="form-select">
+                        <label for="sexo" class="form-label">Sexo</label>
+                        <select id="sexo" class="form-select">
                             <option selected disabled>Selecione</option>
                             <option>Masculino</option>
                             <option>Feminino</option>
@@ -123,28 +124,27 @@
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" />
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-control" />
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label">Telefone</label>
-                        <input type="tel" class="form-control" />
+                        <label for="telefone" class="form-label">Telefone</label>
+                        <input type="tel" id="telefone" class="form-control" />
                     </div>
                 </div>
 
-                <!-- Botões -->
                 <div class="mt-4 d-flex gap-3">
                     <button type="submit" class="btn btn-maroon">Cadastrar</button>
-                    <button type="reset" class="btn btn-dark">Excluir</button>
+                    <button type="reset" class="btn btn-secondary">Excluir</button>
                 </div>
             </form>
 
-            <!-- Botão lateral + -->
             <div class="upload-icon" title="Adicionar">
                 <span>＋</span>
             </div>
         </section>
-    </main>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
