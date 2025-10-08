@@ -1,117 +1,106 @@
 ﻿@page "/agendarsessao"
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendar Sessão</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f2f2f2;
-            font-family: 'Roboto', sans-serif;
-        }
+<div class="container">
+    <div class="card card-agendamento mx-auto" style="max-width: 800px; margin-top: 40px;">
+        <h4 class="titulo-form">Agendar Sessão</h4>
 
-        /* Card do formulário */
-        .card-agendamento {
-            border-radius: 10px;
-            padding: 20px;
-            background-color: #fff;
-            margin-top: 40px;
-        }
+        <!-- Formulário tradicional com method GET para enviar dados pela URL -->
+        <form method="get" action="/confirmacao">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="data" class="form-label">Data</label>
+                    <input type="date" class="form-control" id="data" name="data" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="horario" class="form-label">Horário</label>
+                    <select class="form-select" id="horario" name="horario" required>
+                        <option value="" selected disabled>Selecione</option>
+                        <option>14:00</option>
+                        <option>15:00</option>
+                        <option>16:00</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="sala" class="form-label">Sala</label>
+                    <select class="form-select" id="sala" name="sala" required>
+                        <option value="" selected disabled>Selecione</option>
+                        <option>5 Reabilitação</option>
+                        <option>6 Terapia</option>
+                    </select>
+                </div>
+            </div>
 
-        /* Botão agendar */
-        .btn-agendar {
-            background-color: #660F0F;
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="profissional" class="form-label">Profissional</label>
+                    <select class="form-select" id="profissional" name="profissional" required>
+                        <option value="" selected disabled>Selecione</option>
+                        <option>Dra. Emilly Luana Chagas</option>
+                        <option>Dr. Pedro Henrique</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="tipo" class="form-label">Tipo de sessão</label>
+                    <select class="form-select" id="tipo" name="tipo" required>
+                        <option value="" selected disabled>Selecione</option>
+                        <option>Reabilitação Motora</option>
+                        <option>Terapia Ocupacional</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="paciente" class="form-label">Nome do paciente</label>
+                <select class="form-select" id="paciente" name="paciente" required>
+                    <option value="" selected disabled>Selecione</option>
+                    <option>Matheus Santos</option>
+                    <option>Ana Beatriz</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="observacao" class="form-label">Observação</label>
+                <textarea class="form-control" id="observacao" name="observacao" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-agendar float-end">Agendar</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f2f2f2;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .card-agendamento {
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #fff;
+    }
+
+    .btn-agendar {
+        background-color: #660F0F;
+        color: #fff;
+    }
+
+        .btn-agendar:hover {
+            background-color: #7D1B1B;
             color: #fff;
         }
 
-            .btn-agendar:hover {
-                background-color: #7D1B1B;
-                color: #fff;
-            }
+    .titulo-form {
+        color: #660F0F;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
 
-        /* Título */
-        .titulo-form {
-            color: #660F0F;
-            font-weight: 500;
-            margin-bottom: 20px;
-        }
+    .form-control, .form-select {
+        border-radius: 5px;
+    }
 
-        /* Campos do formulário */
-        .form-control, .form-select {
-            border-radius: 5px;
-        }
-
-        /* Espaçamento entre campos */
-        .mb-3 {
-            margin-bottom: 15px !important;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Conteúdo -->
-    <div class="container">
-        <div class="card card-agendamento mx-auto" style="max-width: 800px;">
-            <h4 class="titulo-form">Agendar Sessão</h4>
-            <form>
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        <label for="data" class="form-label">Data</label>
-                        <input type="date" class="form-control" id="data">
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label for="horario" class="form-label">Horário</label>
-                        <select class="form-select" id="horario">
-                            <option selected>Selecione</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label for="sala" class="form-label">Sala</label>
-                        <select class="form-select" id="sala">
-                            <option selected>Selecione</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="profissional" class="form-label">Profissional</label>
-                        <select class="form-select" id="profissional">
-                            <option selected>Selecione</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="tipo" class="form-label">Tipo de sessão</label>
-                        <select class="form-select" id="tipo">
-                            <option selected>Selecione</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="paciente" class="form-label">Nome do paciente</label>
-                    <select class="form-select" id="paciente">
-                        <option selected>Selecione</option>
-                    </select>
-                </div>
-
-                <div class="mb-3">
-                    <label for="observacao" class="form-label">Observação</label>
-                    <textarea class="form-control" id="observacao" rows="3"></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-agendar float-end">Agendar</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    .mb-3 {
+        margin-bottom: 15px !important;
+    }
+</style>
