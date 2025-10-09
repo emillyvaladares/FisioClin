@@ -38,7 +38,6 @@ cpf_func varchar (15),
 rg_func varchar (20),
 email_func varchar (200),
 data_nascmento_func date,
-cargo_func varchar (200),
 especialidade_func varchar(200),
 registro_profissional_func varchar (200),
 data_contratacao_func date,
@@ -47,8 +46,6 @@ certificados_func varchar (200),
 telefone_pac varchar (20),
 senha_func varchar (200)
 );
-
-alter table Funcionario drop cargo_func;
 
 create table Cargo (
 id_cargo int primary key auto_increment,
@@ -68,6 +65,10 @@ id_funcionario_fk int not null,
 foreign key (id_cargo_fk) references Cargo(id_cargo),
 foreign key (id_funcionario_fk) references Funcionarios(id_funcionario)
 );
+
+drop table cargo_funcionario;
+
+
 
 create table Sala (
 id_sala int primary key auto_increment,

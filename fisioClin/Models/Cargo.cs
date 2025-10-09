@@ -10,6 +10,12 @@
 
         public string Descricao { get; set; }
 
-        public int 
+        public int Carga { get; set; }
+
+        public string DataCriacao { get; set; }
+
+        public string DataAtualizacao { get; set; }
+
+        public string Observacao { get; set; }
     }
 }
