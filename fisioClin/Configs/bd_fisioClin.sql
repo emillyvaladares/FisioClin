@@ -48,6 +48,7 @@
 --senha_func varchar (200)
 --);
 
+<<<<<<< HEAD
 --create table Cargo (
 --id_cargo int primary key auto_increment,
 --nome_cargo varchar (200),
@@ -58,6 +59,20 @@
 --data_atualizacao date,
 --observacoes_cargo varchar (200)
 --);
+=======
+alter table Funcionario drop cargo_func;
+
+create table Cargo (
+id_cargo int primary key auto_increment,
+nome_cargo varchar (200),
+departamento_cargo varchar (200),
+descricao_cargo varchar (200),
+carga_horaria int,
+data_criacao date,
+data_atualizacao date,
+observacoes_cargo varchar (200)
+);
+>>>>>>> a66f66328d4ab774b87205488e0f03cc5005b7fc
 
 --create table cargo_funcionario (
 --id_cargo_funcionario int primary key auto_increment,
