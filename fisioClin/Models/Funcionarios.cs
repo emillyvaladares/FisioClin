@@ -1,6 +1,6 @@
 ﻿namespace fisioClin.Models
 {
-    public class Funcao
+    public class Funcionarios
     {
     }
 }

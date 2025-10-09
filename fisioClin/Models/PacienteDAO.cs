@@ -52,7 +52,7 @@ namespace fisioClin.Models
                 comando.Parameters.AddWithValue("@_sexo", paciente.Sexo);
                 comando.Parameters.AddWithValue("@_email", paciente.Email);
                 comando.Parameters.AddWithValue("@_telefone", paciente.Telefone);
-                comando.Parameters.AddWithValue("@_id_fk", paciente.Id_fk);
+                comando.Parameters.AddWithValue("@_id_fk", paciente.Id_end_fk);
 
                 comando.ExecuteNonQuery();
             }

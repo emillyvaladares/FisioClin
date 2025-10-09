@@ -1,7 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
 
-namespace AppWeb.Configs
+namespace fisioClin.Configs
 {
     public class Conexao
     {
