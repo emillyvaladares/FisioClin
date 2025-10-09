@@ -48,6 +48,8 @@ telefone_pac varchar (20),
 senha_func varchar (200)
 );
 
+alter table Funcionario drop cargo_func;
+
 create table Cargo (
 id_cargo int primary key auto_increment,
 nome_cargo varchar (200),
