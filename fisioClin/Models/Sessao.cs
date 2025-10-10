@@ -2,5 +2,18 @@
 {
     public class Sessao
     {
+        public int Id { get; set; }
+
+        public string Data { get; set; }
+
+        public string Horario { get; set; }
+
+        public string Tipo { get; set; }
+
+        public string Observacao { get; set; }
+
+        public string Id_Funcionario_fk { get; set; }
+
+        public string Id_Paciente_fk_ {  get; set; }
     }
 }
