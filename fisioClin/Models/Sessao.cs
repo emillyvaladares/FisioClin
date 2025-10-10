@@ -12,8 +12,8 @@
 
         public string Observacao { get; set; }
 
-        public string Id_Funcionario_fk { get; set; }
+        public int Id_Funcionario_fk { get; set; }
 
-        public string Id_Paciente_fk_ {  get; set; }
+        public int Id_Paciente_fk_ {  get; set; }
     }
 }
