@@ -31,6 +31,7 @@
 --foreign key (id_paciente_fk) references Paciente(id_paciente)
 --);
 
+<<<<<<< HEAD
 --create table Funcionarios (
 --id_funcionario int primary key auto_increment,
 --nome_func varchar (200),
@@ -48,6 +49,44 @@
 --senha_func varchar (200)
 --);
 
+=======
+<<<<<<< HEAD
+create table Funcionarios (
+id_funcionario int primary key auto_increment,
+nome_func varchar (200),
+cpf_func varchar (15),
+rg_func varchar (20),
+email_func varchar (200),
+data_nascmento_func date,
+especialidade_func varchar(200),
+registro_profissional_func varchar (200),
+data_contratacao_func date,
+tipo_vinculo_func varchar (200),
+certificados_func varchar (200),
+telefone_pac varchar (20),
+senha_func varchar (200)
+);
+
+=======
+--create table Funcionarios (
+--id_funcionario int primary key auto_increment,
+--nome_func varchar (200),
+--cpf_func varchar (15),
+--rg_func varchar (20),
+--email_func varchar (200),
+--data_nascmento_func date,
+--cargo_func varchar (200),
+--especialidade_func varchar(200),
+--registro_profissional_func varchar (200),
+--data_contratacao_func date,
+--tipo_vinculo_func varchar (200),
+--certificados_func varchar (200),
+--telefone_pac varchar (20),
+--senha_func varchar (200)
+--);
+
+<<<<<<< HEAD
+>>>>>>> df22ba050ed51e90ff5066b69003cf81fbc5db88
 --create table Cargo (
 --id_cargo int primary key auto_increment,
 --nome_cargo varchar (200),
@@ -58,6 +97,7 @@
 --data_atualizacao date,
 --observacoes_cargo varchar (200)
 --);
+<<<<<<< HEAD
 
 --create table cargo_funcionario (
 --id_cargo_funcionario int primary key auto_increment,
@@ -67,6 +107,46 @@
 --foreign key (id_funcionario_fk) references Funcionarios(id_funcionario)
 --);
 
+=======
+=======
+alter table Funcionario drop cargo_func;
+
+>>>>>>> 1c8f59ca5ae579761191ba953c1537d8abab17df
+create table Cargo (
+id_cargo int primary key auto_increment,
+nome_cargo varchar (200),
+departamento_cargo varchar (200),
+descricao_cargo varchar (200),
+carga_horaria int,
+data_criacao date,
+data_atualizacao date,
+observacoes_cargo varchar (200)
+);
+>>>>>>> a66f66328d4ab774b87205488e0f03cc5005b7fc
+
+--create table cargo_funcionario (
+--id_cargo_funcionario int primary key auto_increment,
+--id_cargo_fk int not null,
+--id_funcionario_fk int not null,
+--foreign key (id_cargo_fk) references Cargo(id_cargo),
+--foreign key (id_funcionario_fk) references Funcionarios(id_funcionario)
+--);
+
+<<<<<<< HEAD
+drop table cargo_funcionario;
+
+
+
+create table Sala (
+id_sala int primary key auto_increment,
+numero_sala varchar (200),
+tipo_sala varchar (200),
+observacao_sala varchar (200),
+capacidade_sala varchar (200),
+disponibilidade_sala varchar (50)
+);
+=======
+>>>>>>> df22ba050ed51e90ff5066b69003cf81fbc5db88
 --create table Sala (
 --id_sala int primary key auto_increment,
 --numero_sala varchar (200),
@@ -75,6 +155,10 @@
 --capacidade_sala varchar (200),
 --disponibilidade_sala varchar (50)
 --);
+<<<<<<< HEAD
+=======
+>>>>>>> 1c8f59ca5ae579761191ba953c1537d8abab17df
+>>>>>>> df22ba050ed51e90ff5066b69003cf81fbc5db88
 
 --create table Sessao (
 --id_sessao int primary key auto_increment,
