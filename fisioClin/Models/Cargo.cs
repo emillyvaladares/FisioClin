@@ -17,5 +17,7 @@
         public string DataAtualizacao { get; set; }
 
         public string Observacao { get; set; }
+
+        public int Id_Funcionario_FK { get; set; }
     }
 }

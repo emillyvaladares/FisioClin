@@ -1,33 +1,23 @@
-﻿//using fisioClin.Configs;
+﻿using fisioClin.Configs;
 
-//namespace fisioClin.Models
-//{
-//    public class FuncionariosDAO
-//    {
-//        private readonly Conexao _conexao;
+namespace fisioClin.Models
+{
+    public class FuncionariosDAO
+    {
+        private readonly Conexao _conexao;
 
-//        public FuncionariosDAO(Conexao conexao)
-//        {
-//            _conexao = conexao;
-//        }
+        public FuncionariosDAO(Conexao conexao)
+        {
+            _conexao = conexao;
+        }
 
-//        public List<Funcionarios> ListarTodos()
-//        {
-//            var lista = new List<Funcionarios>();
+        public List<Funcionarios> ListarTodos()
+        {
+            var lista = new List<Funcionarios>();
 
-//            var comando = _conexao.CreateCommand("SELECT * FROM funcionarios;");
-//            var leitor = comando.ExecuteReader();
+            var comando = _conexao.CreateCommand("SELECT * FROM funcionarios;");
+            var leitor = comando.ExecuteReader();
 
-<<<<<<< HEAD
-//            while (funcionarios.Read())
-//            {
-//                var funcionarios = new Funcionarios();
-//                funcionarios.Id = leitor.GetInt32("id_fucionarios");
-//                funcionarios. = DAOHelper.GetString(leitor, "tipo_exame");
-//                funcionarios.Diagnostico = DAOHelper.GetString(leitor, "diagnostico_laudo");
-//                funcionarios.Observacao = DAOHelper.GetString(leitor, "observacao_laudo");
-//                funcionarios.Id_paciente_fk = leitor.GetInt32("id_paciente_fk");
-=======
             while (leitor.Read())
             {
                 var funcionarios = new Funcionarios();
@@ -44,26 +34,11 @@
                 funcionarios.Certificados = DAOHelper.GetString(leitor, "certificados_func");
                 funcionarios.Telefone = DAOHelper.GetString(leitor, "telefone_pac");
                 funcionarios.Senha = DAOHelper.GetString(leitor, "senha_func");
->>>>>>> df22ba050ed51e90ff5066b69003cf81fbc5db88
 
-//                lista.Add(funcionarios);
-//            }
-//            return lista;
-//        }
-
-<<<<<<< HEAD
-//        public void Inserir(Laudo laudo)
-//        {
-//            try
-//            {
-//                var comando = _conexao.CreateCommand("INSERT INTO laudo VALUES (@_id, @_exame, @_diagnostico, @_observacao, @_id_fk)");
-
-//                comando.Parameters.AddWithValue("@_id", laudo.Id);
-//                comando.Parameters.AddWithValue("@_exame", laudo.Exame);
-//                comando.Parameters.AddWithValue("@_diagnostico", laudo.Diagnostico);
-//                comando.Parameters.AddWithValue("@_observacao", laudo.Observacao);
-//                comando.Parameters.AddWithValue("@_id_fk", laudo.Id_paciente_fk);
-=======
+                lista.Add(funcionarios);
+            }
+            return lista;
+        }
         public void Inserir(Funcionarios funcionarios)
         {
             try
@@ -83,14 +58,13 @@
                 comando.Parameters.AddWithValue("@_certificados", funcionarios.Certificados);
                 comando.Parameters.AddWithValue("@_telefone", funcionarios.Telefone);
                 comando.Parameters.AddWithValue("@_senha", funcionarios.Senha);
->>>>>>> df22ba050ed51e90ff5066b69003cf81fbc5db88
 
-//                comando.ExecuteNonQuery();
-//            }
-//            catch (Exception)
-//            {
-//                throw;
-//            }
-//        }
-//    }
-//}
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+    }
+}
