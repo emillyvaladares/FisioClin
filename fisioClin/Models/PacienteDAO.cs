@@ -1,5 +1,4 @@
 ﻿using fisioClin.Configs;
-using fisioClin.Models;
 
 namespace fisioClin.Models
 {
@@ -22,7 +21,6 @@ namespace fisioClin.Models
             while (leitor.Read())
             {
                 var paciente = new Paciente();
-
                 paciente.Id = leitor.GetInt32("id_paciente");
                 paciente.Nome = DAOHelper.GetString(leitor, "nome_pac");
                 paciente.Cpf = DAOHelper.GetString(leitor, "cpf_pac");
