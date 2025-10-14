@@ -14,6 +14,6 @@
 
         public int Id_Funcionario_fk { get; set; }
 
-        public int Id_Paciente_fk_ {  get; set; }
+        public int Id_Paciente_fk {  get; set; }
     }
 }

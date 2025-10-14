@@ -27,6 +27,7 @@ namespace fisioClin.Models
                 sessao.Tipo = DAOHelper.GetString(leitor, "tipo_sessao");
                 sessao.Observacao = DAOHelper.GetString(leitor, "observacao_sessao");
                 sessao.Id_Funcionario_fk = leitor.GetInt32("id_funcionario_fk");
+                sessao.Id_Paciente_fk = leitor.GetInt32("id_paciente_fk");
 
                 lista.Add(sessao);
             }
@@ -45,7 +46,7 @@ namespace fisioClin.Models
                 comando.Parameters.AddWithValue("@_tipo", sessao.Tipo);
                 comando.Parameters.AddWithValue("@_observacao", sessao.Observacao);
                 comando.Parameters.AddWithValue("@_id_funcionario_fk", sessao.Id_Funcionario_fk);
-                comando.Parameters.AddWithValue("@_id_paciente_fk", sessao.Id_Paciente_fk_);
+                comando.Parameters.AddWithValue("@_id_paciente_fk", sessao.Id_Paciente_fk);
 
                 comando.ExecuteNonQuery();
             }

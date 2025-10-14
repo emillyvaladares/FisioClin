@@ -29,7 +29,6 @@ namespace fisioClin.Models
                 cargo.DataCriacao = DAOHelper.GetString(leitor, "data_criacao");
                 cargo.DataAtualizacao = DAOHelper.GetString(leitor, "data_atualizacao)");
                 cargo.Observacao = DAOHelper.GetString(leitor, "observacoes_cargo");
-                cargo.Id_Funcionario_FK = leitor.GetInt32("id_funcionario_fk");
 
                 lista.Add(cargo);
             }
@@ -40,7 +39,7 @@ namespace fisioClin.Models
         {
             try
             {
-                var comando = _conexao.CreateCommand("INSERT INTO cargo VALUES (@_id, @_nome, @_departamento, @_descricao, @_carga_horaria, @_data_criacao, @_dataatualizacao, @_observacoes, @_id_funcionario_fk)");
+                var comando = _conexao.CreateCommand("INSERT INTO cargo VALUES (@_id, @_nome, @_departamento, @_descricao, @_carga_horaria, @_data_criacao, @_dataatualizacao, @_observacoes)");
 
                 comando.Parameters.AddWithValue("@_id", cargo.Id);
                 comando.Parameters.AddWithValue("@_nome", cargo.Nome);
@@ -50,7 +49,6 @@ namespace fisioClin.Models
                 comando.Parameters.AddWithValue("@_data_criacao", cargo.DataCriacao);
                 comando.Parameters.AddWithValue("@_dataatualizacao", cargo.DataAtualizacao);
                 comando.Parameters.AddWithValue("@_observacoes", cargo.Observacao);
-                comando.Parameters.AddWithValue("@_id_funcionario_fk", cargo.Id_Funcionario_FK);
 
                 comando.ExecuteNonQuery();
             }
