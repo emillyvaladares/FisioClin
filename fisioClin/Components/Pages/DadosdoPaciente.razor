@@ -1,98 +1,112 @@
 ﻿@page "/dadospaciente"
-@using fisioClin.Models;
-@inject PacienteDAO pacienteDAO;
+@using fisioClin.Models
+@inject PacienteDAO pacienteDAO
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dados Pacientes</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+@code {
+    private List<Paciente> pacientes;
+    private string nomeBusca = "";
+    private bool carregando = false;
 
-<body>
-    <div class="container container-box mt-4">
-        <h3 class="mb-4">Dados Pacientes</h3>
+    protected override void OnInitialized()
+    {
+        pacientes = pacienteDAO.ListarTodos();
+    }
 
-        <div class="input-group mb-3">
-            <span class="input-group-text">Pesquisar Paciente</span>
-            <input type="text" class="form-control" id="inputPaciente" placeholder="Digite o nome do paciente" />
-            <button class="btn btn-outline-secondary" id="btnBuscarPaciente" type="button">🔍</button>
-        </div>
+    private void BuscarPacientes()
+    {
+        carregando = true;
 
+        if (string.IsNullOrWhiteSpace(nomeBusca))
+        {
+            pacientes = pacienteDAO.ListarTodos();
+        }
+        else
+        {
+            pacientes = pacienteDAO.ListarTodos()
+                .Where(p => p.Nome.Contains(nomeBusca, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+
+        carregando = false;
+    }
+}
+<div class="container container-box mt-4">
+    <h3 class="mb-4">Dados Pacientes</h3>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text">Pesquisar Paciente</span>
+        <input type="text" class="form-control" @bind="nomeBusca" placeholder="Digite o nome do paciente" />
+        <button class="btn btn-outline-secondary" @onclick="BuscarPacientes">🔍</button>
+    </div>
+
+    @if (carregando)
+    {
+        <div class="text-center text-muted">Buscando no banco de dados...</div>
+    }
+    else if (pacientes == null || pacientes.Count == 0)
+    {
+        <div class="text-center text-muted">Nenhum paciente encontrado.</div>
+    }
+    else
+    {
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">CPF</th>
-                    <th scope="col">Ações</th>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
-            <tbody id="tabelaPacientes">
-                <!-- Resultados serão inseridos aqui -->
+            <tbody>
+                @foreach (var p in pacientes)
+                {
+                    <tr>
+                        <td>@p.Id</td>
+                        <td>@p.Nome</td>
+                        <td>@p.Cpf</td>
+                        <td>
+                            <a href="/paciente/@p.Id" class="btn btn-sm btn-outline-primary">Ver</a>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
+    }
 
-        <div class="d-flex justify-content-end">
-            <a href="/paciente" class="btn-consultar">CONSULTAR PACIENTES</a>
-        </div>
+    <div class="d-flex justify-content-end">
+        <a href="/paciente" class="btn-consultar">CONSULTAR PACIENTES</a>
     </div>
+</div>
+<style>
+    body {
+        background-color: #f4f1f1;
+    }
 
-    <style>
-        body {
-            background-color: #f4f1f1;
+    .container-box {
+        background-color: #f0eded;
+        padding: 30px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+
+    .table th {
+        background-color: #fff;
+    }
+
+    .btn-consultar {
+        background-color: #800000;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        border: none;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background-color 0.3s;
+    }
+
+        .btn-consultar:hover {
+            background-color: #600000;
+            color: #fff;
         }
-
-        .container-box {
-            background-color: #f0eded;
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .table th {
-            background-color: #fff;
-        }
-
-        /* Botão consultar estilizado */
-        .btn-consultar {
-            background-color: #800000;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            border: none;
-            text-decoration: none; /* remove sublinhado */
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-
-            .btn-consultar:hover {
-                background-color: #600000;
-                color: #fff;
-            }
-    </style>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        // Botão buscar paciente (apenas exemplo, não conecta ao banco)
-        document.getElementById('btnBuscarPaciente').addEventListener('click', () => {
-            const nome = document.getElementById('inputPaciente').value.trim();
-
-            if (nome === '') {
-                alert('Digite um nome para pesquisar.');
-                return;
-            }
-
-            const tabela = document.getElementById('tabelaPacientes');
-            tabela.innerHTML = `
-                <tr>
-                  <td colspan="4" class="text-center text-muted">Buscando no banco de dados...</td>
-                </tr>
-              `;
-        });
-    </script>
-</body>
-</html>
+</style>
