@@ -37,7 +37,7 @@ namespace fisioClin.Models
         {
             try
             {
-                var comando = _conexao.CreateCommand("INSERT INTO sala VALUES (@_id, @_data, @_horario, @_tipo, @_observacao, @_id_funcionario_fk, @_id_paciente_fk)");
+                var comando = _conexao.CreateCommand("INSERT INTO sessao VALUES (@_id, @_data, @_horario, @_tipo, @_observacao, @_id_funcionario_fk, @_id_paciente_fk)");
 
                 comando.Parameters.AddWithValue("@_id", sessao.Id);
                 comando.Parameters.AddWithValue("@_data", sessao.Data);
