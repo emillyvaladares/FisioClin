@@ -13,7 +13,6 @@ namespace fisioClin.Models
             _conexao = conexao;
         }
 
-        // ✅ LISTAR TODOS
         public List<Funcionarios> ListarTodos()
         {
             var lista = new List<Funcionarios>();
@@ -23,26 +22,15 @@ namespace fisioClin.Models
 
             while (leitor.Read())
             {
-                var funcionario = new Funcionarios
-                {
-                    Id = leitor.GetInt32("id_funcionario"),
-                    Nome = DAOHelper.GetString(leitor, "nome_func"),
-                    Cpf = DAOHelper.GetString(leitor, "cpf_func"),
-                    Rg = DAOHelper.GetString(leitor, "rg_func"),
-                    Email = DAOHelper.GetString(leitor, "email_func"),
-                    DataNascimento = DAOHelper.GetString(leitor, "data_nascimento_func"),
-                    Especialidade = DAOHelper.GetString(leitor, "especialidade_func"),
-                    Registro = DAOHelper.GetString(leitor, "registro_profissional_func"),
-                    DataContratacao = DAOHelper.GetString(leitor, "data_contratacao_func"),
-                    TipoVinculo = DAOHelper.GetString(leitor, "tipo_vinculo_func"),
-                    Certificados = DAOHelper.GetString(leitor, "certificados_func"),
-                    Telefone = DAOHelper.GetString(leitor, "telefone_func"),
-                    Senha = DAOHelper.GetString(leitor, "senha_func")
-                };
+                var funcionario = new Funcionarios();
+                funcionario.Id = leitor.GetInt32("id_funcionario");
+                funcionario.Nome = DAOHelper.GetString(leitor, "nome_func");
+                funcionario.Cpf = DAOHelper.GetString(leitor, "cpf_func");
+                
 
                 lista.Add(funcionario);
             }
-
+           
             leitor.Close();
             return lista;
         }
