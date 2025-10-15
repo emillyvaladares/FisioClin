@@ -57,7 +57,7 @@ namespace fisioClin.Models
                 comando.Parameters.AddWithValue("@especialidade", f.Especialidade);
                 comando.Parameters.AddWithValue("@registro", f.Registro);
                 comando.Parameters.AddWithValue("@dataContratacao", f.DataContratacao);
-                comando.Parameters.AddWithValue("@Vinculo", f.Vinculo);
+                comando.Parameters.AddWithValue("@Vinculo", f.TipoVinculo);
                 comando.Parameters.AddWithValue("@certificados", f.Certificados);
                 comando.Parameters.AddWithValue("@telefone", f.Telefone);
                 comando.Parameters.AddWithValue("@senha", f.Senha);
@@ -91,7 +91,7 @@ namespace fisioClin.Models
                     Especialidade = DAOHelper.GetString(leitor, "especialidade_func"),
                     Registro = DAOHelper.GetString(leitor, "registro_profissional_func"),
                     DataContratacao = DAOHelper.GetString(leitor, "data_contratacao_func"),
-                    Vinculo = DAOHelper.GetString(leitor, "vinculo_func"),
+                    TipoVinculo = DAOHelper.GetString(leitor, "tipo_vinculo_func"),
                     Certificados = DAOHelper.GetString(leitor, "certificados_func"),
                     Telefone = DAOHelper.GetString(leitor, "telefone_func"),
                     Senha = DAOHelper.GetString(leitor, "senha_func")
