@@ -25,7 +25,7 @@ namespace fisioClin.Models
                 paciente.Nome = DAOHelper.GetString(leitor, "nome_pac");
                 paciente.Cpf = DAOHelper.GetString(leitor, "cpf_pac");
                 paciente.Rg = DAOHelper.GetString(leitor, "rg_pac");
-                paciente.DataNascimento = DAOHelper.GetString(leitor, "data_nascmento_pac");
+                paciente.DataNascimento = DAOHelper.GetDateTime(leitor, "data_nascmento_pac");
                 paciente.Sexo = DAOHelper.GetString(leitor, "sexo_pac");
                 paciente.Email = DAOHelper.GetString(leitor, "email_pac");
                 paciente.Telefone = DAOHelper.GetString(leitor, "telefone_pac");
@@ -56,6 +56,41 @@ namespace fisioClin.Models
             {
                 throw;
             }
+        }
+
+
+        public Paciente BuscarPorId(int id)
+        {
+            var paciente = new Paciente();
+
+      
+            var comando = _conexao.CreateCommand("SELECT * FROM paciente WHERE id_paciente = @id;");
+            comando.Parameters.AddWithValue("@id", id);
+
+            var leitor = comando.ExecuteReader();
+
+            if (leitor.Read())
+            {
+    
+                paciente.Id = leitor.GetInt32("id_paciente");
+                paciente.Nome = DAOHelper.GetString(leitor, "nome_pac");
+                paciente.Cpf = DAOHelper.GetString(leitor, "cpf_pac");
+                paciente.Rg = DAOHelper.GetString(leitor, "rg_pac");
+                paciente.DataNascimento = DAOHelper.GetDateTime(leitor, "data_nascmento_pac");
+                paciente.Sexo = DAOHelper.GetString(leitor, "sexo_pac");
+                paciente.Email = DAOHelper.GetString(leitor, "email_pac");
+                paciente.Telefone = DAOHelper.GetString(leitor, "telefone_pac");
+                paciente.Cep = DAOHelper.GetString(leitor, "cep_pac"); 
+                paciente.Bairro = DAOHelper.GetString(leitor, "bairro_pac"); 
+                paciente.Rua = DAOHelper.GetString(leitor, "rua_pac"); 
+                paciente.Numero = DAOHelper.GetString(leitor, "numero_pac"); 
+
+                leitor.Close();
+                return paciente;
+            }
+
+            leitor.Close();
+            return null; 
         }
     }
 }

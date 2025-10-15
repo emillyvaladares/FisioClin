@@ -1,6 +1,8 @@
 ﻿@page "/paciente"
 @using fisioClin.Models
 @inject PacienteDAO pacienteDAO
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
 
 @code {
     private List<Paciente> pacientes = new();
@@ -8,42 +10,48 @@
 
     protected override void OnInitialized()
     {
-        // Carrega todos os pacientes ao abrir a página
         pacientes = pacienteDAO.ListarTodos();
     }
 
     private void FiltrarPacientes()
     {
+        var todosPacientes = pacienteDAO.ListarTodos();
+
         if (string.IsNullOrWhiteSpace(nomeBusca))
         {
-            pacientes = pacienteDAO.ListarTodos();
+            pacientes = todosPacientes;
         }
         else
         {
-            pacientes = pacienteDAO.ListarTodos()
-                .Where(p => p.Nome.Contains(nomeBusca, StringComparison.OrdinalIgnoreCase))
+            var termoDeBusca = nomeBusca;
+
+            pacientes = todosPacientes
+                .Where(p =>
+                    p.Nome != null &&
+                    p.Nome.Contains(termoDeBusca, StringComparison.OrdinalIgnoreCase))
                 .ToList();
         }
+
+        StateHasChanged();
     }
 }
-<div class="container mt-4">
-    <h3 class="mb-4 titulo">Dados Pacientes</h3>
 
-    <!-- Campo de pesquisa -->
-    <div class="input-group mb-3">
-        <span class="input-group-text material-icons">arrow_back</span>
-        <input type="text" class="form-control" placeholder="Pesquisar Paciente" @bind="nomeBusca" @bind:event="oninput" />
-        <button class="btn btn-outline-secondary" @onclick="FiltrarPacientes">
-            <span class="material-icons">search</span>
-        </button>
+<div class="paciente-container mt-4">
+    <h3 class="titulo mb-4">Dados Pacientes</h3>
+
+    <div class="barra-pesquisa mb-3">
+        <div class="input-group">
+            <span class="input-group-text">🔍</span>
+            <input type="text" class="form-control campo-pesquisa" placeholder="Pesquisar Paciente"
+                   @bind="nomeBusca" @bind:event="oninput" @onkeyup="FiltrarPacientes" />
+        </div>
     </div>
 
-    <!-- Tabela -->
-    <table class="table table-bordered">
+    <table class="table tabela-pacientes">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Nome</th>
+                <th class="id-header">ID</th>
+                <th class="nome-header">Nome do Paciente</th>
             </tr>
         </thead>
         <tbody>
@@ -57,64 +65,169 @@
             {
                 @foreach (var p in pacientes)
                 {
-                    <tr>
+                    <tr class="linha-paciente">
                         <td class="id-col">@p.Id</td>
-                        <td>@p.Nome</td>
+                        <td class="nome-col-botao-wrapper">
+                            <a href="/dadospaciente/@p.Id" class="link-nome-paciente">
+                                @p.Nome
+                            </a>
+                        </td>
                     </tr>
                 }
             }
         </tbody>
     </table>
 
-    <!-- Botão de cadastrar -->
     <div class="d-flex justify-content-end mt-3">
-        <a href="/cadastro" class="btn btn-cadastrar">Cadastrar Paciente</a>
+        <a href="/cadastro" class="btn-cadastrar">Cadastrar Paciente</a>
     </div>
 </div>
 
 <style>
-    body {
-        background-color: #f4f1f1;
+    :root {
+        --cor-principal: #6b0f0f;
+        --cor-principal-hover: #8b0000;
+        --cor-fundo-claro: #f3f0f0;
+        --cor-fundo-linha-hover: #f5dcdc;
+        --cor-texto-principal: #333;
+    }
+
+    .paciente-container {
+        background-color: var(--cor-fundo-claro);
+        padding: 25px 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        font-family: 'Inter', sans-serif;
     }
 
     .titulo {
-        color: #600000;
-        font-weight: 600;
+        color: var(--cor-principal);
+        font-weight: 700;
+        font-size: 1.8rem;
     }
 
     .input-group-text {
         background-color: #fff;
-        border-right: none;
+        border: 1px solid #ccc;
+        border-radius: 8px 0 0 8px;
+        padding: 6px 10px;
+        color: var(--cor-principal);
     }
 
-    .form-control {
+    .campo-pesquisa {
+        border: 1px solid #ccc;
         border-left: none;
-        border-right: none;
+        border-radius: 0 8px 8px 0;
+        padding: 8px 12px;
+        background-color: #fff;
+        font-size: 15px;
     }
 
-    .table {
+        .campo-pesquisa:focus {
+            border-color: var(--cor-principal);
+            box-shadow: 0 0 0 0.25rem rgba(107, 15, 15, 0.25);
+        }
+
+    .tabela-pacientes {
+        width: 100%;
         background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        border-collapse: separate;
+        border-spacing: 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+        .tabela-pacientes thead {
+            background-color: var(--cor-principal);
+            color: #fff;
+        }
+
+        .tabela-pacientes th {
+            font-weight: 600;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .tabela-pacientes td {
+            padding: 0;
+            border-top: 1px solid #eee;
+        }
+
+        .tabela-pacientes tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+    .id-header {
+        width: 80px;
+        text-align: center;
+    }
+
+    .nome-header {
+        text-align: left;
     }
 
     .id-col {
-        width: 70px;
+        padding: 12px 15px;
+        width: 80px;
         text-align: center;
-        color: #600000;
-        font-weight: 600;
+        color: #777;
+        font-weight: 500;
     }
 
-    .btn-cadastrar {
-        background-color: #600000;
-        color: white;
+    .nome-col-botao-wrapper {
+        padding: 0 !important;
+    }
+
+    .link-nome-paciente {
+        width: 100%;
+        text-align: left;
+        background-color: transparent;
+        border: none;
+        padding: 12px 15px;
+        color: var(--cor-texto-principal);
+        font-size: 1em;
         font-weight: 500;
-        border-radius: 6px;
-        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.2s, color 0.2s;
+        border-radius: 0;
         text-decoration: none;
-        transition: 0.3s;
+        display: block;
+    }
+
+        .link-nome-paciente:hover {
+            background-color: var(--cor-fundo-linha-hover);
+            color: var(--cor-principal);
+        }
+
+    .btn-cadastrar {
+        background-color: var(--cor-principal);
+        color: #fff;
+        font-weight: 600;
+        padding: 10px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        border: none;
+        box-shadow: 0 4px 8px rgba(107, 15, 15, 0.2);
+        transition: background 0.3s, transform 0.1s;
     }
 
         .btn-cadastrar:hover {
-            background-color: #800000;
-            color: #fff;
+            background-color: var(--cor-principal-hover);
+            transform: translateY(-1px);
         }
+
+    @@media (max-width: 600px) {
+        .paciente-container {
+            padding: 15px;
+        }
+
+        .tabela-pacientes th, .tabela-pacientes td {
+            padding: 8px 10px;
+        }
+
+        .link-nome-paciente {
+            padding: 8px 10px;
+        }
+    }
 </style>

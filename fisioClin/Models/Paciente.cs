@@ -14,7 +14,7 @@
 
         public string Bairro { get; set; }
 
-        public string DataNascimento { get; set; }
+        public DateTime? DataNascimento { get; set; }
 
         public string Rua { get; set; }
 

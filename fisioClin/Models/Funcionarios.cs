@@ -26,8 +26,8 @@
 
         public string Certificados { get; set; }
 
-        public string DataNascimento { get; set; }
+        public DateTime? DataNascimento { get; set; }
 
-        public string DataContratacao { get; set; }
+        public DateTime? DataContratacao { get; set; }
     }
 }
