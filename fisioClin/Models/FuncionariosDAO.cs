@@ -57,7 +57,7 @@ namespace fisioClin.Models
                 comando.Parameters.AddWithValue("@especialidade", f.Especialidade);
                 comando.Parameters.AddWithValue("@registro", f.Registro);
                 comando.Parameters.AddWithValue("@dataContratacao", f.DataContratacao);
-                comando.Parameters.AddWithValue("@Vinculo", f.TipoVinculo);
+                comando.Parameters.AddWithValue("@TipoVinculo", f.TipoVinculo);
                 comando.Parameters.AddWithValue("@certificados", f.Certificados);
                 comando.Parameters.AddWithValue("@telefone", f.Telefone);
                 comando.Parameters.AddWithValue("@senha", f.Senha);
