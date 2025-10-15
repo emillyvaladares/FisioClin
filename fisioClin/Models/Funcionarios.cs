@@ -8,7 +8,7 @@
 
         public string Cpf { get; set; }
 
-        public string Vinculo { get; set; }
+        public string TipoVinculo { get; set; }
 
         public string Senha { get; set; }
 
