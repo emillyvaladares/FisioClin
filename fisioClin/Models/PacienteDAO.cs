@@ -24,8 +24,12 @@ namespace fisioClin.Models
                 paciente.Id = leitor.GetInt32("id_paciente");
                 paciente.Nome = DAOHelper.GetString(leitor, "nome_pac");
                 paciente.Cpf = DAOHelper.GetString(leitor, "cpf_pac");
+                paciente.Cep = DAOHelper.GetString(leitor, "cep_pac");
                 paciente.Rg = DAOHelper.GetString(leitor, "rg_pac");
+                paciente.Bairro = DAOHelper.GetString(leitor, "bairro_pac");
                 paciente.DataNascimento = DAOHelper.GetDateTime(leitor, "data_nascmento_pac");
+                paciente.Rua = DAOHelper.GetString(leitor, "rua_pac");
+                paciente.Numero = DAOHelper.GetString(leitor, "numero_pac");
                 paciente.Sexo = DAOHelper.GetString(leitor, "sexo_pac");
                 paciente.Email = DAOHelper.GetString(leitor, "email_pac");
                 paciente.Telefone = DAOHelper.GetString(leitor, "telefone_pac");
@@ -54,6 +58,7 @@ namespace fisioClin.Models
 
                 comando.Parameters.AddWithValue("@_nome", paciente.Nome);
                 comando.Parameters.AddWithValue("@_cpf", paciente.Cpf);
+<<<<<<< HEAD
                 comando.Parameters.AddWithValue("@_cep", paciente.Cep ?? "");
                 comando.Parameters.AddWithValue("@_rg", paciente.Rg ?? "");
                 comando.Parameters.AddWithValue("@_bairro", paciente.Bairro ?? "");
@@ -63,6 +68,16 @@ namespace fisioClin.Models
                 comando.Parameters.AddWithValue("@_sexo", paciente.Sexo ?? "");
                 comando.Parameters.AddWithValue("@_email", paciente.Email ?? "");
                 comando.Parameters.AddWithValue("@_telefone", paciente.Telefone ?? "");
+=======
+                comando.Parameters.AddWithValue("@_cep", paciente.Cep);
+                comando.Parameters.AddWithValue("@_rg", paciente.Rg);
+                comando.Parameters.AddWithValue("@_datanascimento", paciente.DataNascimento);
+                comando.Parameters.AddWithValue("@_rua", paciente.Rua);
+                comando.Parameters.AddWithValue("@_numero", paciente.Numero);
+                comando.Parameters.AddWithValue("@_sexo", paciente.Sexo);
+                comando.Parameters.AddWithValue("@_email", paciente.Email);
+                comando.Parameters.AddWithValue("@_telefone", paciente.Telefone);
+>>>>>>> 428703d97b4fa8d8f6e981bf1f76cb8b18d44fc9
 
                 comando.ExecuteNonQuery();
             }

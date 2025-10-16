@@ -10,6 +10,9 @@ builder.Services.AddRazorComponents()
 builder.Services.AddScoped<Conexao>();
 builder.Services.AddScoped<PacienteDAO>();
 
+
+
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
