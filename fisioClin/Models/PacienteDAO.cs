@@ -58,26 +58,26 @@ namespace fisioClin.Models
 
                 comando.Parameters.AddWithValue("@_nome", paciente.Nome);
                 comando.Parameters.AddWithValue("@_cpf", paciente.Cpf);
-<<<<<<< HEAD
-                comando.Parameters.AddWithValue("@_cep", paciente.Cep ?? "");
-                comando.Parameters.AddWithValue("@_rg", paciente.Rg ?? "");
-                comando.Parameters.AddWithValue("@_bairro", paciente.Bairro ?? "");
-                comando.Parameters.AddWithValue("@_datanascimento", paciente.DataNascimento);
-                comando.Parameters.AddWithValue("@_rua", paciente.Rua ?? "");
-                comando.Parameters.AddWithValue("@_numero", paciente.Numero ?? "");
-                comando.Parameters.AddWithValue("@_sexo", paciente.Sexo ?? "");
-                comando.Parameters.AddWithValue("@_email", paciente.Email ?? "");
-                comando.Parameters.AddWithValue("@_telefone", paciente.Telefone ?? "");
-=======
+
                 comando.Parameters.AddWithValue("@_cep", paciente.Cep);
                 comando.Parameters.AddWithValue("@_rg", paciente.Rg);
+                comando.Parameters.AddWithValue("@_bairro", paciente.Bairro);
                 comando.Parameters.AddWithValue("@_datanascimento", paciente.DataNascimento);
                 comando.Parameters.AddWithValue("@_rua", paciente.Rua);
                 comando.Parameters.AddWithValue("@_numero", paciente.Numero);
                 comando.Parameters.AddWithValue("@_sexo", paciente.Sexo);
                 comando.Parameters.AddWithValue("@_email", paciente.Email);
                 comando.Parameters.AddWithValue("@_telefone", paciente.Telefone);
->>>>>>> 428703d97b4fa8d8f6e981bf1f76cb8b18d44fc9
+        
+                //comando.Parameters.AddWithValue("@_cep", paciente.Cep);
+                //comando.Parameters.AddWithValue("@_rg", paciente.Rg);
+                //comando.Parameters.AddWithValue("@_datanascimento", paciente.DataNascimento);
+                //comando.Parameters.AddWithValue("@_rua", paciente.Rua);
+                //comando.Parameters.AddWithValue("@_numero", paciente.Numero);
+                //comando.Parameters.AddWithValue("@_sexo", paciente.Sexo);
+                //comando.Parameters.AddWithValue("@_email", paciente.Email);
+                //comando.Parameters.AddWithValue("@_telefone", paciente.Telefone);
+
 
                 comando.ExecuteNonQuery();
             }
