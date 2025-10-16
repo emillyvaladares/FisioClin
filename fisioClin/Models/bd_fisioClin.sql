@@ -2,7 +2,7 @@ create database FisioClin;
 use FisioClin;
 
 create table Paciente (
-id_paciente int primary key auto_increment,
+id_paciente int not null primary key auto_increment,
 nome_pac varchar (200),
 cpf_pac varchar (15),
 cep_pac varchar (20),
@@ -21,7 +21,7 @@ insert into Paciente values (1,'emilly', '060.042.332-21', '789598', '375723',
  'valadaresemillylavinia@gmail.com', '69 99275-1820');
  
 create table Laudo (
-id_laudo int primary key auto_increment,
+id_laudo int not null primary key auto_increment,
 Validade_laudo varchar (200),
 Tipo_Exame varchar (200),
 diagnostico_laudo varchar (200),
@@ -35,7 +35,7 @@ insert into Laudo Values (1, 'Valido por 1 ano', 'Queropraxia', 'Escoliose', 'Pa
 'Em aberto',1);
 
 create table Cargo (
-id_cargo int primary key auto_increment,
+id_cargo int not null primary key auto_increment,
 nome_cargo varchar (200),
 departamento_cargo varchar (200),
 descricao_cargo varchar (200),
@@ -50,7 +50,7 @@ insert into Cargo values (1, 'Queroprata', 'Fisioterapia',
  'Importante');
 
 create table Funcionarios (
-id_funcionario int primary key auto_increment,
+id_funcionario int not null primary key auto_increment,
 nome_func varchar (200),
 cpf_func varchar (15),
 tipo_vinculo varchar (200),
@@ -71,7 +71,7 @@ Insert into Funcionarios values (1, 'Renata Chagas', '032.854.754-44', 'clt',
 , '35734', 'Curso De Queropraxia', '2000-08-23', '2024-05-27');
 
 create table Sala (
-id_sala int primary key auto_increment,
+id_sala int not null primary key auto_increment,
 nome_sala varchar (200),
 numero_sala varchar (200),
 capacidade_sala varchar (200),
@@ -84,7 +84,7 @@ insert into Sala values (1, 'Sala de Massagem', '23', '50 pessoas', 'Sala para r
 'Ocupada', 'Sala com equipamentos para a realização de massagens.');
 
 create table Sessao (
-id_sessao int primary key auto_increment,
+id_sessao int not null primary key auto_increment,
 data_sessao date,
 horario_sessao time,
 tipo_sessao varchar (200),
@@ -99,7 +99,7 @@ insert into Sessao values (1, '2025-12-05', '10:00', 'Sessao Ortopédica',
  'sessao para paciente compé torcido', 1, 1);
 
 create table Agenda (
-id_agenda int primary key auto_increment,
+id_agenda int not null primary key auto_increment,
 data_ag date,
 horario_ag time,
 id_sala_fk int not null,
@@ -116,7 +116,7 @@ observacao_ag varchar (200)
 Insert into Agenda values (1, '2025-10-23', '09:00', 1, 1, 1, 1, 'Agenda do dia 23');
 
 create table Prontuario (
-id_prontuario int primary key auto_increment,
+id_prontuario int not null primary key auto_increment,
 data_pront date,
 alergia_pront varchar (200),
 comorbidade_pront varchar (200),
@@ -132,7 +132,7 @@ iNSERT Into Prontuario values (1, '2025-03-28', 'dipirona', null, null,
 'diabetes', 'Caminhadas', 'Péssimo estado', 1); 
 
 create table Pagamento (
-id_pagamento int primary key auto_increment,
+id_pagamento int not null primary key auto_increment,
 data_pagamento date,
 numero_parcelas int,
 valor_pagamento float,
@@ -147,10 +147,18 @@ Insert into Pagamento values (1, '2025-09-15', 5, 170, 'crédito', 'Em processo,
 'Paciente tem pago corretamente', 1);
 
 create table financeiro ( 
-id_financeiro int primary key auto_increment,
+id_financeiro int not null primary key auto_increment,
 periodo_fin float,
 id_funcionario_fk int not null,
 foreign key (id_funcionario_fk) references Funcionarios(id_funcionario)
 );
 
 Insert into Financeiro values (1, 12, 1);
+
+create table Login (
+id_login int not null auto_increment,
+id_paciente_fk int not null,
+foreign key (id_paciente_fk) references Paciente(id_paciente),
+id_funcionario_fk int not null,
+foreign key (id_funcionario_fk) references Funcionarios(id_funcionario)
+);
