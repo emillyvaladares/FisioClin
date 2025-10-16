@@ -23,7 +23,7 @@ namespace fisioClin.Models
                 var laudo = new Laudo();
                 laudo.Id = leitor.GetInt32("id_laudo");
                 laudo.Validade = DAOHelper.GetString(leitor, "Validade_laudo");
-                laudo.Exame = DAOHelper.GetString(leitor, "tipo_exame");
+                laudo.Exame = DAOHelper.GetString(leitor, "Tipo_exame");
                 laudo.Diagnostico = DAOHelper.GetString(leitor, "diagnostico_laudo");
                 laudo.Observacao = DAOHelper.GetString(leitor, "observacao_laudo");
                 laudo.Status = DAOHelper.GetString(leitor, "status_laudo");
