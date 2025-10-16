@@ -154,3 +154,6 @@ foreign key (id_funcionario_fk) references Funcionarios(id_funcionario)
 );
 
 Insert into Financeiro values (1, 12, 1);
+
+DELETE FROM paciente
+WHERE id_paciente IN (2, 3, 4, 5, 6);
