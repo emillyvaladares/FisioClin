@@ -43,16 +43,16 @@ namespace fisioClin.Models
         }
 
         // Inserir um novo pagamento
-        public void Inserir(Pagamento p)
+        public async Task Inserir(Pagamento p)
         {
             try
             {
                 var comando = _conexao.CreateCommand(@"
-                    INSERT INTO Pagamento 
-                    (data_pagamento, numero_parcelas, valor_pagamento, forma_pagamento, status_pagamento, observacao_pagamento, id_paciente_fk)
-                    VALUES 
-                    (@dataPagamento, @numeroParcelas, @valorPagamento, @formaPagamento, @status, @observacao, @idPacienteFk);
-                ");
+            INSERT INTO Pagamento 
+            (data_pagamento, numero_parcelas, valor_pagamento, forma_pagamento, status_pagamento, observacao_pagamento, id_paciente_fk)
+            VALUES 
+            (@dataPagamento, @numeroParcelas, @valorPagamento, @formaPagamento, @status, @observacao, @idPacienteFk);
+        ");
 
                 comando.Parameters.AddWithValue("@dataPagamento", p.DataPagamento);
                 comando.Parameters.AddWithValue("@numeroParcelas", p.NumeroParcelas);
@@ -62,7 +62,7 @@ namespace fisioClin.Models
                 comando.Parameters.AddWithValue("@observacao", p.Observacao);
                 comando.Parameters.AddWithValue("@idPacienteFk", p.IdPacienteFk);
 
-                comando.ExecuteNonQuery();
+                await comando.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
