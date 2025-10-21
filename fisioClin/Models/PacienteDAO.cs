@@ -33,8 +33,6 @@ namespace fisioClin.Models
                 paciente.Sexo = DAOHelper.GetString(leitor, "sexo_pac");
                 paciente.Email = DAOHelper.GetString(leitor, "email_pac");
                 paciente.Telefone = DAOHelper.GetString(leitor, "telefone_pac");
-
-                // CORREÇÃO: Inclusão dos campos de endereço que estavam faltando na leitura
                 paciente.Cep = DAOHelper.GetString(leitor, "cep_pac");
                 paciente.Bairro = DAOHelper.GetString(leitor, "bairro_pac");
                 paciente.Rua = DAOHelper.GetString(leitor, "rua_pac");
@@ -69,14 +67,7 @@ namespace fisioClin.Models
                 comando.Parameters.AddWithValue("@_email", paciente.Email);
                 comando.Parameters.AddWithValue("@_telefone", paciente.Telefone);
         
-                //comando.Parameters.AddWithValue("@_cep", paciente.Cep);
-                //comando.Parameters.AddWithValue("@_rg", paciente.Rg);
-                //comando.Parameters.AddWithValue("@_datanascimento", paciente.DataNascimento);
-                //comando.Parameters.AddWithValue("@_rua", paciente.Rua);
-                //comando.Parameters.AddWithValue("@_numero", paciente.Numero);
-                //comando.Parameters.AddWithValue("@_sexo", paciente.Sexo);
-                //comando.Parameters.AddWithValue("@_email", paciente.Email);
-                //comando.Parameters.AddWithValue("@_telefone", paciente.Telefone);
+             
 
 
                 comando.ExecuteNonQuery();

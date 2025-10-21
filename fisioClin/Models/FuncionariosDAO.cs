@@ -1,6 +1,8 @@
 ﻿using fisioClin.Configs;
+using fisioClin.Models;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
+
 
 namespace fisioClin.Models
 {
@@ -105,5 +107,6 @@ namespace fisioClin.Models
             leitor.Close();
             return null;
         }
+       
     }
 }
