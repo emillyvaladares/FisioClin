@@ -1,8 +1,9 @@
-<<<<<<< HEAD
+
 @page "/dadosfuncionario/{id:int}"
 @using fisioClin.Models;
 @inject FuncionariosDAO FuncionariosDAO
 @inject NavigationManager NavigationManager
+
 
 @code {
     [Parameter]
@@ -59,7 +60,7 @@ else
                 <DataAnnotationsValidator />
                 <div class="row g-3">
 
-                    @* Primeira Linha: Nome Completo *@
+                    @* Primeira Linha: Nome Completo
                     <div class="col-12">
                         <label for="nome" class="form-label">Nome completo</label>
                         <InputText id="nome" @bind-Value="funcionario.Nome" class="form-control" />
@@ -133,6 +134,7 @@ else
     </div>
 }
 
+
 <style>
     /* Estilos base consistentes com a lista de pacientes */
     :root {
@@ -141,7 +143,8 @@ else
         --cor-fundo-claro: #f3f0f0;
         --cor-texto-principal: #333;
     }
-=======
+</style>
+ 
     @page "/dadosfuncionario"
 
     <!DOCTYPE html>
@@ -243,6 +246,7 @@ else
                 }
         </style>
     </head>
+
     <body>
         <!-- FORMULÁRIO -->
         <div class="container">
@@ -319,8 +323,8 @@ else
 
     </body>
     </html>
->>>>>>> 2699f8c903d7e2d646af22145b5d8da868ad1189
 
+    <style>
     .funcionario-details-container {
         background-color: var(--cor-fundo-claro);
         padding: 30px;
@@ -444,4 +448,3 @@ else
         }
     }
 </style>
-@using Microsoft.AspNetCore.Components.Forms

@@ -26,8 +26,8 @@ namespace fisioClin.Models
                 cargo.Departamento = DAOHelper.GetString(leitor, "departamento_cargo");
                 cargo.Descricao = DAOHelper.GetString(leitor, "descricao_cargo");
                 cargo.Carga = leitor.GetInt32("carga_horaria");
-                cargo.DataCriacao = DAOHelper.GetString(leitor, "data_criacao");
-                cargo.DataAtualizacao = DAOHelper.GetString(leitor, "data_atualizacao)");
+                cargo.DataCriacao = DAOHelper.GetDateTime(leitor, "data_criacao");
+                cargo.DataAtualizacao = DAOHelper.GetDateTime(leitor, "data_atualizacao)");
                 cargo.Observacao = DAOHelper.GetString(leitor, "observacoes_cargo");
 
                 lista.Add(cargo);

@@ -1,6 +1,8 @@
 ﻿using fisioClin.Configs;
+using fisioClin.Models;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
+
 
 namespace fisioClin.Models
 {
@@ -26,6 +28,16 @@ namespace fisioClin.Models
                 funcionario.Id = leitor.GetInt32("id_funcionario");
                 funcionario.Nome = DAOHelper.GetString(leitor, "nome_func");
                 funcionario.Cpf = DAOHelper.GetString(leitor, "cpf_func");
+                funcionario.TipoVinculo = DAOHelper.GetString(leitor, "tipo_vinculo");
+                funcionario.Senha = DAOHelper.GetString(leitor, "senha_func");
+                funcionario.Rg = DAOHelper.GetString(leitor, "rg_func");
+                funcionario.Especialidade = DAOHelper.GetString(leitor, "especialidade_func");
+                funcionario.Subespecialidade = DAOHelper.GetString(leitor, "subespecialidade_func");
+                funcionario.Telefone = DAOHelper.GetString(leitor, "telefone_pac");
+                funcionario.Email = DAOHelper.GetString(leitor, "email_func");
+                funcionario.Registro = DAOHelper.GetString(leitor, "registro_profissional_func");
+                funcionario.Certificados = DAOHelper.GetString(leitor, "certificados_func");
+                funcionario.DataNascimento = DAOHelper.GetDateTime(leitor, "data_nascmento_func");
                 
 
                 lista.Add(funcionario);
@@ -35,42 +47,34 @@ namespace fisioClin.Models
             return lista;
         }
 
-        // ✅ INSERIR
-        public void Inserir(Funcionarios f)
+        public void Inserir(Funcionarios funcionarios)
         {
             try
             {
-                var comando = _conexao.CreateCommand(@"
-                    INSERT INTO funcionarios 
-                    (nome_func, cpf_func, rg_func, email_func, data_nascimento_func, especialidade_func, 
-                     registro_profissional_func, data_contratacao_func, tipo_vinculo_func, certificados_func, telefone_func, senha_func)
-                    VALUES 
-                    (@nome, @cpf, @rg, @email, @dataNasc, @especialidade, @registro, 
-                     @dataContratacao, @tipoVinculo, @certificados, @telefone, @senha);
-                ");
+                var comando = _conexao.CreateCommand("INSERT INTO funcioinarios VALUES (@_id, @_nome, @_cpf, @_vinculo, @_senha, @_rg, @_especialidade, @_subespecialidade, @_telefone, @_email, @_registro, @_certificados, @_datanascimento, @_datacontratacao)");
 
-                comando.Parameters.AddWithValue("@nome", f.Nome);
-                comando.Parameters.AddWithValue("@cpf", f.Cpf);
-                comando.Parameters.AddWithValue("@rg", f.Rg);
-                comando.Parameters.AddWithValue("@email", f.Email);
-                comando.Parameters.AddWithValue("@dataNasc", f.DataNascimento);
-                comando.Parameters.AddWithValue("@especialidade", f.Especialidade);
-                comando.Parameters.AddWithValue("@registro", f.Registro);
-                comando.Parameters.AddWithValue("@dataContratacao", f.DataContratacao);
-                comando.Parameters.AddWithValue("@TipoVinculo", f.TipoVinculo);
-                comando.Parameters.AddWithValue("@certificados", f.Certificados);
-                comando.Parameters.AddWithValue("@telefone", f.Telefone);
-                comando.Parameters.AddWithValue("@senha", f.Senha);
+                comando.Parameters.AddWithValue("@_id", funcionarios.Id);
+                comando.Parameters.AddWithValue("@_nome", funcionarios.Nome);
+                comando.Parameters.AddWithValue("@_cpf", funcionarios.Cpf);
+                comando.Parameters.AddWithValue("@_vinculo", funcionarios.TipoVinculo);
+                comando.Parameters.AddWithValue("@_senha", funcionarios.Senha);
+                comando.Parameters.AddWithValue("@_rg", funcionarios.Rg);
+                comando.Parameters.AddWithValue("@_especialidade", funcionarios.Especialidade);
+                comando.Parameters.AddWithValue("@_subespecialidade", funcionarios.Subespecialidade);
+                comando.Parameters.AddWithValue("@_telefone", funcionarios.Telefone);
+                comando.Parameters.AddWithValue("@_email", funcionarios.Email);
+                comando.Parameters.AddWithValue("@_certificados", funcionarios.Certificados);
+                comando.Parameters.AddWithValue("@_datanascimento", funcionarios.DataNascimento);
+                comando.Parameters.AddWithValue("@_datacontratacao", funcionarios.DataContratacao);
 
                 comando.ExecuteNonQuery();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception("Erro ao inserir funcionário: " + ex.Message);
+                throw;
             }
         }
-
-        // ✅ BUSCAR POR ID (para exibir na página de dados)
+      
         public Funcionarios BuscarPorId(int id)
         {
             var comando = _conexao.CreateCommand("SELECT * FROM funcionarios WHERE id_funcionario = @id;");
@@ -103,5 +107,6 @@ namespace fisioClin.Models
             leitor.Close();
             return null;
         }
+       
     }
 }

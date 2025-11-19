@@ -22,7 +22,7 @@ namespace fisioClin.Models
             {
                 var sessao = new Sessao();
                 sessao.Id = leitor.GetInt32("id_sessao");
-                sessao.Data = DAOHelper.GetString(leitor, "data_sessao");
+                sessao.Data = DAOHelper.GetDateTime(leitor, "data_sessao");
                 sessao.Horario = DAOHelper.GetString(leitor, "horario_sessao");
                 sessao.Tipo = DAOHelper.GetString(leitor, "tipo_sessao");
                 sessao.Observacao = DAOHelper.GetString(leitor, "observacao_sessao");

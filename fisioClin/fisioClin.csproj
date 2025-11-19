@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Content Remove="Components\Pages\DadosFunciSel.razor" />
+    <Content Remove="Components\Pages\SeleiconarPaciente.razor" />
   </ItemGroup>
 
   <ItemGroup>

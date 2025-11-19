@@ -9,6 +9,8 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddScoped<Conexao>();
 builder.Services.AddScoped<PacienteDAO>();
+builder.Services.AddScoped<FuncionariosDAO>();
+
 
 var app = builder.Build();
 
