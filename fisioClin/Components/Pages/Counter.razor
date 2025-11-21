@@ -1,10 +1,11 @@
 ﻿@page "/conectar"
 @using fisioClin.Models
-@inject NavigationManager Navigation
+@using System.ComponentModel.DataAnnotations   
 @using FisioClin.Configs
+@inject NavigationManager Navigation
 @inject Conexao conexao
 
-
+@rendermode InteractiveServer
 <div class="login-container">
     <div class="left-side">
         <div class="logo-circle fancy-logo">FC</div>
@@ -14,10 +15,13 @@
 
     <div class="right-side">
         <EditForm Model="@usuario" OnValidSubmit="@LoginUsuario">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
             <h2>LOGIN</h2>
 
-            <label for="cpf">CPF</label>
-            <InputText id="cpf" @bind-Value="usuario.Cpf" class="form-control" />
+            <label for="email">Email</label>
+            <InputText id="email" @bind-Value="usuario.Email" class="form-control" />
 
             <label for="senha">Senha</label>
             <InputText id="senha" type="password" @bind-Value="usuario.Senha" class="form-control" />
@@ -44,15 +48,18 @@
         try
         {
             var loginDao = new LoginDAO(conexao);
-            bool sucesso = loginDao.VerificarLogin(usuario.Cpf, usuario.Senha);
 
-            if (sucesso)
+            // verifica em paciente e funcionário
+            bool pacienteOK = loginDao.VerificarLoginPaciente(usuario.Email, usuario.Senha);
+            bool funcionarioOK = loginDao.VerificarLoginFuncionario(usuario.Email, usuario.Senha);
+
+            if (pacienteOK || funcionarioOK)
             {
-                Navigation.NavigateTo("/menu"); // vai para página principal
+                Navigation.NavigateTo("/menu");
             }
             else
             {
-                mensagem = "CPF ou senha incorretos. Tente novamente.";
+                mensagem = "Email ou senha incorretos.";
             }
         }
         catch (Exception ex)
@@ -63,7 +70,10 @@
 
     public class UsuarioLogin
     {
-        public string Cpf { get; set; } = "";
+        [Required(ErrorMessage = "Email é obrigatório.")]
+        public string Email { get; set; } = "";
+
+        [Required(ErrorMessage = "Senha é obrigatória.")]
         public string Senha { get; set; } = "";
     }
 }

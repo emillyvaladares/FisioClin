@@ -22,15 +22,16 @@ namespace fisioClin.Models
             {
                 var sala = new Sala();
                 sala.Id = leitor.GetInt32("id_sal");
-                sala.Nome = leitor.GetString("nome_sal");
+                sala.Nome = DAOHelper.GetString(leitor, "nome_sal");
                 sala.Numero = DAOHelper.GetString(leitor, "numero_sal");
                 sala.Capacidade = leitor.GetInt32("capacidade_sal");
                 sala.Tipo = DAOHelper.GetString(leitor, "tipo_sal");
                 sala.Disponibilidade = DAOHelper.GetString(leitor, "disponibilidade_sal");
                 sala.Observacao = DAOHelper.GetString(leitor, "observacao_sal");
-       
+
                 lista.Add(sala);
             }
+
             return lista;
         }
 
@@ -38,9 +39,12 @@ namespace fisioClin.Models
         {
             try
             {
-                var comando = _conexao.CreateCommand("INSERT INTO sala VALUES (@_id, @_nome, @_numero, @_capacidade, @_tipo, @_disponibilidade, @_observacao)");
+                var comando = _conexao.CreateCommand(@"
+                    INSERT INTO sala 
+                    (nome_sal, numero_sal, capacidade_sal, tipo_sal, disponibilidade_sal, observacao_sal)
+                    VALUES (@_nome, @_numero, @_capacidade, @_tipo, @_disponibilidade, @_observacao);
+                ");
 
-                comando.Parameters.AddWithValue("@_id", sala.Id);
                 comando.Parameters.AddWithValue("@_nome", sala.Nome);
                 comando.Parameters.AddWithValue("@_numero", sala.Numero);
                 comando.Parameters.AddWithValue("@_capacidade", sala.Capacidade);
@@ -49,7 +53,7 @@ namespace fisioClin.Models
                 comando.Parameters.AddWithValue("@_observacao", sala.Observacao);
 
                 comando.ExecuteNonQuery();
-            } 
+            }
             catch (Exception)
             {
                 throw;

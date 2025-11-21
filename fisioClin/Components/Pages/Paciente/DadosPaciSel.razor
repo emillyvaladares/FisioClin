@@ -10,7 +10,13 @@
 
     protected override void OnInitialized()
     {
+        AtualizarLista();
+    }
+
+    private void AtualizarLista()
+    {
         pacientes = pacienteDAO.ListarTodos();
+        StateHasChanged();
     }
 
     private void FiltrarPacientes()
@@ -24,15 +30,31 @@
         else
         {
             var termoDeBusca = nomeBusca;
-
             pacientes = todosPacientes
                 .Where(p =>
-                    p.Nome != null &&
+                    !string.IsNullOrEmpty(p.Nome) &&
                     p.Nome.Contains(termoDeBusca, StringComparison.OrdinalIgnoreCase))
                 .ToList();
         }
 
         StateHasChanged();
+    }
+
+    private async Task ExcluirPaciente(int id)
+    {
+        bool confirm = await JSRuntime.InvokeAsync<bool>("confirm", "Deseja realmente excluir este paciente?");
+        if (confirm)
+        {
+            try
+            {
+                pacienteDAO.Deletar(id);
+                AtualizarLista();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro ao excluir paciente: " + ex.Message);
+            }
+        }
     }
 }
 
@@ -52,13 +74,14 @@
             <tr>
                 <th class="id-header">ID</th>
                 <th class="nome-header">Nome do Paciente</th>
+                <th class="acoes-header">Ações</th>
             </tr>
         </thead>
         <tbody>
             @if (pacientes == null || pacientes.Count == 0)
             {
                 <tr>
-                    <td colspan="2" class="text-center text-muted">Nenhum paciente encontrado.</td>
+                    <td colspan="3" class="text-center text-muted">Nenhum paciente encontrado.</td>
                 </tr>
             }
             else
@@ -67,10 +90,18 @@
                 {
                     <tr class="linha-paciente">
                         <td class="id-col">@p.Id</td>
+
                         <td class="nome-col-botao-wrapper">
                             <a href="/dadospaciente/@p.Id" class="link-nome-paciente">
                                 @p.Nome
                             </a>
+                        </td>
+
+                        <td class="acoes-col">
+                            <a href="/cadastrarpaciente/@p.Id" class="btn-editar me-2">Editar</a>
+                            <button class="btn-editar btn-excluir" @onclick="() => ExcluirPaciente(p.Id)">
+                                Excluir
+                            </button>
                         </td>
                     </tr>
                 }
@@ -84,14 +115,7 @@
 </div>
 
 <style>
-    :root {
-        --cor-principal: #6b0f0f;
-        --cor-principal-hover: #8b0000;
-        --cor-fundo-claro: #f3f0f0;
-        --cor-fundo-linha-hover: #f5dcdc;
-        --cor-texto-principal: #333;
-    }
-
+    /* Mantendo todo o estilo original */
     .paciente-container {
         background-color: var(--cor-fundo-claro);
         padding: 25px 30px;
@@ -154,10 +178,6 @@
             border-top: 1px solid #eee;
         }
 
-        .tabela-pacientes tbody tr:last-child td {
-            border-bottom: none;
-        }
-
     .id-header {
         width: 80px;
         text-align: center;
@@ -167,6 +187,11 @@
         text-align: left;
     }
 
+    .acoes-header {
+        width: 120px;
+        text-align: center;
+    }
+
     .id-col {
         padding: 12px 15px;
         width: 80px;
@@ -174,6 +199,26 @@
         color: #777;
         font-weight: 500;
     }
+
+    .acoes-col {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .btn-editar {
+        background-color: #d4aa00;
+        color: #fff;
+        font-weight: 600;
+        padding: 6px 14px;
+        border-radius: 6px;
+        text-decoration: none;
+        border: none;
+        transition: 0.2s;
+    }
+
+        .btn-editar:hover {
+            background-color: #b89000;
+        }
 
     .nome-col-botao-wrapper {
         padding: 0 !important;
@@ -216,18 +261,4 @@
             background-color: var(--cor-principal-hover);
             transform: translateY(-1px);
         }
-
-    @@media (max-width: 600px) {
-        .paciente-container {
-            padding: 15px;
-        }
-
-        .tabela-pacientes th, .tabela-pacientes td {
-            padding: 8px 10px;
-        }
-
-        .link-nome-paciente {
-            padding: 8px 10px;
-        }
-    }
 </style>

@@ -12,6 +12,9 @@ builder.Services.AddScoped<FisioClin.Configs.Conexao>();
 builder.Services.AddScoped<PacienteDAO>();
 builder.Services.AddScoped<FuncionariosDAO>();
 builder.Services.AddScoped<CargoDAO>();
+builder.Services.AddScoped<SalaDAO>();
+builder.Services.AddScoped<LoginDAO>();
+
 
 
 var app = builder.Build();

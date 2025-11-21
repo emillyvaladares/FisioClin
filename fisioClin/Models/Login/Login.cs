@@ -4,8 +4,9 @@
     {
         public int Id { get; set; }
 
-        public int Id_Paciente_fk { get; set; }
-        
-        public int Id_Funcionario_fk { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }
+        public int? IdPaciente { get; set; }
+        public int? IdFuncionario { get; set; }
     }
 }

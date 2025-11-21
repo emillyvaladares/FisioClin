@@ -1,27 +1,24 @@
 ﻿@page "/cadastrarpaciente"
+@page "/cadastrarpaciente/{Id:int}"
 @using fisioClin.Models
 @inject PacienteDAO pacienteDAO
 @inject NavigationManager nav
 @using Microsoft.AspNetCore.Components.Forms
 @using System.ComponentModel.DataAnnotations
 
-@* Sempre adicione essa linha em componentes que envolve formularios *@
 @rendermode InteractiveServer
 
-
 <main class="container my-4">
-    
-    <h2 class="text-maroon mb-4">Cadastrar Paciente</h2>
-    @* use esse modelo pra criar formularios *@
+
+    <h2 class="text-maroon mb-4">@(_novoPaciente.Id > 0 ? "Editar Paciente" : "Cadastrar Paciente")</h2>
     <section class="position-relative p-4 bg-white rounded shadow-sm">
-        @* OnValidSubmit so executa se todas as validações estiverem certas *@
         <EditForm Model="_novoPaciente" OnValidSubmit="SalvarPaciente" FormName="CadastrarPacienteForm">
             <DataAnnotationsValidator />
             <ValidationSummary />
 
             <div class="row g-3">
 
-                <!-- NOME COMPLETO (corrigido com col-12) -->
+                <!-- NOME COMPLETO -->
                 <div class="col-12 mb-3 position-relative">
                     <label for="nome" class="form-label">Nome completo</label>
                     <InputText id="nome" class="form-control" @bind-Value="_novoPaciente.Nome" />
@@ -106,43 +103,60 @@
             </div>
 
             <div class="mt-4 d-flex gap-3">
-                <button type="submit" class="btn btn-maroon">Cadastrar</button>
+                <button type="submit" class="btn btn-maroon">@(_novoPaciente.Id > 0 ? "Atualizar" : "Cadastrar")</button>
                 <button type="reset" class="btn btn-secondary">Limpar</button>
             </div>
 
         </EditForm>
     </section>
 
-    @* mensagem que aparece quando um paciente é cadastrado *@
-    @* o valor de Mensagem pode ser alterado em outros cassos *@
-   <ModalSucesso @ref="_modal" Mensagem="Paciente cadastrado com sucesso!" />
+    <ModalSucesso @ref="_modal" Mensagem="Paciente cadastrado com sucesso!" />
 </main>
 
 @code {
+    [Parameter]
+    public int? Id { get; set; } // Parâmetro opcional para edição
+
     private Paciente _novoPaciente = new();
     private ModalSucesso _modal;
+
+    protected override void OnInitialized()
+    {
+        if (Id.HasValue)
+        {
+            var pacienteExistente = pacienteDAO.BuscarPorId(Id.Value);
+            if (pacienteExistente != null)
+            {
+                _novoPaciente = pacienteExistente; // Carrega paciente para edição
+            }
+        }
+    }
 
     private async Task SalvarPaciente()
     {
         try
         {
-            // Antes de salvar
-            _novoPaciente.Cpf = new string(_novoPaciente.Cpf.Where(char.IsDigit).ToArray());         
-            pacienteDAO.Inserir(_novoPaciente);
+            // Remove caracteres do CPF
+            _novoPaciente.Cpf = new string(_novoPaciente.Cpf.Where(char.IsDigit).ToArray());
 
-            // mostrar o modal
+            if (_novoPaciente.Id > 0)
+            {
+                // Atualizar paciente existente
+                pacienteDAO.Atualizar(_novoPaciente);
+                _modal.Mensagem = "Paciente atualizado com sucesso!";
+            }
+            else
+            {
+                // Inserir paciente novo
+                pacienteDAO.Inserir(_novoPaciente);
+                _modal.Mensagem = "Paciente cadastrado com sucesso!";
+            }
+
             _modal.Mostrar();
-
-            // limpa o objeto
             _novoPaciente = new Paciente();
-
-            // limpa os campos do formulario
             StateHasChanged();
-
-            // fecha o modal depois de 2 segundos automaticamente
             await Task.Delay(5000);
             _modal.Fechar();
-
         }
         catch (Exception e)
         {
