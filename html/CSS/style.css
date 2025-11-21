@@ -1,0 +1,443 @@
+body {
+    background-color: #7D1B1B;
+    color: #ffffff;
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav.navbar-custom {
+    background-color: #660F0F;
+    border-bottom: 1px solid #7D1B1B;
+  }
+  
+  .navbar-custom .nav-link {
+    color: #ffffff !important;
+    font-weight: bold;
+    padding: 10px 20px;
+    text-transform: uppercase;
+  }
+  
+  .navbar-custom .nav-link:hover,
+  .navbar-custom .nav-link.active {
+    text-decoration: underline;
+  }
+  
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 60px;
+    gap: 15px;
+  }
+  
+  .logo-circle {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 90px;
+    color: #ffffff;
+    user-select: none;
+    position: relative;
+  }
+  
+ 
+  .logo-circle::before,
+  .logo-circle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 1px;
+    background: white;
+  }
+  
+  .logo-circle::before {
+    left: -70px;
+  }
+  
+  .logo-circle::after {
+    right: -70px;
+  }
+  
+  .brand-name {
+    font-size: 32px;
+    letter-spacing: 6px;
+    font-weight: 700;
+    user-select: none;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+    letter-spacing: 8px;
+    font-weight: 500;
+    user-select: none;
+  }
+  
+  .login-btn {
+    background-color: #4A0D0D;
+    color: #ffffff;
+    border-radius: 30px;
+    padding: 10px 50px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .login-btn:hover {
+    background-color: #5e1414;
+    color: #fff;
+  }
+  
+
+.login-container {
+    display: flex;
+    height: 100vh;
+    background-color: #f0f0f0; 
+  }
+  
+  .left-side {
+    flex: 1;
+    background-color: #660f0f;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+  }
+  
+  .fancy-logo {
+    width: 120px;
+    height: 120px;
+    border: 1px solid white;
+    border-radius: 50%;
+    font-family: 'Great Vibes', cursive;
+    font-size: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+  .fancy-logo::before,
+  .fancy-logo::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 1px;
+    background: white;
+  }
+  
+  .fancy-logo::before {
+    left: -60px;
+    transform: translateY(-50%) rotate(5deg);
+    border-radius: 2px;
+  }
+  
+  .fancy-logo::after {
+    right: -60px;
+    transform: translateY(-50%) rotate(-5deg);
+    border-radius: 2px;
+  }
+  
+  .brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    letter-spacing: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    letter-spacing: 10px;
+    font-weight: 600;
+  }
+  
+  .right-side {
+    flex: 1;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+  }
+  
+  .login-form {
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    color: #660f0f;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .login-form h2 {
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 25px;
+  }
+  
+  .login-form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  
+  .login-form input[type="text"],
+  .login-form input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+
+  .btn-group {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .btn {
+    width: 48%;
+    padding: 10px;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cancel-btn {
+    background-color: #660f0f;
+    color: white;
+  }
+  
+  .cancel-btn:hover {
+    background-color: #7d1b1b;
+  }
+  
+  .confirm-btn {
+    background-color: #660f0f;
+    color: white;
+  }
+  
+  .confirm-btn:hover {
+    background-color: #7d1b1b;
+  }
+/* terceira pagina*/
+body {
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+  }
+  
+
+  .bg-wine {
+    background-color: #660f0f;
+  }
+  
+  .navbar-nav .nav-link {
+    color: white;
+    font-weight: 600;
+    margin: 0 10px;
+    border-radius: 15px;
+    background-color: #7d1b1b;
+    padding: 8px 15px;
+    transition: background-color 0.3s;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    background-color: #a02222;
+    color: #fff;
+  }
+  
+
+  .logo-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .logo-circle {
+    width: 140px;
+    height: 140px;
+    border: 1px solid #660f0f;
+    border-radius: 50%;
+    font-family: 'Great Vibes', cursive;
+    font-size: 70px;
+    color: #660f0f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    z-index: 1;
+  }
+  
+  .logo-line {
+    height: 1px;
+    width: 80px;
+    background-color: #660f0f;
+    position: absolute;
+    left: -90px;
+  }
+  
+  .logo-line.right {
+    left: auto;
+    right: -90px;
+  }
+
+  .brand-name {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: #660f0f;
+  }
+  
+  .subtitle {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 8px;
+    color: #660f0f;
+  }
+
+  .custom-btn {
+    background-color: #875757;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    padding: 20px;
+    width: 200px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+    text-align: center;
+    line-height: 1.4;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  .custom-btn:hover {
+    background-color: #a56c6c;
+    transform: translateY(-2px);
+  }
+  /*logo pagina dois que faltou */
+  .fancy-logo {
+    width: 120px;
+    height: 120px;
+    border: 1px solid white;
+    border-radius: 50%;
+    font-family: 'Great Vibes', cursive;
+    font-size: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative;
+    color: white;
+  }
+  
+  .fancy-logo::before,
+  .fancy-logo::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 1px;
+    background: white;
+  }
+  
+  .fancy-logo::before {
+    left: -60px;
+    transform: translateY(-50%) rotate(5deg);
+    border-radius: 2px;
+  }
+  
+  .fancy-logo::after {
+    right: -60px;
+    transform: translateY(-50%) rotate(-5deg);
+    border-radius: 2px;
+  }
+  /*styule pagina numero 4 */
+  body {
+    background-color: #f4f0f0;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 220px;
+    min-height: 100vh;
+    background-color: #4a0d0d;
+  }
+  
+  .sidebar-btn {
+    background-color: #4a0d0d;
+    color: white;
+    font-weight: bold;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sidebar-btn:hover {
+    background-color: #6e1a1a;
+  }
+  
+  .sidebar-btn.active {
+    background-color: #7a1414;
+  }
+  
+  /* Conteúdo */
+  .titulo {
+    color: #4a0d0d;
+    font-weight: bold;
+  }
+  
+  /* Botão principal */
+  .btn-maroon {
+    background-color: #7a1414;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    font-weight: bold;
+  }
+  
+  .btn-maroon:hover {
+    background-color: #5e1010;
+  }
+  
+  /* Input */
+  input[type="text"] {
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Tabela */
+  .table th, .table td {
+    vertical-align: middle;
+  }
+  

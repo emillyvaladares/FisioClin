@@ -1,0 +1,134 @@
+﻿@page "/cadastrarsala"
+
+@using Microsoft.AspNetCore.Components.Forms
+
+<style>
+    body {
+        background-color: #ffffff;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    h2 {
+        color: #6a0000;
+        font-weight: 600;
+    }
+
+    label {
+        font-weight: 500;
+        color: #333;
+    }
+
+    .form-control, .form-select {
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        transition: all 0.3s ease;
+    }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #8b0000;
+            box-shadow: 0 0 5px rgba(139, 0, 0, 0.4);
+        }
+
+    .container-custom {
+        background-color: #fff;
+        border-radius: 15px;
+        padding: 40px;
+        margin-top: 50px;
+        box-shadow: 0 4px 25px rgba(0,0,0,0.15);
+        max-width: 800px;
+    }
+
+    .btn-cadastrar, .btn-alterar {
+        background-color: #8b0000;
+        color: white;
+        border-radius: 8px;
+        padding: 10px 30px;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+        .btn-cadastrar:hover, .btn-alterar:hover {
+            background-color: #a00000;
+        }
+
+    .d-flex-gap {
+        gap: 15px;
+    }
+</style>
+
+<div class="container container-custom">
+    <h2 class="mb-4">Cadastrar Salas</h2>
+
+    <EditForm Model="sala" OnValidSubmit="Salvar">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <!-- Nome da sala -->
+        <div class="mb-3">
+            <label class="form-label">Nome da sala</label>
+            <InputText class="form-control" @bind-Value="sala.Nome" />
+        </div>
+
+        <!-- Linha 1 -->
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Nº da sala</label>
+                <InputText class="form-control" @bind-Value="sala.Numero" />
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Capacidade</label>
+                <InputNumber class="form-control" @bind-Value="sala.Capacidade" />
+            </div>
+        </div>
+
+        <!-- Linha 2 -->
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Tipo de sala</label>
+                <InputSelect class="form-select" @bind-Value="sala.Tipo">
+                    <option value="" disabled>Selecione</option>
+                    <option>Sala comum</option>
+                    <option>Laboratório</option>
+                    <option>Auditório</option>
+                </InputSelect>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Disponibilidade</label>
+                <InputText class="form-control" @bind-Value="sala.Disponibilidade" />
+            </div>
+        </div>
+
+        <!-- Observações -->
+        <div class="mb-3">
+            <label class="form-label">Observações</label>
+            <InputText class="form-control" @bind-Value="sala.Observacoes" />
+        </div>
+
+        <!-- Botões -->
+        <div class="d-flex justify-content-end d-flex-gap mt-4">
+            <button type="button" class="btn btn-alterar">Alterar cadastro</button>
+            <button type="submit" class="btn btn-cadastrar">Cadastrar</button>
+        </div>
+    </EditForm>
+</div>
+
+@code {
+    Sala sala = new();
+
+    public class Sala
+    {
+        public string? Nome { get; set; }
+        public string? Numero { get; set; }
+        public int? Capacidade { get; set; }
+        public string? Tipo { get; set; }
+        public string? Disponibilidade { get; set; }
+        public string? Observacoes { get; set; }
+    }
+
+    void Salvar()
+    {
+        Console.WriteLine("Sala cadastrada com sucesso!");
+    }
+}

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\OSVALDINO\\Desktop\\estagio\\html css\\FisioClin\\fisioClin\\fisioClin.csproj": {}
+    "D:\\repositorio\\FisioClin\\fisioClin\\fisioClin.csproj": {}
   },
   "projects": {
-    "C:\\Users\\OSVALDINO\\Desktop\\estagio\\html css\\FisioClin\\fisioClin\\fisioClin.csproj": {
+    "D:\\repositorio\\FisioClin\\fisioClin\\fisioClin.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\OSVALDINO\\Desktop\\estagio\\html css\\FisioClin\\fisioClin\\fisioClin.csproj",
+        "projectUniqueName": "D:\\repositorio\\FisioClin\\fisioClin\\fisioClin.csproj",
         "projectName": "fisioClin",
-        "projectPath": "C:\\Users\\OSVALDINO\\Desktop\\estagio\\html css\\FisioClin\\fisioClin\\fisioClin.csproj",
-        "packagesPath": "C:\\Users\\OSVALDINO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\OSVALDINO\\Desktop\\estagio\\html css\\FisioClin\\fisioClin\\obj\\",
+        "projectPath": "D:\\repositorio\\FisioClin\\fisioClin\\fisioClin.csproj",
+        "packagesPath": "C:\\Users\\yurig\\.nuget\\packages\\",
+        "outputPath": "D:\\repositorio\\FisioClin\\fisioClin\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\OSVALDINO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\yurig\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
