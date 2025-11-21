@@ -1,7 +1,9 @@
 ﻿@page "/conectar"
 @using fisioClin.Models
 @inject NavigationManager Navigation
-@inject fisioClin.Configs.Conexao Conexao
+@using FisioClin.Configs
+@inject Conexao conexao
+
 
 <div class="login-container">
     <div class="left-side">
@@ -41,7 +43,7 @@
     {
         try
         {
-            var loginDao = new LoginDAO(Conexao);
+            var loginDao = new LoginDAO(conexao);
             bool sucesso = loginDao.VerificarLogin(usuario.Cpf, usuario.Senha);
 
             if (sucesso)

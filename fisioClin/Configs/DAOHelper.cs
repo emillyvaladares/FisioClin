@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
-    
-namespace fisioClin.Configs
+
+// isso nao é importante, é apenas para padronização e economia de codigo
+namespace FisioClin.Configs
 {
     public static class DAOHelper
     {

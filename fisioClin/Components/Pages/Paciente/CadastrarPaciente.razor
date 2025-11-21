@@ -1,0 +1,180 @@
+﻿@page "/cadastrarpaciente"
+@using fisioClin.Models
+@inject PacienteDAO pacienteDAO
+@inject NavigationManager nav
+@using Microsoft.AspNetCore.Components.Forms
+@using System.ComponentModel.DataAnnotations
+
+@* Sempre adicione essa linha em componentes que envolve formularios *@
+@rendermode InteractiveServer
+
+
+<main class="container my-4">
+    
+    <h2 class="text-maroon mb-4">Cadastrar Paciente</h2>
+    @* use esse modelo pra criar formularios *@
+    <section class="position-relative p-4 bg-white rounded shadow-sm">
+        @* OnValidSubmit so executa se todas as validações estiverem certas *@
+        <EditForm Model="_novoPaciente" OnValidSubmit="SalvarPaciente" FormName="CadastrarPacienteForm">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="row g-3">
+
+                <!-- NOME COMPLETO (corrigido com col-12) -->
+                <div class="col-12 mb-3 position-relative">
+                    <label for="nome" class="form-label">Nome completo</label>
+                    <InputText id="nome" class="form-control" @bind-Value="_novoPaciente.Nome" />
+                    <ValidationMessage For="@(() => _novoPaciente.Nome)" />
+                </div>
+
+                <!-- CPF -->
+                <div class="col-md-4">
+                    <label for="cpf" class="form-label">CPF</label>
+                    <InputCpf id="cpf" class="form-control" @bind-Value="_novoPaciente.Cpf" />
+                    <ValidationMessage For="@(() => _novoPaciente.Cpf)" />
+                </div>
+
+                <!-- CEP -->
+                <div class="col-md-4">
+                    <label for="cep" class="form-label">CEP</label>
+                    <InputText id="cep" class="form-control" @bind-Value="_novoPaciente.Cep" />
+                    <ValidationMessage For="@(() => _novoPaciente.Cep)" />
+                </div>
+
+                <!-- RG -->
+                <div class="col-md-4">
+                    <label for="rg" class="form-label">RG</label>
+                    <InputText id="rg" class="form-control" @bind-Value="_novoPaciente.Rg" />
+                    <ValidationMessage For="@(() => _novoPaciente.Rg)" />
+                </div>
+
+                <!-- Bairro -->
+                <div class="col-md-4">
+                    <label for="bairro" class="form-label">Bairro</label>
+                    <InputText id="bairro" class="form-control" @bind-Value="_novoPaciente.Bairro" />
+                    <ValidationMessage For="@(() => _novoPaciente.Bairro)" />
+                </div>
+
+                <!-- Data de nascimento -->
+                <div class="col-md-4">
+                    <label for="nascimento" class="form-label">Data de Nascimento</label>
+                    <InputDate id="nascimento" class="form-control" @bind-Value="_novoPaciente.DataNascimento" />
+                    <ValidationMessage For="@(() => _novoPaciente.DataNascimento)" />
+                </div>
+
+                <!-- Rua -->
+                <div class="col-md-4">
+                    <label for="rua" class="form-label">Rua</label>
+                    <InputText id="rua" class="form-control" @bind-Value="_novoPaciente.Rua" />
+                    <ValidationMessage For="@(() => _novoPaciente.Rua)" />
+                </div>
+
+                <!-- Número -->
+                <div class="col-md-3">
+                    <label for="numero" class="form-label">Número</label>
+                    <InputText id="numero" class="form-control" @bind-Value="_novoPaciente.Numero" />
+                    <ValidationMessage For="@(() => _novoPaciente.Numero)" />
+                </div>
+
+                <!-- Sexo -->
+                <div class="col-md-3">
+                    <label for="sexo" class="form-label">Sexo</label>
+                    <InputSelect id="sexo" class="form-select" @bind-Value="_novoPaciente.Sexo">
+                        <option value="">Selecione</option>
+                        <option>Masculino</option>
+                        <option>Feminino</option>
+                        <option>Outro</option>
+                    </InputSelect>
+                    <ValidationMessage For="@(() => _novoPaciente.Sexo)" />
+                </div>
+
+                <!-- Email -->
+                <div class="col-md-6">
+                    <label for="email" class="form-label">Email</label>
+                    <InputText id="email" type="email" class="form-control" @bind-Value="_novoPaciente.Email" />
+                    <ValidationMessage For="@(() => _novoPaciente.Email)" />
+                </div>
+
+                <!-- Telefone -->
+                <div class="col-md-6">
+                    <label for="telefone" class="form-label">Telefone</label>
+                    <InputTelefone id="telefone" type="tel" class="form-control" @bind-Value="_novoPaciente.Telefone" />
+                    <ValidationMessage For="@(() => _novoPaciente.Telefone)" />
+                </div>
+
+            </div>
+
+            <div class="mt-4 d-flex gap-3">
+                <button type="submit" class="btn btn-maroon">Cadastrar</button>
+                <button type="reset" class="btn btn-secondary">Limpar</button>
+            </div>
+
+        </EditForm>
+    </section>
+
+    @* mensagem que aparece quando um paciente é cadastrado *@
+    @* o valor de Mensagem pode ser alterado em outros cassos *@
+   <ModalSucesso @ref="_modal" Mensagem="Paciente cadastrado com sucesso!" />
+</main>
+
+@code {
+    private Paciente _novoPaciente = new();
+    private ModalSucesso _modal;
+
+    private async Task SalvarPaciente()
+    {
+        try
+        {
+            // Antes de salvar
+            _novoPaciente.Cpf = new string(_novoPaciente.Cpf.Where(char.IsDigit).ToArray());         
+            pacienteDAO.Inserir(_novoPaciente);
+
+            // mostrar o modal
+            _modal.Mostrar();
+
+            // limpa o objeto
+            _novoPaciente = new Paciente();
+
+            // limpa os campos do formulario
+            StateHasChanged();
+
+            // fecha o modal depois de 2 segundos automaticamente
+            await Task.Delay(5000);
+            _modal.Fechar();
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.ToString());
+        }
+    }
+}
+
+<style>
+    .text-maroon {
+        color: #6b0010;
+    }
+
+    .btn-maroon {
+        background-color: #8b0015;
+        color: white;
+        border: none;
+    }
+
+        .btn-maroon:hover, .btn-maroon:focus {
+            background-color: #a3001c;
+            color: white;
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+    }
+
+        .btn-secondary:hover, .btn-secondary:focus {
+            background-color: #5a6268;
+            color: white;
+        }
+</style>

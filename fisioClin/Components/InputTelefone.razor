@@ -1,0 +1,39 @@
+﻿@inherits InputBase<string>
+
+<input @bind="CurrentValueAsString" class="@CssClass" @attributes="AdditionalAttributes" />
+
+@code {
+    protected override bool TryParseValueFromString(string? value, out string result, out string validationErrorMessage)
+    {
+        result = MascaraTelefone(value);
+        validationErrorMessage = null;
+        return true;
+    }
+
+    private string MascaraTelefone(string? valor)
+    {
+        if (string.IsNullOrWhiteSpace(valor))
+            return "";
+
+        // pega só números
+        var digitos = new string(valor.Where(char.IsDigit).ToArray());
+
+        if (digitos.Length > 11)
+            digitos = digitos[..11];
+
+        // (XX
+        if (digitos.Length <= 2)
+            return $"({digitos}";
+
+        // (XX) XXXX
+        if (digitos.Length <= 6)
+            return $"({digitos[..2]}) {digitos[2..]}";
+
+        // (XX) XXXX-XXXX (telefone fixo)
+        if (digitos.Length <= 10)
+            return $"({digitos[..2]}) {digitos[2..6]}-{digitos[6..]}";
+
+        // (XX) XXXXX-XXXX (celular)
+        return $"({digitos[..2]}) {digitos[2..7]}-{digitos[7..]}";
+    }
+}

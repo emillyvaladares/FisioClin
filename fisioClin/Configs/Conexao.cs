@@ -1,26 +1,29 @@
-﻿using MySql.Data.MySqlClient;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
+using MySql.Data.MySqlClient;
+using System;
 
-namespace fisioClin.Configs
+namespace FisioClin.Configs
 {
     public class Conexao
     {
         private readonly string _connectionString;
+
         public Conexao(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("MySqlConnection") ?? "";
         }
 
+        // 🔹 Cria e retorna uma nova conexão pronta para uso (mas não aberta)
         public MySqlConnection GetConnection()
         {
-            var conn = new MySqlConnection(_connectionString);
-            conn.Open();
-            return conn;
+            return new MySqlConnection(_connectionString);
         }
 
-        public MySqlCommand CreateCommand(string query, MySqlConnection? conn = null)
+        // 🔹 Método auxiliar caso queira criar comandos rapidamente
+        public MySqlCommand CreateCommand(string query)
         {
-            conn ??= GetConnection();
+            var conn = GetConnection();
+            conn.Open(); // abre para o comando
             return new MySqlCommand(query, conn);
         }
     }

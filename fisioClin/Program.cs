@@ -1,5 +1,4 @@
 using fisioClin.Components;
-using fisioClin.Configs;
 using fisioClin.Models; 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,9 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddScoped<Conexao>();
+
+//cada arquivo com final DAO deve ser enfiado aqui igual o paciente e funcionario
+builder.Services.AddScoped<FisioClin.Configs.Conexao>();
 builder.Services.AddScoped<PacienteDAO>();
 builder.Services.AddScoped<FuncionariosDAO>();
+builder.Services.AddScoped<CargoDAO>();
 
 
 var app = builder.Build();

@@ -1,0 +1,113 @@
+﻿using FisioClin.Configs;
+using MySql.Data.MySqlClient;
+using System.Collections.Generic;
+
+namespace fisioClin.Models
+{
+    public class FuncionariosDAO
+    {
+        private readonly Conexao _conexao;
+
+        public FuncionariosDAO(Conexao conexao)
+        {
+            _conexao = conexao;
+        }
+
+        public List<Funcionarios> ListarTodos()
+        {
+            var lista = new List<Funcionarios>();
+
+            var comando = _conexao.CreateCommand("SELECT * FROM funcionario;");
+            var leitor = comando.ExecuteReader();
+
+            while (leitor.Read())
+            {
+                var funcionario = new Funcionarios();
+                funcionario.Id = leitor.GetInt32("id_fun");
+                funcionario.Nome = DAOHelper.GetString(leitor, "nome_fun");
+                funcionario.Cpf = DAOHelper.GetString(leitor, "cpf_fun");
+                funcionario.Rg = DAOHelper.GetString(leitor, "rg_fun");
+                funcionario.DataNascimento = DAOHelper.GetDateTime(leitor, "data_nascimento_fun");
+                funcionario.Telefone = DAOHelper.GetString(leitor, "telefone_fun");
+                funcionario.Email = DAOHelper.GetString(leitor, "email_fun");
+                funcionario.TipoVinculo = DAOHelper.GetString(leitor, "tipo_vinculo_fun");
+                funcionario.Registro = DAOHelper.GetString(leitor, "registro_profissional_fun");
+                funcionario.Especialidade = DAOHelper.GetString(leitor, "especialidade_fun");
+                funcionario.Subespecialidade = DAOHelper.GetString(leitor, "subespecialidade_fun");
+                funcionario.Certificados = DAOHelper.GetString(leitor, "certificados_fun");
+                funcionario.DataContratacao = DAOHelper.GetDateTime(leitor, "data_contratacao_fun");
+
+                lista.Add(funcionario);
+            }
+
+            leitor.Close();
+            return lista;
+        }
+
+        public void Inserir(Funcionarios funcionario)
+        {
+            try
+            {
+                var comando = _conexao.CreateCommand(@"
+                    INSERT INTO funcionario
+                    (nome_fun, cpf_fun, rg_fun, data_nascimento_fun, telefone_fun, email_fun, tipo_vinculo_fun, 
+                     registro_profissional_fun, especialidade_fun, subespecialidade_fun, certificados_fun, data_contratacao_fun)
+                    VALUES
+                    (@_nome, @_cpf, @_rg, @_datanasc, @_telefone, @_email, @_vinculo,
+                     @_registro, @_especialidade, @_subespecialidade, @_certificados, @_datacontratacao);
+                ");
+
+                comando.Parameters.AddWithValue("@_nome", funcionario.Nome);
+                comando.Parameters.AddWithValue("@_cpf", funcionario.Cpf);
+                comando.Parameters.AddWithValue("@_rg", funcionario.Rg);
+                comando.Parameters.AddWithValue("@_datanasc", funcionario.DataNascimento);
+                comando.Parameters.AddWithValue("@_telefone", funcionario.Telefone);
+                comando.Parameters.AddWithValue("@_email", funcionario.Email);
+                comando.Parameters.AddWithValue("@_vinculo", funcionario.TipoVinculo);
+                comando.Parameters.AddWithValue("@_registro", funcionario.Registro);
+                comando.Parameters.AddWithValue("@_especialidade", funcionario.Especialidade);
+                comando.Parameters.AddWithValue("@_subespecialidade", funcionario.Subespecialidade);
+                comando.Parameters.AddWithValue("@_certificados", funcionario.Certificados);
+                comando.Parameters.AddWithValue("@_datacontratacao", funcionario.DataContratacao);
+
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao inserir funcionário", ex);
+            }
+        }
+
+        public Funcionarios BuscarPorId(int id)
+        {
+            var comando = _conexao.CreateCommand("SELECT * FROM funcionario WHERE id_fun = @id;");
+            comando.Parameters.AddWithValue("@id", id);
+
+            var leitor = comando.ExecuteReader();
+
+            if (leitor.Read())
+            {
+                var funcionario = new Funcionarios();
+                funcionario.Id = leitor.GetInt32("id_fun");
+                funcionario.Nome = DAOHelper.GetString(leitor, "nome_fun");
+                funcionario.Cpf = DAOHelper.GetString(leitor, "cpf_fun");
+                funcionario.Rg = DAOHelper.GetString(leitor, "rg_fun");
+                funcionario.DataNascimento = DAOHelper.GetDateTime(leitor, "data_nascimento_fun");
+                funcionario.Telefone = DAOHelper.GetString(leitor, "telefone_fun");
+                funcionario.Email = DAOHelper.GetString(leitor, "email_fun");
+                funcionario.TipoVinculo = DAOHelper.GetString(leitor, "tipo_vinculo_fun");
+                funcionario.Registro = DAOHelper.GetString(leitor, "registro_profissional_fun");
+                funcionario.Especialidade = DAOHelper.GetString(leitor, "especialidade_fun");
+                funcionario.Subespecialidade = DAOHelper.GetString(leitor, "subespecialidade_fun");
+                funcionario.Certificados = DAOHelper.GetString(leitor, "certificados_fun");
+                funcionario.DataContratacao = DAOHelper.GetDateTime(leitor, "data_contratacao_fun");
+
+                leitor.Close();
+                return funcionario;
+            }
+
+            leitor.Close();
+            return null;
+        }
+    }
+}

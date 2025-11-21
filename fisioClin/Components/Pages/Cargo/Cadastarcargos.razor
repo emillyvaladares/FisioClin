@@ -1,0 +1,149 @@
+﻿@page "/cadastrarcargo"
+
+@using fisioClin.Models
+@inject CargoDAO CargoDAO
+@using Microsoft.AspNetCore.Components.Forms
+@using System.ComponentModel.DataAnnotations
+
+@rendermode InteractiveServer
+
+<main class="container my-4">
+
+    <h2 class="text-maroon mb-4">Cadastrar Cargo</h2>
+
+    <section class="position-relative p-4 bg-white rounded shadow-sm">
+        <EditForm Model="_novoCargo" OnValidSubmit="SalvarCargo" FormName="CadastrarCargoForm">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="row g-3">
+
+                <!-- Nome do cargo -->
+                <div class="col-12 mb-3">
+                    <label class="form-label">Nome do cargo</label>
+                    <InputText class="form-control" @bind-Value="_novoCargo.Nome" />
+                    <ValidationMessage For="@(() => _novoCargo.Nome)" />
+                </div>
+
+                <!-- Departamento -->
+                <div class="col-md-6">
+                    <label class="form-label">Departamento</label>
+                    <InputText class="form-control" @bind-Value="_novoCargo.Departamento" />
+                    <ValidationMessage For="@(() => _novoCargo.Departamento)" />
+                </div>
+
+                <!-- Carga horária -->
+                <div class="col-md-6">
+                    <label class="form-label">Carga horária (semanal)</label>
+                    <InputNumber class="form-control" @bind-Value="_novoCargo.Carga" />
+                    <ValidationMessage For="@(() => _novoCargo.Carga)" />
+                </div>
+
+                <!-- Descrição -->
+                <div class="col-12">
+                    <label class="form-label">Descrição do cargo</label>
+                    <InputTextArea class="form-control" @bind-Value="_novoCargo.Descricao" rows="4" />
+                    <ValidationMessage For="@(() => _novoCargo.Descricao)" />
+                </div>
+
+                <!-- Observações -->
+                <div class="col-12">
+                    <label class="form-label">Observações</label>
+                    <InputText class="form-control" @bind-Value="_novoCargo.Observacao" />
+                    <ValidationMessage For="@(() => _novoCargo.Observacao)" />
+                </div>
+
+            </div>
+
+            <div class="mt-4 d-flex gap-3">
+                <button type="submit" class="btn btn-maroon">Cadastrar</button>
+                <button type="reset" class="btn btn-secondary" @onclick="LimparFormulario">Limpar</button>
+            </div>
+        </EditForm>
+    </section>
+
+    <ModalSucesso @ref="_modal" Mensagem="Cargo cadastrado com sucesso!" />
+</main>
+
+@code {
+    private Cargo _novoCargo = new();
+    private ModalSucesso? _modal;
+
+    private void LimparFormulario()
+    {
+        _novoCargo = new Cargo();
+        StateHasChanged();
+    }
+
+    private async Task SalvarCargo()
+    {
+        try
+        {
+            if(_novoCargo.Descricao == "")
+            {
+                _novoCargo.Descricao = "Sem descrição";
+            }
+            if (_novoCargo.Observacao == "")
+            {
+                _novoCargo.Observacao = "Nenhuma observação";
+            }
+
+            _novoCargo.DataCriacao = new DateTime(
+                DateTime.Now.Year,
+                DateTime.Now.Month,
+                DateTime.Now.Day
+            );
+            _novoCargo.DataAtualizacao = new DateTime(
+               DateTime.Now.Year,
+               DateTime.Now.Month,
+               DateTime.Now.Day
+            );
+
+            CargoDAO.Inserir(_novoCargo);
+
+            _modal?.Mostrar();
+
+            _novoCargo = new Cargo();
+            StateHasChanged();
+
+            await Task.Delay(5000);
+            _modal?.Fechar();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
+    }
+}
+
+<style>
+    .text-maroon {
+        color: #6b0010;
+    }
+
+    .btn-maroon {
+        background-color: #8b0015;
+        color: white;
+        border: none;
+    }
+
+        .btn-maroon:hover, .btn-maroon:focus {
+            background-color: #a3001c;
+            color: white;
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+    }
+
+        .btn-secondary:hover, .btn-secondary:focus {
+            background-color: #5a6268;
+            color: white;
+        }
+
+    .form-control {
+        border-radius: 8px;
+    }
+</style>
