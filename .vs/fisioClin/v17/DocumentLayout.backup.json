@@ -3,8 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|c:\\users\\osvaldino\\documentos\\fisioclin\\fisioclin\\components\\pages\\paciente\\dadospacisel.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\components\\pages\\paciente\\dadospacisel.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|c:\\users\\osvaldino\\documentos\\fisioclin\\fisioclin\\components\\pages\\funcionario\\cadastrarfuncionario.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\components\\pages\\funcionario\\cadastrarfuncionario.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|c:\\users\\osvaldino\\documentos\\fisioclin\\fisioclin\\components\\pages\\funcionario\\dadosfuncisele.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\components\\pages\\funcionario\\dadosfuncisele.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|c:\\users\\osvaldino\\documentos\\fisioclin\\fisioclin\\models\\funcionario\\funcionariosdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\models\\funcionario\\funcionariosdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|c:\\users\\osvaldino\\documentos\\fisioclin\\fisioclin\\components\\pages\\funcionario\\dadosfuncionario.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\components\\pages\\funcionario\\dadosfuncionario.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|c:\\users\\osvaldino\\documentos\\fisioclin\\fisioclin\\components\\pages\\funcionario\\dadosfuncisel.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\components\\pages\\funcionario\\dadosfuncisel.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|c:\\users\\osvaldino\\documentos\\fisioclin\\fisioclin\\components\\pages\\cargo\\cadastarcargos.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\components\\pages\\cargo\\cadastarcargos.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|c:\\users\\osvaldino\\documentos\\fisioclin\\fisioclin\\components\\pages\\cargo\\consultarcargos.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\components\\pages\\cargo\\consultarcargos.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|c:\\users\\osvaldino\\documentos\\fisioclin\\fisioclin\\models\\cargo\\cargodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\models\\cargo\\cargodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|c:\\users\\osvaldino\\documentos\\fisioclin\\fisioclin\\components\\pages\\cargo\\cargoselecionado.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\components\\pages\\cargo\\cargoselecionado.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|c:\\users\\osvaldino\\documentos\\fisioclin\\fisioclin\\models\\paciente\\pacientedao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -13,6 +45,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|c:\\users\\osvaldino\\documentos\\fisioclin\\fisioclin\\components\\pages\\paciente\\cadastrarpaciente.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\components\\pages\\paciente\\cadastrarpaciente.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|c:\\users\\osvaldino\\documentos\\fisioclin\\fisioclin\\components\\pages\\paciente\\dadospacisel.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\components\\pages\\paciente\\dadospacisel.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|c:\\users\\osvaldino\\documentos\\fisioclin\\fisioclin\\components\\pages\\paciente\\dadosdopaciente.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -55,10 +91,6 @@
       "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\models\\sala\\saladao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|c:\\users\\osvaldino\\documentos\\fisioclin\\fisioclin\\models\\funcionario\\funcionariosdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\models\\funcionario\\funcionariosdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|c:\\users\\osvaldino\\documentos\\fisioclin\\fisioclin\\models\\funcionario\\funcionarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\models\\funcionario\\funcionarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -98,24 +130,128 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DadosPaciSel.razor",
-              "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Paciente\\DadosPaciSel.razor",
-              "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Paciente\\DadosPaciSel.razor",
-              "ToolTip": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Paciente\\DadosPaciSel.razor*",
-              "RelativeToolTip": "fisioClin\\Components\\Pages\\Paciente\\DadosPaciSel.razor*",
-              "ViewState": "AgIAAP0AAAAAAAAAAAAQwAcBAAAIAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "DadosFunciSele.razor",
+              "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Funcionario\\DadosFunciSele.razor",
+              "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Funcionario\\DadosFunciSele.razor",
+              "ToolTip": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Funcionario\\DadosFunciSele.razor",
+              "RelativeToolTip": "fisioClin\\Components\\Pages\\Funcionario\\DadosFunciSele.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-21T19:23:24.895Z",
+              "WhenOpened": "2025-11-21T23:56:24.728Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DadosFunciSel.razor",
+              "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Funcionario\\DadosFunciSel.razor",
+              "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Funcionario\\DadosFunciSel.razor",
+              "ToolTip": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Funcionario\\DadosFunciSel.razor",
+              "RelativeToolTip": "fisioClin\\Components\\Pages\\Funcionario\\DadosFunciSel.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-21T23:56:21.948Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CadastrarFuncionario.razor",
+              "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Funcionario\\CadastrarFuncionario.razor",
+              "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Funcionario\\CadastrarFuncionario.razor",
+              "ToolTip": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Funcionario\\CadastrarFuncionario.razor*",
+              "RelativeToolTip": "fisioClin\\Components\\Pages\\Funcionario\\CadastrarFuncionario.razor*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-21T23:54:52.516Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CargoSelecionado.razor",
+              "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Cargo\\CargoSelecionado.razor",
+              "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Cargo\\CargoSelecionado.razor",
+              "ToolTip": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Cargo\\CargoSelecionado.razor",
+              "RelativeToolTip": "fisioClin\\Components\\Pages\\Cargo\\CargoSelecionado.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-21T23:07:13.145Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Cadastarcargos.razor",
+              "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Cargo\\Cadastarcargos.razor",
+              "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Cargo\\Cadastarcargos.razor",
+              "ToolTip": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Cargo\\Cadastarcargos.razor",
+              "RelativeToolTip": "fisioClin\\Components\\Pages\\Cargo\\Cadastarcargos.razor",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAAAGIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-21T23:07:10.455Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FuncionariosDAO.cs",
+              "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Models\\Funcionario\\FuncionariosDAO.cs",
+              "RelativeDocumentMoniker": "fisioClin\\Models\\Funcionario\\FuncionariosDAO.cs",
+              "ToolTip": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Models\\Funcionario\\FuncionariosDAO.cs",
+              "RelativeToolTip": "fisioClin\\Models\\Funcionario\\FuncionariosDAO.cs",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAUwJsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-21T18:25:49.104Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "DadosFuncionario.razor",
+              "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Funcionario\\DadosFuncionario.razor",
+              "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Funcionario\\DadosFuncionario.razor",
+              "ToolTip": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Funcionario\\DadosFuncionario.razor",
+              "RelativeToolTip": "fisioClin\\Components\\Pages\\Funcionario\\DadosFuncionario.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAALMBAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-22T00:02:05.598Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CargoDAO.cs",
+              "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Models\\Cargo\\CargoDAO.cs",
+              "RelativeDocumentMoniker": "fisioClin\\Models\\Cargo\\CargoDAO.cs",
+              "ToolTip": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Models\\Cargo\\CargoDAO.cs",
+              "RelativeToolTip": "fisioClin\\Models\\Cargo\\CargoDAO.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAEoAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-21T23:07:41.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Consultarcargos.razor",
+              "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Cargo\\Consultarcargos.razor",
+              "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Cargo\\Consultarcargos.razor",
+              "ToolTip": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Cargo\\Consultarcargos.razor",
+              "RelativeToolTip": "fisioClin\\Components\\Pages\\Cargo\\Consultarcargos.razor",
+              "ViewState": "AgIAABsAAAAAAAAAAAAUwEoAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-21T23:01:58.952Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "DadosdoPaciente.razor",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Paciente\\DadosdoPaciente.razor",
               "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Paciente\\DadosdoPaciente.razor",
@@ -123,12 +259,11 @@
               "RelativeToolTip": "fisioClin\\Components\\Pages\\Paciente\\DadosdoPaciente.razor",
               "ViewState": "AgIAAJoAAAAAAAAAAAAiwLoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-21T19:13:42.446Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T19:13:42.446Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 13,
               "Title": "LoginDAO.cs",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Models\\Login\\LoginDAO.cs",
               "RelativeDocumentMoniker": "fisioClin\\Models\\Login\\LoginDAO.cs",
@@ -136,12 +271,11 @@
               "RelativeToolTip": "fisioClin\\Models\\Login\\LoginDAO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAHEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T18:40:53.629Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T18:40:53.629Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 18,
               "Title": "AgendaDAO.cs",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Models\\Agenda\\AgendaDAO.cs",
               "RelativeDocumentMoniker": "fisioClin\\Models\\Agenda\\AgendaDAO.cs",
@@ -149,12 +283,11 @@
               "RelativeToolTip": "fisioClin\\Models\\Agenda\\AgendaDAO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T18:07:49.681Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T18:07:49.681Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 20,
               "Title": "Agenda.razor",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Agenda\\Agenda.razor",
               "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Agenda\\Agenda.razor",
@@ -162,38 +295,49 @@
               "RelativeToolTip": "fisioClin\\Components\\Pages\\Agenda\\Agenda.razor",
               "ViewState": "AgIAADwAAAAAAAAAAAAIwE8AAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-21T18:06:56.929Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T18:06:56.929Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": "PacienteDAO.cs",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Models\\Paciente\\PacienteDAO.cs",
               "RelativeDocumentMoniker": "fisioClin\\Models\\Paciente\\PacienteDAO.cs",
               "ToolTip": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Models\\Paciente\\PacienteDAO.cs",
               "RelativeToolTip": "fisioClin\\Models\\Paciente\\PacienteDAO.cs",
-              "ViewState": "AgIAAL0AAAAAAAAAAAAcwNwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAKoAAAAAAAAAAAAIwMkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-21T17:44:31.198Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "CadastrarPaciente.razor",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Paciente\\CadastrarPaciente.razor",
               "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Paciente\\CadastrarPaciente.razor",
               "ToolTip": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Paciente\\CadastrarPaciente.razor",
               "RelativeToolTip": "fisioClin\\Components\\Pages\\Paciente\\CadastrarPaciente.razor",
-              "ViewState": "AgIAAKIAAAAAAAAAAAAiwMIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAKIAAAAAAAAAAAAUwMIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-21T17:44:10.713Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
+              "Title": "DadosPaciSel.razor",
+              "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Paciente\\DadosPaciSel.razor",
+              "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Paciente\\DadosPaciSel.razor",
+              "ToolTip": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Paciente\\DadosPaciSel.razor",
+              "RelativeToolTip": "fisioClin\\Components\\Pages\\Paciente\\DadosPaciSel.razor",
+              "ViewState": "AgIAAP0AAAAAAAAAAAAQwAcBAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-21T19:23:24.895Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
               "Title": "Agenda.cs",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Models\\Agenda\\Agenda.cs",
               "RelativeDocumentMoniker": "fisioClin\\Models\\Agenda\\Agenda.cs",
@@ -201,12 +345,11 @@
               "RelativeToolTip": "fisioClin\\Models\\Agenda\\Agenda.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T18:17:25.175Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T18:17:25.175Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 22,
               "Title": "Funcionarios.cs",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Models\\Funcionario\\Funcionarios.cs",
               "RelativeDocumentMoniker": "fisioClin\\Models\\Funcionario\\Funcionarios.cs",
@@ -214,12 +357,11 @@
               "RelativeToolTip": "fisioClin\\Models\\Funcionario\\Funcionarios.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T18:25:48.069Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T18:25:48.069Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 16,
               "Title": "Login.cs",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Models\\Login\\Login.cs",
               "RelativeDocumentMoniker": "fisioClin\\Models\\Login\\Login.cs",
@@ -227,12 +369,11 @@
               "RelativeToolTip": "fisioClin\\Models\\Login\\Login.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T18:40:51.185Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T18:40:51.185Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 15,
               "Title": "Home.razor",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Home.razor",
@@ -240,12 +381,11 @@
               "RelativeToolTip": "fisioClin\\Components\\Pages\\Home.razor",
               "ViewState": "AgIAAEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-21T18:48:21.897Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T18:48:21.897Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 14,
               "Title": "Counter.razor",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Counter.razor",
               "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Counter.razor",
@@ -253,12 +393,11 @@
               "RelativeToolTip": "fisioClin\\Components\\Pages\\Counter.razor",
               "ViewState": "AgIAACQAAAAAAAAAAAAAAAIAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-21T18:48:48.518Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T18:48:48.518Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 17,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Program.cs",
               "RelativeDocumentMoniker": "fisioClin\\Program.cs",
@@ -266,25 +405,11 @@
               "RelativeToolTip": "fisioClin\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T17:59:12.282Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T17:59:12.282Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "FuncionariosDAO.cs",
-              "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Models\\Funcionario\\FuncionariosDAO.cs",
-              "RelativeDocumentMoniker": "fisioClin\\Models\\Funcionario\\FuncionariosDAO.cs",
-              "ToolTip": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Models\\Funcionario\\FuncionariosDAO.cs",
-              "RelativeToolTip": "fisioClin\\Models\\Funcionario\\FuncionariosDAO.cs",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAIwGsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T18:25:49.104Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 23,
               "Title": "ReservarSala.razor",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Sala\\ReservarSala.razor",
               "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Sala\\ReservarSala.razor",
@@ -292,12 +417,11 @@
               "RelativeToolTip": "fisioClin\\Components\\Pages\\Sala\\ReservarSala.razor",
               "ViewState": "AgIAAI4AAAAAAAAAAAAkwJ8AAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-21T18:03:20.256Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T18:03:20.256Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 21,
               "Title": "SalaDAO.cs",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Models\\Sala\\SalaDAO.cs",
               "RelativeDocumentMoniker": "fisioClin\\Models\\Sala\\SalaDAO.cs",
@@ -305,12 +429,11 @@
               "RelativeToolTip": "fisioClin\\Models\\Sala\\SalaDAO.cs",
               "ViewState": "AgIAACUAAAAAAAAAAAAywCgAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T17:54:35.268Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T17:54:35.268Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 25,
               "Title": "Conexao.cs",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Configs\\Conexao.cs",
               "RelativeDocumentMoniker": "fisioClin\\Configs\\Conexao.cs",
@@ -318,12 +441,11 @@
               "RelativeToolTip": "fisioClin\\Configs\\Conexao.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T17:58:56.792Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T17:58:56.792Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 26,
               "Title": "CadastrarSala.razor",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Sala\\CadastrarSala.razor",
               "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Sala\\CadastrarSala.razor",
@@ -331,12 +453,11 @@
               "RelativeToolTip": "fisioClin\\Components\\Pages\\Sala\\CadastrarSala.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-21T17:53:28.386Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T17:53:28.386Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 24,
               "Title": "DAOHelper.cs",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Configs\\DAOHelper.cs",
               "RelativeDocumentMoniker": "fisioClin\\Configs\\DAOHelper.cs",
@@ -344,12 +465,11 @@
               "RelativeToolTip": "fisioClin\\Configs\\DAOHelper.cs",
               "ViewState": "AgIAABgAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T17:59:05.952Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T17:59:05.952Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 28,
               "Title": "VizualizacaoAgenda.razor",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Agenda\\VizualizacaoAgenda.razor",
               "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Agenda\\VizualizacaoAgenda.razor",
@@ -357,12 +477,11 @@
               "RelativeToolTip": "fisioClin\\Components\\Pages\\Agenda\\VizualizacaoAgenda.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-21T17:41:18.606Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T17:41:18.606Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 27,
               "Title": "ConfirmacaoAgendamento.razor",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Components\\Pages\\Agenda\\ConfirmacaoAgendamento.razor",
               "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Agenda\\ConfirmacaoAgendamento.razor",
@@ -370,12 +489,11 @@
               "RelativeToolTip": "fisioClin\\Components\\Pages\\Agenda\\ConfirmacaoAgendamento.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-21T17:41:09.355Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T17:41:09.355Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 29,
               "Title": "SessaoDAO.cs",
               "DocumentMoniker": "C:\\Users\\OSVALDINO\\Documentos\\FisioClin\\fisioClin\\Models\\Sessao\\SessaoDAO.cs",
               "RelativeDocumentMoniker": "fisioClin\\Models\\Sessao\\SessaoDAO.cs",
@@ -383,8 +501,7 @@
               "RelativeToolTip": "fisioClin\\Models\\Sessao\\SessaoDAO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T17:39:32.699Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T17:39:32.699Z"
             }
           ]
         }
