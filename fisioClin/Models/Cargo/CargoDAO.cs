@@ -63,6 +63,28 @@ namespace fisioClin.Models
             }
         }
 
+        public void Atualizar(Cargo cargo)
+        {
+            var comando = _conexao.CreateCommand(@" UPDATE cargo
+            SET nome_car = @_nome,
+            departamento_car = @_departamento,
+            descricao_car = @_descricao,
+            carga_horaria_car = @_carga,
+            data_atualizacao_car = @_data_atualizacao,
+            observacoes_car = @_observacoes
+            WHERE id_car = @_id; ");
+
+            comando.Parameters.AddWithValue("@_nome", cargo.Nome);
+            comando.Parameters.AddWithValue("@_departamento", cargo.Departamento);
+            comando.Parameters.AddWithValue("@_descricao", cargo.Descricao);
+            comando.Parameters.AddWithValue("@_carga", cargo.Carga);
+            comando.Parameters.AddWithValue("@_data_atualizacao", cargo.DataAtualizacao);
+            comando.Parameters.AddWithValue("@_observacoes", cargo.Observacao);
+            comando.Parameters.AddWithValue("@_id", cargo.Id);
+
+            comando.ExecuteNonQuery();
+        }
+
         public bool VerificarNomeExistente(String nome)
         {
             try

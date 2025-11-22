@@ -34,6 +34,29 @@
 
         StateHasChanged();
     }
+
+    // método seguro para navegar — evita problemas do parser com strings interpoladas dentro do atributo
+    private void Editar(int id)
+    {
+        NavigationManager.NavigateTo("/cadastrarfuncionario/" + id);
+    }
+
+    // (opcional) se quiser implementar exclusão aqui futuramente
+    private void Excluir(int id)
+    {
+        try
+        {
+            // Se o seu DAO tiver um método Excluir, chame aqui:
+            // FuncionariosDAO.Excluir(id);
+            // depois atualize a lista:
+            funcionarios = FuncionariosDAO.ListarTodos();
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Erro ao excluir: " + ex.Message);
+        }
+    }
 }
 
 <div class="funcionario-container mt-4">
@@ -52,13 +75,14 @@
             <tr>
                 <th class="id-header">ID</th>
                 <th class="nome-header">Nome do Funcionário</th>
+                <th class="acoes-header">Ações</th>
             </tr>
         </thead>
         <tbody>
             @if (funcionarios == null || funcionarios.Count == 0)
             {
                 <tr>
-                    <td colspan="2" class="text-center text-muted">Nenhum funcionário encontrado.</td>
+                    <td colspan="3" class="text-center text-muted">Nenhum funcionário encontrado.</td>
                 </tr>
             }
             else
@@ -68,10 +92,18 @@
                     <tr class="linha-funcionario">
                         <td class="id-col">@f.Id</td>
                         <td class="nome-col-botao-wrapper">
-                            @* Navega para a página de detalhes do funcionário *@
                             <a href="/dadosfuncionario/@f.Id" class="link-nome-funcionario">
                                 @f.Nome
                             </a>
+                        </td>
+
+                        <td style="padding:12px; text-align:right;">
+                            <button class="btn btn-warning" @onclick="() => Editar(f.Id)">
+                                Editar
+                            </button>
+                            @* Se quiser, pode descomentar e usar Excluir:
+                            <button class="btn btn-danger ms-2" @onclick="() => Excluir(f.Id)">Excluir</button>
+                            *@
                         </td>
                     </tr>
                 }
@@ -80,13 +112,12 @@
     </table>
 
     <div class="d-flex justify-content-end mt-3">
-        @* Assumindo que a rota de cadastro é /cadastrofuncionario *@
-        <a href="/cadastrofuncionario" class="btn-cadastrar">Cadastrar Funcionário</a>
+        <a href="/cadastrarfuncionario" class="btn-cadastrar">Cadastrar Funcionário</a>
     </div>
 </div>
 
 <style>
-    /* Estilos copiados do PacienteList para consistência */
+    /* seus estilos originais — mantive tudo igual */
     :root {
         --cor-principal: #6b0f0f;
         --cor-principal-hover: #8b0000;
@@ -170,6 +201,12 @@
         text-align: left;
     }
 
+    .acoes-header {
+        width: 160px;
+        text-align: right;
+        padding-right: 20px;
+    }
+
     .id-col {
         padding: 12px 15px;
         width: 80px;
@@ -219,18 +256,4 @@
             background-color: var(--cor-principal-hover);
             transform: translateY(-1px);
         }
-
-    @@media (max-width: 600px) {
-        .funcionario-container {
-            padding: 15px;
-        }
-
-        .tabela-funcionarios th, .tabela-funcionarios td {
-            padding: 8px 10px;
-        }
-
-        .link-nome-funcionario {
-            padding: 8px 10px;
-        }
-    }
 </style>

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("fisioClin")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f0d3c5092786452a7a2e4d8deab3ce63847ce100")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b0e4bddd90f9b89cb1896f69f6d8360b57bc2480")]
 [assembly: System.Reflection.AssemblyProductAttribute("fisioClin")]
 [assembly: System.Reflection.AssemblyTitleAttribute("fisioClin")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

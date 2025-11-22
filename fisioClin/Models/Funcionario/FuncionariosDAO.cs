@@ -109,5 +109,47 @@ namespace fisioClin.Models
             leitor.Close();
             return null;
         }
+        public void Atualizar(Funcionarios funcionario)
+        {
+            try
+            {
+                var comando = _conexao.CreateCommand(@"
+                UPDATE funcionario SET
+                nome_fun = @_nome,
+                cpf_fun = @_cpf,
+                rg_fun = @_rg,
+                data_nascimento_fun = @_datanasc,
+                telefone_fun = @_telefone,
+                email_fun = @_email,
+                tipo_vinculo_fun = @_vinculo,
+                registro_profissional_fun = @_registro,
+                especialidade_fun = @_especialidade,
+                subespecialidade_fun = @_subespecialidade,
+                certificados_fun = @_certificados,
+                data_contratacao_fun = @_datacontratacao
+                 WHERE id_fun = @_id;");
+
+                comando.Parameters.AddWithValue("@_id", funcionario.Id);
+                comando.Parameters.AddWithValue("@_nome", funcionario.Nome);
+                comando.Parameters.AddWithValue("@_cpf", funcionario.Cpf);
+                comando.Parameters.AddWithValue("@_rg", funcionario.Rg);
+                comando.Parameters.AddWithValue("@_datanasc", funcionario.DataNascimento);
+                comando.Parameters.AddWithValue("@_telefone", funcionario.Telefone);
+                comando.Parameters.AddWithValue("@_email", funcionario.Email);
+                comando.Parameters.AddWithValue("@_vinculo", funcionario.TipoVinculo);
+                comando.Parameters.AddWithValue("@_registro", funcionario.Registro);
+                comando.Parameters.AddWithValue("@_especialidade", funcionario.Especialidade);
+                comando.Parameters.AddWithValue("@_subespecialidade", funcionario.Subespecialidade);
+                comando.Parameters.AddWithValue("@_certificados", funcionario.Certificados);
+                comando.Parameters.AddWithValue("@_datacontratacao", funcionario.DataContratacao);
+
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao atualizar funcionário", ex);
+            }
+        }
+
     }
 }
