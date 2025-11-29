@@ -1,4 +1,5 @@
-﻿using FisioClin.Configs;
+﻿using fisioClin.Components.Pages.Paciente;
+using FisioClin.Configs;
 
 namespace fisioClin.Models
 {
@@ -26,7 +27,7 @@ namespace fisioClin.Models
                 sala.Numero = DAOHelper.GetString(leitor, "numero_sal");
                 sala.Capacidade = leitor.GetInt32("capacidade_sal");
                 sala.Tipo = DAOHelper.GetString(leitor, "tipo_sal");
-                sala.Disponibilidade = DAOHelper.GetString(leitor, "disponibilidade_sal");
+                sala.Disponibilidade = DAOHelper.GetString(leitor, "disponibilidade_sal").ToLower();
                 sala.Observacao = DAOHelper.GetString(leitor, "observacao_sal");
 
                 lista.Add(sala);
@@ -49,7 +50,7 @@ namespace fisioClin.Models
                 comando.Parameters.AddWithValue("@_numero", sala.Numero);
                 comando.Parameters.AddWithValue("@_capacidade", sala.Capacidade);
                 comando.Parameters.AddWithValue("@_tipo", sala.Tipo);
-                comando.Parameters.AddWithValue("@_disponibilidade", sala.Disponibilidade);
+                comando.Parameters.AddWithValue("@_disponibilidade", sala.Disponibilidade.ToLower());
                 comando.Parameters.AddWithValue("@_observacao", sala.Observacao);
 
                 comando.ExecuteNonQuery();
@@ -76,7 +77,7 @@ namespace fisioClin.Models
                 sala.Numero = DAOHelper.GetString(leitor, "numero_sal");
                 sala.Capacidade = leitor.GetInt32("capacidade_sal");
                 sala.Tipo = DAOHelper.GetString(leitor, "tipo_sal");
-                sala.Disponibilidade = DAOHelper.GetString(leitor, "disponibilidade_sal");
+                sala.Disponibilidade = DAOHelper.GetString(leitor, "disponibilidade_sal").ToLower();
                 sala.Observacao = DAOHelper.GetString(leitor, "observacao_sal");
                 
             }
@@ -97,7 +98,39 @@ namespace fisioClin.Models
                 throw new Exception("Erro ao excluir sala", ex);
             }
         }
+        public void Atualizar(Sala sala)
+        {
+            try
+            {
+                var comando = _conexao.CreateCommand(@"
+            UPDATE sala
+            SET 
+                nome_sal = @_nome,
+                numero_sal = @_numero,
+                capacidade_sal = @_capacidade,
+                tipo_sal = @_tipo,
+                disponibilidade_sal = @_disponibilidade,
+                observacao_sal = @_observacao
+            WHERE id_sal = @_id;
+        ");
+
+                comando.Parameters.AddWithValue("@_nome", sala.Nome);
+                comando.Parameters.AddWithValue("@_numero", sala.Numero);
+                comando.Parameters.AddWithValue("@_capacidade", sala.Capacidade);
+                comando.Parameters.AddWithValue("@_tipo", sala.Tipo);
+                comando.Parameters.AddWithValue("@_disponibilidade", sala.Disponibilidade?.ToLower());
+                comando.Parameters.AddWithValue("@_observacao", sala.Observacao);
+                comando.Parameters.AddWithValue("@_id", sala.Id);
+
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao atualizar sala", ex);
+            }
+        }
+
     }
 
-  
+
 }

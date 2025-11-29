@@ -4,6 +4,8 @@
 @inject AgendaDAO agendaDAO
 @inject SalaDAO salaDAO
 @inject FuncionariosDAO funcionariosDAO
+@inject TipoDAO tipoDAO
+@inject PacienteDAO pacienteDAO
 @inject NavigationManager Nav
 
 @rendermode InteractiveServer
@@ -44,16 +46,23 @@
 
 <main class="container my-4">
 
-    <h3 class="agenda-title mb-3">Agenda</h3>
+   <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="agenda-title m-0">Agenda</h3>
+
+        <a href="/cadastrar_agenda" class="btn btn-primary">
+            <i class="bi bi-plus-circle me-1"></i> Cadastrar
+        </a>
+       
+    </div>
 
     <!-- FILTROS -->
     <div class="row g-3 mb-4">
-        <div class="col-md-3">
+        <div class="col-md-2">
             <label class="form-label">Data</label>
             <InputDate class="form-control" @bind-Value="dataFiltro" />
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-2">
             <label class="form-label">Fisioterapeuta</label>
             <select class="form-select" @bind="filtroFisioterapeuta">
                 <option value="">Todos</option>
@@ -64,7 +73,7 @@
             </select>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-2">
             <label class="form-label">Sala</label>
             <select class="form-select" @bind="filtroSala">
                 <option value="">Todas</option>
@@ -75,7 +84,28 @@
             </select>
         </div>
 
-        <div class="col-md-3 d-flex align-items-end">
+        <div class="col-md-2">
+            <label class="form-label">Paciente</label>
+            <select class="form-select" @bind="filtroPaciente">
+                <option value="">Todos</option>
+                @foreach (var p in listaPacientes)
+                {
+                    <option value="@p.Id">@p.Nome</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <label class="form-label">Tipo</label>
+            <select class="form-select" @bind="filtroTipo">
+                <option value="">Todos</option>
+                @foreach (var t in listaTipo)
+                {
+                    <option value="@t.Id">@t.Nome</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-2 d-flex align-items-end">
             <button class="btn btn-primary w-100" @onclick="FiltrarAgenda">Filtrar</button>
         </div>
     </div>
@@ -98,25 +128,30 @@
                     <!-- ESQUERDA -->
                     <div>
                         <h5 class="mb-1">
-                            @item.Data?.ToString("dd/MM/yyyy")
+                            @(item.Data?.ToString("dd/MM/yyyy") ?? "Não informado")
                             —
-                            @item.Horario
+                            @(item.Horario ?? "Não informado")
                         </h5>
 
                         <p class="mb-1">
                             <strong>Fisioterapeuta:</strong>
-                            @item.Funcionario?.Nome
+                            @(item.Funcionario?.Nome ?? "Não informado")
                         </p>
 
                         <p class="mb-1">
-                            <strong>Observação:</strong>
-                            @item.Observacao
+                            <strong>Paciente:</strong>
+                            @(item.Paciente?.Nome ?? "Não informado")
+                        </p>
+
+                        <p class="mb-1">
+                            <strong>Tipo:</strong>
+                            @(item.Tipo?.Nome ?? "Não informado")
                         </p>
                     </div>
 
                     <!-- DIREITA (SALA) -->
                     <span class="badge-sala">
-                        @item.Sala?.Nome
+                        @(item.Sala?.Nome ?? "Não informado")
                     </span>
                 </div>
             </div>
@@ -129,22 +164,29 @@
     private DateTime? dataFiltro;
     private string filtroSala = "";
     private string filtroFisioterapeuta = "";
+    private string filtroPaciente = "";
+    private string filtroTipo = "";
 
     private List<Agenda> agendaFiltrada = new();
     private List<Sala> listaSalas = new();
     private List<Funcionarios> listaFisioterapeutas = new();
+    private List<Paciente> listaPacientes = new();
+    private List<Tipo> listaTipo = new();
 
     protected override void OnInitialized()
     {
         listaSalas = salaDAO.ListarTodos();
         listaFisioterapeutas = funcionariosDAO.ListarTodos();
+        listaPacientes = pacienteDAO.ListarTodos();  // <-- novo
+        listaTipo = tipoDAO.ListarTodos();  // <-- novo
         agendaFiltrada = agendaDAO.ListarTodos();
 
-        // Relaciona as informações sem JOIN
         foreach (var item in agendaFiltrada)
         {
             item.Sala = listaSalas.FirstOrDefault(s => s.Id == item.Id_Sala_fk);
             item.Funcionario = listaFisioterapeutas.FirstOrDefault(f => f.Id == item.Id_Funcionario_fk);
+            item.Paciente = listaPacientes.FirstOrDefault(p => p.Id == item.Id_Paciente_fk); // <-- novo
+            item.Tipo = listaTipo.FirstOrDefault(t => t.Id == item.Id_Tipo_fk); // <-- novo
         }
     }
        
@@ -164,6 +206,8 @@
         {
             item.Sala = listaSalas.FirstOrDefault(s => s.Id == item.Id_Sala_fk);
             item.Funcionario = listaFisioterapeutas.FirstOrDefault(f => f.Id == item.Id_Funcionario_fk);
+            item.Paciente = listaPacientes.FirstOrDefault(p => p.Id == item.Id_Paciente_fk); // <-- novo
+            item.Tipo = listaTipo.FirstOrDefault(t => t.Id == item.Id_Tipo_fk); // <-- novo
         }
 
         // Filtro por data
@@ -190,6 +234,20 @@
             var idSala = int.Parse(filtroSala);
             lista = lista
                 .Where(a => a.Id_Sala_fk == idSala)
+                .ToList();
+        }
+        if (!string.IsNullOrEmpty(filtroPaciente))
+        {
+            var idPac = int.Parse(filtroPaciente);
+            lista = lista
+                .Where(a => a.Id_Paciente_fk == idPac)
+                .ToList();
+        }
+        if (!string.IsNullOrEmpty(filtroTipo))
+        {
+            var idTip = int.Parse(filtroTipo);
+            lista = lista
+                .Where(a => a.Id_Tipo_fk == idTip)
                 .ToList();
         }
 

@@ -1,0 +1,138 @@
+﻿@page "/editar_sala/{Id:int}"
+@using fisioClin.Models
+@inject SalaDAO salaDAO
+@inject NavigationManager nav
+@using Microsoft.AspNetCore.Components.Forms
+
+@rendermode InteractiveServer
+
+<main class="container my-4">
+
+    <h2 class="text-maroon mb-4">Editar Sala</h2>
+
+    <section class="position-relative p-4 bg-white rounded shadow-sm">
+        <EditForm Model="_sala" OnValidSubmit="Salvar" FormName="EditarSalaForm">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="row g-3">
+
+                <!-- Nome -->
+                <div class="col-md-6">
+                    <label class="form-label">Nome da Sala</label>
+                    <InputText class="form-control" @bind-Value="_sala.Nome" />
+                    <ValidationMessage For="@(() => _sala.Nome)" />
+                </div>
+
+                <!-- Número -->
+                <div class="col-md-6">
+                    <label class="form-label">Número</label>
+                    <InputText class="form-control" @bind-Value="_sala.Numero" />
+                    <ValidationMessage For="@(() => _sala.Numero)" />
+                </div>
+
+                <!-- Tipo -->
+                <div class="col-md-6">
+                    <label class="form-label">Tipo da Sala</label>
+                    <InputText class="form-control" @bind-Value="_sala.Tipo" />
+                    <ValidationMessage For="@(() => _sala.Tipo)" />
+                </div>
+
+                <!-- Capacidade -->
+                <div class="col-md-6">
+                    <label class="form-label">Capacidade</label>
+                    <InputNumber class="form-control" @bind-Value="_sala.Capacidade" />
+                    <ValidationMessage For="@(() => _sala.Capacidade)" />
+                </div>
+
+                <!-- Disponibilidade -->
+                <div class="col-md-6">
+                    <label class="form-label">Disponibilidade</label>
+                    <InputSelect class="form-select" @bind-Value="_sala.Disponibilidade">
+                        <option value="">Selecione</option>
+                        <option value="disponivel">Disponível</option>
+                        <option value="ocupada">Ocupada</option>
+                    </InputSelect>
+                    <ValidationMessage For="@(() => _sala.Disponibilidade)" />
+                </div>
+
+                <!-- Observação -->
+                <div class="col-12">
+                    <label class="form-label">Observação</label>
+                    <InputTextArea class="form-control" @bind-Value="_sala.Observacao" Rows="3" />
+                    <ValidationMessage For="@(() => _sala.Observacao)" />
+                </div>
+
+            </div>
+
+            <div class="mt-4 d-flex gap-3">
+                <button type="submit" class="btn btn-maroon">Atualizar</button>
+                <button type="button" class="btn btn-secondary" @onclick="Voltar">Cancelar</button>
+            </div>
+
+        </EditForm>
+    </section>
+
+    <ModalSucesso @ref="_modal" Mensagem="Sala atualizada com sucesso!" />
+
+</main>
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    private Sala _sala = new();
+    private ModalSucesso _modal;
+
+    protected override void OnInitialized()
+    {
+        _sala = salaDAO.BuscarPorId(Id);
+        if (_sala == null)
+            _sala = new Sala();
+        Console.WriteLine("VALOR DA SALA: " + _sala.Disponibilidade);
+    }
+
+    private async Task Salvar()
+    {
+        try
+        {
+            salaDAO.Atualizar(_sala);
+
+            _modal.Mensagem = "Sala atualizada com sucesso!";
+            _modal.Mostrar();
+
+            await Task.Delay(2000);
+            _modal.Fechar();
+            Voltar();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+    private void Voltar()
+    {
+        nav.NavigateTo("/lista_sala");
+    }
+}
+
+<style>
+    .text-maroon {
+        color: #6b0010;
+    }
+
+    .btn-maroon {
+        background-color: #8b0015;
+        color: white;
+        border: none;
+    }
+
+        .btn-maroon:hover {
+            background-color: #a3001c;
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+</style>

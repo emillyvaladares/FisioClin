@@ -7,7 +7,6 @@ use fisioclin;
 #armazenda os dados do paciente
 create table paciente (
     id_pac int not null auto_increment primary key,
-    #atentar-se para os not null e os unique, os unique são para nao deixar cadastrar 2 iguais, então tem que criar uma logica para evitar isso
     nome_pac varchar(200) not null,
     cpf_pac varchar(15),
     rg_pac varchar(20),
@@ -69,31 +68,15 @@ create table sala (
     numero_sal varchar(50),
     capacidade_sal int,
     tipo_sal varchar(200),
-    disponibilidade_sal enum('disponivel','ocupada') default 'disponivel',
+    disponibilidade_sal varchar(20) default 'disponivel',
     observacao_sal varchar(300)
 );
-#default é sobre valor padrao, se nao passar nada ele usa o padrao
-insert into sala values (null, 'fisioterapia', 1, 3, 'não sei', default, 'sala aberta');
 
-
---------------------------------------------------------------------------------
--- TABELA SESSAO
---------------------------------------------------------------------------------
-#dados de cada consulta
-create table sessao (
-    id_ses int not null auto_increment primary key,
-    data_ses date not null,
-    horario_ses time not null,
-    tipo_ses varchar(200),
-    observacao_ses varchar(200),
-    id_pac_fk int null,
-    id_fun_fk int null,
-    id_sal_fk int null,
-    foreign key (id_pac_fk) references paciente(id_pac) on delete set null,
-    foreign key (id_fun_fk) references funcionario(id_fun) on delete set null,
-    foreign key (id_sal_fk) references sala(id_sal) on delete set null
+# padronização do tipo da consulta
+create table tipo(
+	id_tip int auto_increment primary key,
+    nome_tip varchar(200)
 );
-
 --------------------------------------------------------------------------------
 -- TABELA AGENDA
 --------------------------------------------------------------------------------
@@ -101,15 +84,19 @@ create table sessao (
 create table agenda (
     id_age int not null auto_increment primary key,
     data_age date,
-    horario_age time,
+    horario_age time,    
+    observacao_age varchar(200),
     id_sal_fk int null,
     id_fun_fk int null,
-    observacao_age varchar(200),
+	id_pac_fk int null,
+    id_tip_fk int null,
+    foreign key (id_pac_fk) references paciente(id_pac) on delete set null,
     foreign key (id_sal_fk) references sala(id_sal) on delete set null,
-    foreign key (id_fun_fk) references funcionario(id_fun) on delete set null
+    foreign key (id_fun_fk) references funcionario(id_fun) on delete set null,
+    foreign key (id_tip_fk) references tipo(id_tip) on delete set null   
 );
 
---------------------------------------------------------------------------------
+----------------------------------------------------
 -- LOGIN PACIENTE
 --------------------------------------------------------------------------------
 create table login_paciente (
@@ -131,4 +118,61 @@ create table login_funcionario (
     foreign key (id_fun_fk) references funcionario(id_fun) on delete set null
 );
 
+# inserts
+
+-- tabela paciente
+insert into paciente (nome_pac, cpf_pac, rg_pac, data_nascimento_pac, sexo_pac, telefone_pac, email_pac, cep_pac, rua_pac, numero_pac, bairro_pac)
+values ('joão da silva', '123.456.789-00', 'mg1234567', '1985-05-10', 'masculino', '(69)99999-1111', 'joao.silva@email.com', '76920-000', 'rua das flores', '100', 'centro');
+
+insert into paciente (nome_pac, cpf_pac, rg_pac, data_nascimento_pac, sexo_pac, telefone_pac, email_pac, cep_pac, rua_pac, numero_pac, bairro_pac)
+values ('maria oliveira', '987.654.321-00', 'ro9876543', '1990-08-22', 'feminino', '(69)98888-2222', 'maria.oliveira@email.com', '76920-001', 'avenida brasil', '200', 'bairro novo');
+
+-- tabela cargo
+insert into cargo (nome_car, departamento_car, descricao_car, carga_horaria_car, data_criacao_car, data_atualizacao_car, observacoes_car)
+values ('fisioterapeuta', 'saude', 'responsavel por atendimentos de fisioterapia', 40, '2025-01-01', '2025-01-15', 'cargo essencial');
+
+insert into cargo (nome_car, departamento_car, descricao_car, carga_horaria_car, data_criacao_car, data_atualizacao_car, observacoes_car)
+values ('recepcionista', 'administrativo', 'responsavel pelo atendimento inicial ao paciente', 44, '2025-01-02', '2025-01-16', 'cargo de apoio');
+
+-- tabela funcionario
+insert into funcionario (nome_fun, cpf_fun, rg_fun, data_nascimento_fun, telefone_fun, email_fun, tipo_vinculo_fun, registro_profissional_fun, especialidade_fun, subespecialidade_fun, certificados_fun, data_contratacao_fun, id_car_fk)
+values ('ana costa', '111.222.333-44', 'ro123456', '1988-03-12', '(69)97777-3333', 'ana.costa@email.com', 'clt', 'crefito-12345', 'fisioterapia geral', 'ortopedia', 'curso pilates', '2025-02-01', 1);
+
+insert into funcionario (nome_fun, cpf_fun, rg_fun, data_nascimento_fun, telefone_fun, email_fun, tipo_vinculo_fun, registro_profissional_fun, especialidade_fun, subespecialidade_fun, certificados_fun, data_contratacao_fun, id_car_fk)
+values ('carlos pereira', '555.666.777-88', 'ro654321', '1992-07-25', '(69)96666-4444', 'carlos.pereira@email.com', 'pj', null, 'atendimento administrativo', null, null, '2025-02-05', 2);
+
+-- tabela sala
+insert into sala (nome_sal, numero_sal, capacidade_sal, tipo_sal, disponibilidade_sal, observacao_sal)
+values ('sala ortopedia', '101', 2, 'atendimento fisioterapia', 'disponivel', 'equipada com aparelhos basicos');
+
+insert into sala (nome_sal, numero_sal, capacidade_sal, tipo_sal, disponibilidade_sal, observacao_sal)
+values ('sala pilates', '102', 5, 'atividade em grupo', 'ocupada', 'utilizada para exercicios coletivos');
+
+-- tabela tipo
+insert into tipo (nome_tip)
+values ('consulta fisioterapia');
+
+insert into tipo (nome_tip)
+values ('sessao pilates');
+
+-- tabela agenda
+insert into agenda (data_age, horario_age, observacao_age, id_sal_fk, id_fun_fk, id_pac_fk, id_tip_fk)
+values ('2025-03-01', '09:00:00', 'primeira avaliacao', 1, 1, 1, 1);
+
+insert into agenda (data_age, horario_age, observacao_age, id_sal_fk, id_fun_fk, id_pac_fk, id_tip_fk)
+values ('2025-03-02', '10:30:00', 'atividade em grupo', 2, 2, 2, 2);
+
+-- tabela login_paciente
+insert into login_paciente (email_lop, senha_lop, id_pac_fk)
+values ('joao.silva@email.com', 'senha123', 1);
+
+insert into login_paciente (email_lop, senha_lop, id_pac_fk)
+values ('maria.oliveira@email.com', 'senha456', 2);
+
+-- tabela login_funcionario
+insert into login_funcionario (email_lof, senha_lof, id_fun_fk)
+values ('ana.costa@email.com', 'senha789', 1);
+
+insert into login_funcionario (email_lof, senha_lof, id_fun_fk)
+values ('carlos.pereira@email.com', 'senha321', 2);
 

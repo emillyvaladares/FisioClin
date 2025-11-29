@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Components\Pages\NovaPasta\**" />
-    <Content Remove="Components\Pages\NovaPasta\**" />
-    <EmbeddedResource Remove="Components\Pages\NovaPasta\**" />
-    <None Remove="Components\Pages\NovaPasta\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Remove="Components\Pages\Cargo\DadosdeCargos.razor" />
     <Content Remove="Components\Pages\DadosFunciSel.razor" />
     <Content Remove="Components\Pages\Paciente\SeleiconarPaciente.razor" />

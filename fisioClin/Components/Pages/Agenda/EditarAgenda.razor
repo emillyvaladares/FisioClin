@@ -1,0 +1,194 @@
+﻿@page "/editar_agenda/{Id:int}"
+@using fisioClin.Models
+@inject AgendaDAO agendaDAO
+@inject SalaDAO salaDAO
+@inject FuncionariosDAO funcionariosDAO
+@inject PacienteDAO pacienteDAO
+@inject TipoDAO tipoDAO
+@inject NavigationManager nav
+
+@rendermode InteractiveServer
+
+<PageTitle>Editar Agenda</PageTitle>
+
+<main class="container my-4">
+
+    <h2 class="text-maroon mb-4">Editar Agenda</h2>
+
+    @if (isLoading)
+    {
+        <div class="text-center fw-bold">Carregando...</div>
+    }
+    else if (_agenda == null)
+    {
+        <div class="text-danger fw-bold">Agenda não encontrada.</div>
+    }
+    else
+    {
+        <section class="position-relative p-4 bg-white rounded shadow-sm">
+
+            <EditForm Model="_agenda" OnValidSubmit="Salvar" FormName="EditarAgendaForm">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+
+                <div class="row g-3">
+
+                    <!-- DATA -->
+                    <div class="col-md-6">
+                        <label class="form-label">Data</label>
+                        <InputDate class="form-control" @bind-Value="_agenda.Data" />
+                    </div>
+
+                    <!-- HORÁRIO -->
+                    <div class="col-md-6">
+                        <label class="form-label">Horário</label>
+                        <InputText class="form-control" type="time" @bind-Value="_agenda.Horario" />                        
+                    </div>
+
+                    <!-- TIPO -->
+                    <div class="col-md-6">
+                        <label class="form-label">Tipo</label>
+                        <select class="form-select" @bind="_agenda.Id_Tipo_fk">
+                            <option value="">Selecione</option>
+                            @foreach (var t in listaTipo)
+                            {
+                                <option value="@t.Id">@t.Nome</option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- SALA -->
+                    <div class="col-md-6">
+                        <label class="form-label">Sala</label>
+                        <select class="form-select" @bind="_agenda.Id_Sala_fk">
+                            <option value="">Selecione</option>
+                            @foreach (var s in listaSalas)
+                            {
+                                <option value="@s.Id">@s.Nome</option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- FISIOTERAPEUTA -->
+                    <div class="col-md-6">
+                        <label class="form-label">Fisioterapeuta</label>
+                        <select class="form-select" @bind="_agenda.Id_Funcionario_fk">
+                            <option value="">Selecione</option>
+                            @foreach (var f in listaFuncionarios)
+                            {
+                                <option value="@f.Id">@f.Nome</option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- PACIENTE -->
+                    <div class="col-md-6">
+                        <label class="form-label">Paciente</label>
+                        <select class="form-select" @bind="_agenda.Id_Paciente_fk">
+                            <option value="">Selecione</option>
+                            @foreach (var p in listaPacientes)
+                            {
+                                <option value="@p.Id">@p.Nome</option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- OBSERVAÇÃO -->
+                    <div class="col-12">
+                        <label class="form-label">Observações</label>
+                        <textarea class="form-control" rows="4"
+                                  @bind="_agenda.Observacao"></textarea>
+                    </div>
+
+                </div>
+
+                <!-- BOTÕES -->
+                <div class="mt-4 d-flex gap-3">
+                    <button type="submit" class="btn btn-maroon">Salvar Alterações</button>
+                    <button type="button" class="btn btn-secondary" @onclick="Voltar">Cancelar</button>
+                </div>
+
+            </EditForm>
+
+        </section>
+
+        <ModalSucesso @ref="_modal" Mensagem="Agenda atualizada com sucesso!" />
+    }
+</main>
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    private Agenda _agenda = new();
+    private ModalSucesso _modal;
+
+    private bool isLoading = true;
+
+    private List<Sala> listaSalas = new();
+    private List<Funcionarios> listaFuncionarios = new();
+    private List<Paciente> listaPacientes = new();
+    private List<Tipo> listaTipo = new();
+
+    protected override void OnInitialized()
+    {
+        CarregarDados();
+    }
+
+    private void CarregarDados()
+    {
+        _agenda = agendaDAO.BuscarPorId(Id);
+
+        listaSalas = salaDAO.ListarTodos();
+        listaFuncionarios = funcionariosDAO.ListarTodos();
+        listaPacientes = pacienteDAO.ListarTodos();
+        listaTipo = tipoDAO.ListarTodos();
+
+        isLoading = false;
+    }
+
+    private async Task Salvar()
+    {
+        try
+        {
+            agendaDAO.Atualizar(_agenda);
+
+            _modal.Mensagem = "Agenda atualizada com sucesso!";
+            _modal.Mostrar();
+
+            await Task.Delay(2000);
+            _modal.Fechar();
+
+            Voltar();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+    private void Voltar()
+    {
+        nav.NavigateTo($"/visualizar_agenda/{Id}");
+    }
+}
+
+<style>
+    .text-maroon {
+        color: #6b0010;
+    }
+
+    .btn-maroon {
+        background-color: #8b0015;
+        color: white;
+        border: none;
+    }
+
+        .btn-maroon:hover {
+            background-color: #a3001c;
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+</style>

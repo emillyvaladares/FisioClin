@@ -30,7 +30,7 @@ namespace fisioClin.Models
                 funcionario.DataNascimento = DAOHelper.GetDateTime(leitor, "data_nascimento_fun");
                 funcionario.Telefone = DAOHelper.GetString(leitor, "telefone_fun");
                 funcionario.Email = DAOHelper.GetString(leitor, "email_fun");
-                funcionario.TipoVinculo = DAOHelper.GetString(leitor, "tipo_vinculo_fun");
+                funcionario.TipoVinculo = DAOHelper.GetString(leitor, "tipo_vinculo_fun").ToLower();
                 funcionario.RegistroProfissional = DAOHelper.GetString(leitor, "registro_profissional_fun");
                 funcionario.Especialidade = DAOHelper.GetString(leitor, "especialidade_fun");
                 funcionario.Subespecialidade = DAOHelper.GetString(leitor, "subespecialidade_fun");
@@ -68,7 +68,7 @@ namespace fisioClin.Models
                     comando.Parameters.AddWithValue("@_datanasc", funcionario.DataNascimento);
                     comando.Parameters.AddWithValue("@_telefone", funcionario.Telefone);
                     comando.Parameters.AddWithValue("@_email", funcionario.Email);
-                    comando.Parameters.AddWithValue("@_vinculo", funcionario.TipoVinculo);
+                    comando.Parameters.AddWithValue("@_vinculo", funcionario.TipoVinculo.ToLower());
                     comando.Parameters.AddWithValue("@_registro", funcionario.RegistroProfissional);
                     comando.Parameters.AddWithValue("@_especialidade", funcionario.Especialidade);
                     comando.Parameters.AddWithValue("@_subespecialidade", funcionario.Subespecialidade);
@@ -104,7 +104,7 @@ namespace fisioClin.Models
                 funcionario.Telefone = DAOHelper.GetString(leitor, "telefone_fun");
                 funcionario.Email = DAOHelper.GetString(leitor, "email_fun");
                 funcionario.RegistroProfissional = DAOHelper.GetString(leitor, "registro_profissional_fun");
-                funcionario.TipoVinculo = DAOHelper.GetString(leitor, "tipo_vinculo_fun");                
+                funcionario.TipoVinculo = DAOHelper.GetString(leitor, "tipo_vinculo_fun").ToLower();                
                 funcionario.Especialidade = DAOHelper.GetString(leitor, "especialidade_fun");
                 funcionario.Subespecialidade = DAOHelper.GetString(leitor, "subespecialidade_fun");
                 funcionario.Certificados = DAOHelper.GetString(leitor, "certificados_fun");
@@ -149,7 +149,7 @@ namespace fisioClin.Models
                 comando.Parameters.AddWithValue("@_datanasc", funcionario.DataNascimento);
                 comando.Parameters.AddWithValue("@_telefone", funcionario.Telefone);
                 comando.Parameters.AddWithValue("@_email", funcionario.Email);
-                comando.Parameters.AddWithValue("@_vinculo", funcionario.TipoVinculo);
+                comando.Parameters.AddWithValue("@_vinculo", funcionario.TipoVinculo.ToLower());
                 comando.Parameters.AddWithValue("@_registro", funcionario.RegistroProfissional);
                 comando.Parameters.AddWithValue("@_especialidade", funcionario.Especialidade);
                 comando.Parameters.AddWithValue("@_subespecialidade", funcionario.Subespecialidade);

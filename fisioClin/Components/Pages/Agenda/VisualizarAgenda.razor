@@ -4,77 +4,133 @@
 @inject AgendaDAO agendaDAO
 @inject SalaDAO salaDAO
 @inject FuncionariosDAO funcionariosDAO
+@inject PacienteDAO pacienteDAO
+@inject TipoDAO tipoDAO
 @inject NavigationManager Nav
+
+@rendermode InteractiveServer
 
 <PageTitle>Agenda</PageTitle>
 
 @if (isLoading)
 {
-    <div class="loading-message">Carregando dados da agenda...</div>
+    <div class="text-center mt-5 fw-bold" style="color:#701a1a;">
+        Carregando dados da agenda...
+    </div>
 }
 else if (agenda == null)
 {
-    <div class="not-found-message">Agenda não encontrada. ID: @Id</div>
+    <div class="text-center mt-5 fw-bold" style="color:#701a1a;">
+        Agenda não encontrada (ID: @Id)
+    </div>
 }
 else
 {
-    <div class="agenda-details-container container mt-4">
+    <div class="container mt-4">
 
-        <!-- HEADER -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <a class="btn" href="/visualizaragenda">
-                <i class="bi bi-arrow-left"></i> Voltar para Agenda
-            </a>
+        <!-- TÍTULO -->
+        <div class="d-flex align-items-center mb-4">
+            <h3 class="fw-bold" style="color:#701a1a;">Dados da Agenda</h3>
 
-            <h3 class="titulo mb-0">
-                Detalhes da Agenda: <span class="text-id">ID @agenda.Id</span>
-            </h3>
+            <input type="text"
+                   class="form-control ms-3"
+                   style="max-width: 80px;"
+                   readonly
+                   value="@agenda.Id" />
+
+            <input type="text"
+                   class="form-control ms-2"
+                   readonly
+                   value="@agenda.Data?.ToString("dd/MM/yyyy")" />
         </div>
 
         <!-- CARD PRINCIPAL -->
-        <div class="form-section p-4 shadow-sm rounded">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
 
-            <h4 class="mb-4">Informações da Sessão</h4>
+                <div class="row">
+                    <div class="col-md-9">
 
-            <div class="row g-3">
+                        <!-- DATA + HORÁRIO-->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Data</label>
+                                <input type="text" class="form-control"
+                                       readonly
+                                       value="@agenda.Data?.ToString("dd/MM/yyyy")" />
+                            </div>
 
-                <div class="col-md-4">
-                    <label class="form-label">Data</label>
-                    <input type="text" class="form-control"
-                           value="@agenda.Data?.ToString("dd/MM/yyyy")" readonly />
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Horário</label>
+                                <input type="text" class="form-control"
+                                       readonly
+                                       value="@agenda.Horario" />
+                            </div>
+                        </div>
+                        <!-- TIPO + SALA -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Tipo</label>
+                                <input type="text" class="form-control"
+                                       readonly
+                                       value="@nomeTipo" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Sala</label>
+                                <input type="text" class="form-control"
+                                       readonly
+                                       value="@nomeSala" />
+                            </div>
+                        </div>
+
+                        <!-- FISIOTERAPEUTA + PACIENTE -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Fisioterapeuta</label>
+                                <input type="text" class="form-control"
+                                       readonly
+                                       value="@nomeFisio" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Paciente</label>
+                                <input type="text" class="form-control"
+                                       readonly
+                                       value="@nomePaciente" />
+                            </div>
+                        </div>
+
+                        <!-- OBSERVAÇÕES -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Observações</label>
+                            <textarea class="form-control" rows="4" readonly>@agenda.Observacao</textarea>
+                        </div>
+                     
+                        <div class="d-flex justify-content-end mt-4 gap-2">
+                            <!-- BOTÃO EDITAR -->
+                            <a class="btn btn-primary px-4"
+                               style="background:#701a1a; border:none;"
+                               href="/editar_agenda/@Id">
+                                Editar Agenda
+                            </a>
+                            <!-- BOTÃO EXCLUIR -->
+                            <button class="btn btn-danger px-4"
+                               @onclick="Apagar">
+                                Excluir Agenda
+                            </button>
+                        </div>
+                       
+                    </div>
+
+                    <!-- ÍCONE PADRÃO -->
+                    <div class="col-md-3 d-flex flex-column align-items-center mt-3 mt-md-0">
+                        <i class="bi bi-calendar-check"
+                           style="font-size: 130px; color: #701a1a;"></i>
+                    </div>
+
                 </div>
-
-                <div class="col-md-4">
-                    <label class="form-label">Horário</label>
-                    <input type="text" class="form-control"
-                           value="@agenda.Horario" readonly />
-                </div>
-
-                <div class="col-md-4">
-                    <label class="form-label">Sala</label>
-                    <input type="text" class="form-control"
-                           value="@nomeSala" readonly />
-                </div>
-
-                <div class="col-md-6">
-                    <label class="form-label">Fisioterapeuta</label>
-                    <input type="text" class="form-control"
-                           value="@nomeFisio" readonly />
-                </div>
-
-                <div class="col-12">
-                    <label class="form-label">Observações</label>
-                    <textarea class="form-control" rows="3" readonly>@agenda.Observacao</textarea>
-                </div>
-
             </div>
-
-            <div class="d-flex justify-content-end mt-4">
-                <a class="btn btn-primary" href="/editar_agenda/@Id">
-                    Editar Agenda
-                </a>
-            </div>
-
         </div>
     </div>
 }
@@ -87,6 +143,8 @@ else
 
     private string nomeSala = "";
     private string nomeFisio = "";
+    private string nomePaciente = "";
+    private string nomeTipo = "";
 
     protected override void OnInitialized()
     {
@@ -94,51 +152,32 @@ else
 
         if (agenda != null)
         {
-            var sala = salaDAO.BuscarPorId(agenda.Id_Sala_fk);
+            var sala = salaDAO.BuscarPorId(agenda.Id_Sala_fk ?? 0);
             nomeSala = sala?.Nome ?? "Não informado";
 
-            var fisio = funcionariosDAO.BuscarPorId(agenda.Id_Funcionario_fk);
+            var fisio = funcionariosDAO.BuscarPorId(agenda.Id_Funcionario_fk ?? 0);
             nomeFisio = fisio?.Nome ?? "Não informado";
+
+            var pac = pacienteDAO.BuscarPorId(agenda.Id_Paciente_fk ?? 0);
+            nomePaciente = pac?.Nome ?? "Não informado";
+
+            var tipo = tipoDAO.BuscarPorId(agenda.Id_Tipo_fk ?? 0);
+            nomeTipo = tipo?.Nome ?? "Não informado";
         }
 
         isLoading = false;
     }
+
+    private void Apagar()
+    {
+        agendaDAO.Excluir(Id);
+        Nav.NavigateTo("/visualizaragenda");
+    }
 }
 
-<style>
+<style>    
     :root {
-        --cor-principal: #6b0f0f;
+        --cor-principal: #701a1a;
         --cor-principal-hover: #8b0000;
-        --cor-fundo-claro: #f7f5f5;
-        --cor-texto: #333;
     }
-
-    .titulo {
-        font-weight: 600;
-        color: var(--cor-texto);
-    }
-
-    .text-id {
-        color: var(--cor-principal);
-        font-weight: 700;
-    }
-
-    .form-section {
-        background: white;
-        border-radius: 10px;
-    }
-
-    .form-label {
-        font-weight: 600;
-        color: var(--cor-texto);
-    }
-
-    .btn-primary {
-        background: var(--cor-principal);
-        border: none;
-    }
-
-        .btn-primary:hover {
-            background: var(--cor-principal-hover);
-        }
 </style>

@@ -71,9 +71,9 @@
                     <label class="form-label">Sexo</label>
                     <InputSelect class="form-select" @bind-Value="_paciente.Sexo">
                         <option value="">Selecione</option>
-                        <option>Masculino</option>
-                        <option>Feminino</option>
-                        <option>Outro</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                        <option value="outro">Outro</option>
                     </InputSelect>
                     <ValidationMessage For="@(() => _paciente.Sexo)" />
                 </div>

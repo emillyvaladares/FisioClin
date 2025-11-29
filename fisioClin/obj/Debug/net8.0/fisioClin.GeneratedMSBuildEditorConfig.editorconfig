@@ -40,6 +40,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBZ2VuZGFcQWdlbmRhUGFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/repositorio/FisioClin/fisioClin/Components/Pages/Agenda/CadastrarAgenda.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBZ2VuZGFcQ2FkYXN0cmFyQWdlbmRhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/repositorio/FisioClin/fisioClin/Components/Pages/Agenda/EditarAgenda.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBZ2VuZGFcRWRpdGFyQWdlbmRhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/repositorio/FisioClin/fisioClin/Components/Pages/Agenda/VisualizarAgenda.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBZ2VuZGFcVmlzdWFsaXphckFnZW5kYS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -116,12 +124,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxhXENvbnN1bHRhclNhbGFzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/repositorio/FisioClin/fisioClin/Components/Pages/Sala/EditarSala.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxhXEVkaXRhclNhbGEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/repositorio/FisioClin/fisioClin/Components/Pages/Sala/SalasPage.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxhXFNhbGFzUGFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/repositorio/FisioClin/fisioClin/Components/Pages/Weather.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xXZWF0aGVyLnJhem9y
+[D:/repositorio/FisioClin/fisioClin/Components/Pages/TipoConsulta/CadastrarTipoCosulta.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xUaXBvQ29uc3VsdGFcQ2FkYXN0cmFyVGlwb0Nvc3VsdGEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/repositorio/FisioClin/fisioClin/Components/Pages/TipoConsulta/EditarTipoConsulta.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xUaXBvQ29uc3VsdGFcRWRpdGFyVGlwb0NvbnN1bHRhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/repositorio/FisioClin/fisioClin/Components/Pages/TipoConsulta/TipoConsultaPage.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xUaXBvQ29uc3VsdGFcVGlwb0NvbnN1bHRhUGFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/repositorio/FisioClin/fisioClin/Components/Routes.razor]

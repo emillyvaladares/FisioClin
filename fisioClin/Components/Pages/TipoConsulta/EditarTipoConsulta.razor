@@ -1,0 +1,99 @@
+﻿@page "/editar_tipo/{Id:int}"
+@using fisioClin.Models
+@inject TipoDAO tipoDAO
+@inject NavigationManager nav
+@using Microsoft.AspNetCore.Components.Forms
+
+@rendermode InteractiveServer
+
+<main class="container my-4">
+
+    <h2 class="text-maroon mb-4">Editar Tipo de Consulta</h2>
+
+    <section class="position-relative p-4 bg-white rounded shadow-sm">
+        <EditForm Model="_tipo" OnValidSubmit="Salvar" FormName="EditarTipoForm">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="row g-3">
+
+                <!-- NOME DO TIPO -->
+                <div class="col-12 mb-3">
+                    <label class="form-label">Nome do Tipo</label>
+                    <InputText class="form-control" @bind-Value="_tipo.Nome" />
+                    <ValidationMessage For="@(() => _tipo.Nome)" />
+                </div>
+
+            </div>
+
+            <div class="mt-4 d-flex gap-3">
+                <button type="submit" class="btn btn-maroon">Atualizar</button>
+                <button type="button" class="btn btn-secondary" @onclick="Voltar">Cancelar</button>
+            </div>
+
+        </EditForm>
+    </section>
+
+    <ModalSucesso @ref="_modal" Mensagem="Tipo atualizado com sucesso!" />
+
+</main>
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    private Tipo _tipo = new();
+    private ModalSucesso _modal;
+
+    protected override void OnInitialized()
+    {
+        _tipo = tipoDAO.BuscarPorId(Id);
+
+        if (_tipo == null)
+            _tipo = new Tipo();
+    }
+
+    private async Task Salvar()
+    {
+        try
+        {
+            tipoDAO.Atualizar(_tipo);
+
+            _modal.Mensagem = "Tipo atualizado com sucesso!";
+            _modal.Mostrar();
+
+            await Task.Delay(2000);
+            _modal.Fechar();
+            Voltar();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+    private void Voltar()
+    {
+        nav.NavigateTo("/tipo_consulta");
+    }
+}
+
+<style>
+    .text-maroon {
+        color: #6b0010;
+    }
+
+    .btn-maroon {
+        background-color: #8b0015;
+        color: white;
+        border: none;
+    }
+
+        .btn-maroon:hover {
+            background-color: #a3001c;
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+</style>

@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "D:\\repositorio\\FisioClin\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|d:\\repositorio\\fisioclin\\fisioclin\\components\\pages\\sala\\salaspage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\components\\pages\\sala\\salaspage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|d:\\repositorio\\fisioclin\\fisioclin\\models\\funcionario\\funcionariosdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\models\\funcionario\\funcionariosdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|d:\\repositorio\\fisioclin\\fisioclin\\components\\pages\\sala\\consultarsalas.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\components\\pages\\sala\\consultarsalas.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|d:\\repositorio\\fisioclin\\fisioclin\\models\\funcionario\\funcionarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\models\\funcionario\\funcionarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|d:\\repositorio\\fisioclin\\fisioclin\\components\\pages\\funcionario\\editarfuncionario.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\components\\pages\\funcionario\\editarfuncionario.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|d:\\repositorio\\fisioclin\\fisioclin\\components\\pages\\funcionario\\cadastrarfuncionario.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A24CAE97-3A9D-4C4A-8A12-5D942D3BEFD8}|fisioClin\\fisioClin.csproj|solutionrelative:fisioclin\\components\\pages\\funcionario\\cadastrarfuncionario.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,27 +31,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "SalasPage.razor",
-              "DocumentMoniker": "D:\\repositorio\\FisioClin\\fisioClin\\Components\\Pages\\Sala\\SalasPage.razor",
-              "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Sala\\SalasPage.razor",
-              "ToolTip": "D:\\repositorio\\FisioClin\\fisioClin\\Components\\Pages\\Sala\\SalasPage.razor",
-              "RelativeToolTip": "fisioClin\\Components\\Pages\\Sala\\SalasPage.razor",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAAAHEAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-29T03:53:51.585Z",
+              "Title": "FuncionariosDAO.cs",
+              "DocumentMoniker": "D:\\repositorio\\FisioClin\\fisioClin\\Models\\Funcionario\\FuncionariosDAO.cs",
+              "RelativeDocumentMoniker": "fisioClin\\Models\\Funcionario\\FuncionariosDAO.cs",
+              "ToolTip": "D:\\repositorio\\FisioClin\\fisioClin\\Models\\Funcionario\\FuncionariosDAO.cs",
+              "RelativeToolTip": "fisioClin\\Models\\Funcionario\\FuncionariosDAO.cs",
+              "ViewState": "AgIAAI4AAAAAAAAAAAAcwJcAAABeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T21:25:45.342Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ConsultarSalas.razor",
-              "DocumentMoniker": "D:\\repositorio\\FisioClin\\fisioClin\\Components\\Pages\\Sala\\ConsultarSalas.razor",
-              "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Sala\\ConsultarSalas.razor",
-              "ToolTip": "D:\\repositorio\\FisioClin\\fisioClin\\Components\\Pages\\Sala\\ConsultarSalas.razor",
-              "RelativeToolTip": "fisioClin\\Components\\Pages\\Sala\\ConsultarSalas.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAWAAAAAAAAAA==",
+              "Title": "Funcionarios.cs",
+              "DocumentMoniker": "D:\\repositorio\\FisioClin\\fisioClin\\Models\\Funcionario\\Funcionarios.cs",
+              "RelativeDocumentMoniker": "fisioClin\\Models\\Funcionario\\Funcionarios.cs",
+              "ToolTip": "D:\\repositorio\\FisioClin\\fisioClin\\Models\\Funcionario\\Funcionarios.cs",
+              "RelativeToolTip": "fisioClin\\Models\\Funcionario\\Funcionarios.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T21:25:32.237Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CadastrarFuncionario.razor",
+              "DocumentMoniker": "D:\\repositorio\\FisioClin\\fisioClin\\Components\\Pages\\Funcionario\\CadastrarFuncionario.razor",
+              "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Funcionario\\CadastrarFuncionario.razor",
+              "ToolTip": "D:\\repositorio\\FisioClin\\fisioClin\\Components\\Pages\\Funcionario\\CadastrarFuncionario.razor",
+              "RelativeToolTip": "fisioClin\\Components\\Pages\\Funcionario\\CadastrarFuncionario.razor",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAC8AAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-29T03:49:11.426Z",
+              "WhenOpened": "2025-11-29T21:24:43.729Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EditarFuncionario.razor",
+              "DocumentMoniker": "D:\\repositorio\\FisioClin\\fisioClin\\Components\\Pages\\Funcionario\\EditarFuncionario.razor",
+              "RelativeDocumentMoniker": "fisioClin\\Components\\Pages\\Funcionario\\EditarFuncionario.razor",
+              "ToolTip": "D:\\repositorio\\FisioClin\\fisioClin\\Components\\Pages\\Funcionario\\EditarFuncionario.razor",
+              "RelativeToolTip": "fisioClin\\Components\\Pages\\Funcionario\\EditarFuncionario.razor",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAAAIkAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-29T21:23:50.399Z",
               "EditorCaption": ""
             }
           ]

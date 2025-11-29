@@ -1,5 +1,5 @@
 using fisioClin.Components;
-using fisioClin.Models; 
+using fisioClin.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +13,7 @@ builder.Services.AddScoped<PacienteDAO>();
 builder.Services.AddScoped<FuncionariosDAO>();
 builder.Services.AddScoped<CargoDAO>();
 builder.Services.AddScoped<SalaDAO>();
-builder.Services.AddScoped<LoginDAO>();
+builder.Services.AddScoped<TipoDAO>();
 builder.Services.AddScoped<AgendaDAO>();
 
 

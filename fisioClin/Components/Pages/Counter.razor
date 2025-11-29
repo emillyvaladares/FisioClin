@@ -47,20 +47,12 @@
     {
         try
         {
-            var loginDao = new LoginDAO(conexao);
+            var loginDao = new Object();
 
             // verifica em paciente e funcionário
-            bool pacienteOK = loginDao.VerificarLoginPaciente(usuario.Email, usuario.Senha);
-            bool funcionarioOK = loginDao.VerificarLoginFuncionario(usuario.Email, usuario.Senha);
+           
 
-            if (pacienteOK || funcionarioOK)
-            {
-                Navigation.NavigateTo("/menu");
-            }
-            else
-            {
-                mensagem = "Email ou senha incorretos.";
-            }
+          
         }
         catch (Exception ex)
         {
