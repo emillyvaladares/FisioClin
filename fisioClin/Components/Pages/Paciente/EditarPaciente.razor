@@ -1,4 +1,4 @@
-﻿@page "/cadastrarpaciente"
+﻿@page "/editarpaciente/{Id:int}"
 @using fisioClin.Models
 @inject PacienteDAO pacienteDAO
 @inject NavigationManager nav
@@ -8,72 +8,65 @@
 
 <main class="container my-4">
 
-    <h2 class="text-maroon mb-4">Cadastrar Paciente</h2>
+    <h2 class="text-maroon mb-4">Editar Paciente</h2>
 
     <section class="position-relative p-4 bg-white rounded shadow-sm">
-        <EditForm Model="_paciente" OnValidSubmit="Salvar" FormName="CadastrarPacienteForm">
+        <EditForm Model="_paciente" OnValidSubmit="Salvar" FormName="EditarPacienteForm">
             <DataAnnotationsValidator />
             <ValidationSummary />
 
             <div class="row g-3">
 
-                <!-- NOME COMPLETO -->
-                <div class="col-12 mb-3 position-relative">
+                <!-- (todos os mesmos campos do cadastro) -->
+
+                <div class="col-12 mb-3">
                     <label class="form-label">Nome completo</label>
                     <InputText class="form-control" @bind-Value="_paciente.Nome" />
                     <ValidationMessage For="@(() => _paciente.Nome)" />
                 </div>
 
-                <!-- CPF -->
                 <div class="col-md-4">
                     <label class="form-label">CPF</label>
                     <InputCpf class="form-control" @bind-Value="_paciente.Cpf" />
                     <ValidationMessage For="@(() => _paciente.Cpf)" />
                 </div>
 
-                <!-- CEP -->
                 <div class="col-md-4">
                     <label class="form-label">CEP</label>
                     <InputText class="form-control" @bind-Value="_paciente.Cep" />
                     <ValidationMessage For="@(() => _paciente.Cep)" />
                 </div>
 
-                <!-- RG -->
                 <div class="col-md-4">
                     <label class="form-label">RG</label>
                     <InputText class="form-control" @bind-Value="_paciente.Rg" />
                     <ValidationMessage For="@(() => _paciente.Rg)" />
                 </div>
 
-                <!-- Bairro -->
                 <div class="col-md-4">
                     <label class="form-label">Bairro</label>
                     <InputText class="form-control" @bind-Value="_paciente.Bairro" />
                     <ValidationMessage For="@(() => _paciente.Bairro)" />
                 </div>
 
-                <!-- Data de nascimento -->
                 <div class="col-md-4">
                     <label class="form-label">Data de Nascimento</label>
                     <InputDate class="form-control" @bind-Value="_paciente.DataNascimento" />
                     <ValidationMessage For="@(() => _paciente.DataNascimento)" />
                 </div>
 
-                <!-- Rua -->
                 <div class="col-md-4">
                     <label class="form-label">Rua</label>
                     <InputText class="form-control" @bind-Value="_paciente.Rua" />
                     <ValidationMessage For="@(() => _paciente.Rua)" />
                 </div>
 
-                <!-- Número -->
                 <div class="col-md-3">
                     <label class="form-label">Número</label>
                     <InputText class="form-control" @bind-Value="_paciente.Numero" />
                     <ValidationMessage For="@(() => _paciente.Numero)" />
                 </div>
 
-                <!-- Sexo -->
                 <div class="col-md-3">
                     <label class="form-label">Sexo</label>
                     <InputSelect class="form-select" @bind-Value="_paciente.Sexo">
@@ -85,14 +78,12 @@
                     <ValidationMessage For="@(() => _paciente.Sexo)" />
                 </div>
 
-                <!-- Email -->
                 <div class="col-md-6">
                     <label class="form-label">Email</label>
                     <InputText type="email" class="form-control" @bind-Value="_paciente.Email" />
                     <ValidationMessage For="@(() => _paciente.Email)" />
                 </div>
 
-                <!-- Telefone -->
                 <div class="col-md-6">
                     <label class="form-label">Telefone</label>
                     <InputTelefone type="tel" class="form-control" @bind-Value="_paciente.Telefone" />
@@ -102,20 +93,27 @@
             </div>
 
             <div class="mt-4 d-flex gap-3">
-                <button type="submit" class="btn btn-maroon">Cadastrar</button>
-                <button type="reset" class="btn btn-secondary">Limpar</button>
+                <button type="submit" class="btn btn-maroon">Atualizar</button>
+                <button type="button" class="btn btn-secondary" @onclick="Voltar">Cancelar</button>
             </div>
 
         </EditForm>
     </section>
 
-    <ModalSucesso @ref="_modal" Mensagem="Paciente cadastrado com sucesso!" />
+    <ModalSucesso @ref="_modal" Mensagem="Paciente atualizado com sucesso!" />
 
 </main>
 
 @code {
+    [Parameter] public int Id { get; set; }
+
     private Paciente _paciente = new();
     private ModalSucesso _modal;
+
+    protected override void OnInitialized()
+    {
+        _paciente = pacienteDAO.BuscarPorId(Id);
+    }
 
     private async Task Salvar()
     {
@@ -123,20 +121,24 @@
         {
             _paciente.Cpf = new string(_paciente.Cpf.Where(char.IsDigit).ToArray());
 
-            pacienteDAO.Inserir(_paciente);
-            _modal.Mensagem = "Paciente cadastrado com sucesso!";
+            pacienteDAO.Atualizar(_paciente);
+
+            _modal.Mensagem = "Paciente atualizado com sucesso!";
             _modal.Mostrar();
 
-            _paciente = new Paciente();
-            StateHasChanged();
-
-            await Task.Delay(5000);
+            await Task.Delay(2000);
             _modal.Fechar();
+            Voltar();
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
         }
+    }
+
+    private void Voltar()
+    {
+        nav.NavigateTo("/lista_paciente");
     }
 }
 

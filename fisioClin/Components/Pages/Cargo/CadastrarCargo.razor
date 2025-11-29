@@ -1,0 +1,77 @@
+﻿@page "/cadastrarcargo"
+
+@using fisioClin.Models
+@inject CargoDAO cargoDAO
+@inject NavigationManager NavManager
+@using Microsoft.AspNetCore.Components.Forms
+@using System.ComponentModel.DataAnnotations
+
+@rendermode InteractiveServer
+
+<main class="container my-4">
+    <h2 class="text-maroon mb-4">Cadastrar Cargo</h2>
+
+    <section class="position-relative p-4 bg-white rounded shadow-sm">
+        <EditForm Model="_cargo" OnValidSubmit="Cadastrar" FormName="CargoForm">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="row g-3">
+                <div class="col-12 mb-3">
+                    <label class="form-label">Nome</label>
+                    <InputText class="form-control" @bind-Value="_cargo.Nome" />
+                    <ValidationMessage For="@(() => _cargo.Nome)" />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Departamento</label>
+                    <InputText class="form-control" @bind-Value="_cargo.Departamento" />
+                    <ValidationMessage For="@(() => _cargo.Departamento)" />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Carga horária (semanal)</label>
+                    <InputNumber class="form-control" @bind-Value="_cargo.Carga" />
+                    <ValidationMessage For="@(() => _cargo.Carga)" />
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label">Descrição do cargo</label>
+                    <InputTextArea class="form-control" @bind-Value="_cargo.Descricao" rows="4" />
+                    <ValidationMessage For="@(() => _cargo.Descricao)" />
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label">Observações</label>
+                    <InputText class="form-control" @bind-Value="_cargo.Observacao" />
+                    <ValidationMessage For="@(() => _cargo.Observacao)" />
+                </div>
+            </div>
+
+            <div class="mt-4 d-flex gap-3">
+                <button type="submit" class="btn btn-maroon">Cadastrar</button>
+                <button type="button" class="btn btn-secondary" @onclick="LimparFormulario">Limpar</button>
+            </div>
+
+        </EditForm>
+    </section>
+</main>
+
+@code {
+    private Cargo _cargo = new Cargo();
+
+    private void Cadastrar()
+    {
+        _cargo.DataCriacao = DateTime.Now;
+        _cargo.DataAtualizacao = DateTime.Now;
+
+        cargoDAO.Inserir(_cargo);
+
+        NavManager.NavigateTo("/cargos");
+    }
+
+    private void LimparFormulario()
+    {
+        _cargo = new Cargo();
+    }
+}

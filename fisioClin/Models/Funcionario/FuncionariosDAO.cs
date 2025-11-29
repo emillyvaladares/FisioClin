@@ -31,11 +31,12 @@ namespace fisioClin.Models
                 funcionario.Telefone = DAOHelper.GetString(leitor, "telefone_fun");
                 funcionario.Email = DAOHelper.GetString(leitor, "email_fun");
                 funcionario.TipoVinculo = DAOHelper.GetString(leitor, "tipo_vinculo_fun");
-                funcionario.Registro = DAOHelper.GetString(leitor, "registro_profissional_fun");
+                funcionario.RegistroProfissional = DAOHelper.GetString(leitor, "registro_profissional_fun");
                 funcionario.Especialidade = DAOHelper.GetString(leitor, "especialidade_fun");
                 funcionario.Subespecialidade = DAOHelper.GetString(leitor, "subespecialidade_fun");
                 funcionario.Certificados = DAOHelper.GetString(leitor, "certificados_fun");
                 funcionario.DataContratacao = DAOHelper.GetDateTime(leitor, "data_contratacao_fun");
+                funcionario.Id_Cargo_fk = leitor.GetInt32("id_car_fk");
 
                 lista.Add(funcionario);
             }
@@ -44,34 +45,41 @@ namespace fisioClin.Models
             return lista;
         }
 
+
         public void Inserir(Funcionarios funcionario)
         {
             try
             {
+        
                 var comando = _conexao.CreateCommand(@"
-                    INSERT INTO funcionario
-                    (nome_fun, cpf_fun, rg_fun, data_nascimento_fun, telefone_fun, email_fun, tipo_vinculo_fun, 
-                     registro_profissional_fun, especialidade_fun, subespecialidade_fun, certificados_fun, data_contratacao_fun)
-                    VALUES
-                    (@_nome, @_cpf, @_rg, @_datanasc, @_telefone, @_email, @_vinculo,
-                     @_registro, @_especialidade, @_subespecialidade, @_certificados, @_datacontratacao);
-                ");
+                INSERT INTO funcionario
+                (nome_fun, cpf_fun, rg_fun, data_nascimento_fun, telefone_fun, email_fun, tipo_vinculo_fun,
+                 registro_profissional_fun, especialidade_fun, subespecialidade_fun, certificados_fun,
+                 data_contratacao_fun, id_car_fk)
+                VALUES
+                (@_nome, @_cpf, @_rg, @_datanasc, @_telefone, @_email, @_vinculo,
+                 @_registro, @_especialidade, @_subespecialidade, @_certificados,
+                 @_datacontratacao, @_cargo);
+            ");
 
-                comando.Parameters.AddWithValue("@_nome", funcionario.Nome);
-                comando.Parameters.AddWithValue("@_cpf", funcionario.Cpf);
-                comando.Parameters.AddWithValue("@_rg", funcionario.Rg);
-                comando.Parameters.AddWithValue("@_datanasc", funcionario.DataNascimento);
-                comando.Parameters.AddWithValue("@_telefone", funcionario.Telefone);
-                comando.Parameters.AddWithValue("@_email", funcionario.Email);
-                comando.Parameters.AddWithValue("@_vinculo", funcionario.TipoVinculo);
-                comando.Parameters.AddWithValue("@_registro", funcionario.Registro);
-                comando.Parameters.AddWithValue("@_especialidade", funcionario.Especialidade);
-                comando.Parameters.AddWithValue("@_subespecialidade", funcionario.Subespecialidade);
-                comando.Parameters.AddWithValue("@_certificados", funcionario.Certificados);
-                comando.Parameters.AddWithValue("@_datacontratacao", funcionario.DataContratacao);
+                    comando.Parameters.AddWithValue("@_nome", funcionario.Nome);
+                    comando.Parameters.AddWithValue("@_cpf", funcionario.Cpf);
+                    comando.Parameters.AddWithValue("@_rg", funcionario.Rg);
+                    comando.Parameters.AddWithValue("@_datanasc", funcionario.DataNascimento);
+                    comando.Parameters.AddWithValue("@_telefone", funcionario.Telefone);
+                    comando.Parameters.AddWithValue("@_email", funcionario.Email);
+                    comando.Parameters.AddWithValue("@_vinculo", funcionario.TipoVinculo);
+                    comando.Parameters.AddWithValue("@_registro", funcionario.RegistroProfissional);
+                    comando.Parameters.AddWithValue("@_especialidade", funcionario.Especialidade);
+                    comando.Parameters.AddWithValue("@_subespecialidade", funcionario.Subespecialidade);
+                    comando.Parameters.AddWithValue("@_certificados", funcionario.Certificados);
+                    comando.Parameters.AddWithValue("@_datacontratacao", funcionario.DataContratacao);
+                    comando.Parameters.AddWithValue("@_cargo", funcionario.Id_Cargo_fk);
 
-                comando.ExecuteNonQuery();
-            }
+                    comando.ExecuteNonQuery();
+                }
+
+    
             catch (Exception ex)
             {
                 throw new Exception("Erro ao inserir funcionário", ex);
@@ -80,8 +88,8 @@ namespace fisioClin.Models
 
         public Funcionarios BuscarPorId(int id)
         {
-            var comando = _conexao.CreateCommand("SELECT * FROM funcionario WHERE id_fun = @id;");
-            comando.Parameters.AddWithValue("@id", id);
+            var comando = _conexao.CreateCommand("SELECT * FROM funcionario WHERE id_fun = @_id;");
+            comando.Parameters.AddWithValue("@_id", id);
 
             var leitor = comando.ExecuteReader();
 
@@ -95,12 +103,13 @@ namespace fisioClin.Models
                 funcionario.DataNascimento = DAOHelper.GetDateTime(leitor, "data_nascimento_fun");
                 funcionario.Telefone = DAOHelper.GetString(leitor, "telefone_fun");
                 funcionario.Email = DAOHelper.GetString(leitor, "email_fun");
-                funcionario.TipoVinculo = DAOHelper.GetString(leitor, "tipo_vinculo_fun");
-                funcionario.Registro = DAOHelper.GetString(leitor, "registro_profissional_fun");
+                funcionario.RegistroProfissional = DAOHelper.GetString(leitor, "registro_profissional_fun");
+                funcionario.TipoVinculo = DAOHelper.GetString(leitor, "tipo_vinculo_fun");                
                 funcionario.Especialidade = DAOHelper.GetString(leitor, "especialidade_fun");
                 funcionario.Subespecialidade = DAOHelper.GetString(leitor, "subespecialidade_fun");
                 funcionario.Certificados = DAOHelper.GetString(leitor, "certificados_fun");
                 funcionario.DataContratacao = DAOHelper.GetDateTime(leitor, "data_contratacao_fun");
+                funcionario.Id_Cargo_fk = leitor.GetInt32("id_car_fk");
 
                 leitor.Close();
                 return funcionario;
@@ -109,6 +118,9 @@ namespace fisioClin.Models
             leitor.Close();
             return null;
         }
+
+
+
         public void Atualizar(Funcionarios funcionario)
         {
             try
@@ -126,7 +138,8 @@ namespace fisioClin.Models
                 especialidade_fun = @_especialidade,
                 subespecialidade_fun = @_subespecialidade,
                 certificados_fun = @_certificados,
-                data_contratacao_fun = @_datacontratacao
+                data_contratacao_fun = @_datacontratacao,
+                id_car_fk = @_id_car
                  WHERE id_fun = @_id;");
 
                 comando.Parameters.AddWithValue("@_id", funcionario.Id);
@@ -137,17 +150,32 @@ namespace fisioClin.Models
                 comando.Parameters.AddWithValue("@_telefone", funcionario.Telefone);
                 comando.Parameters.AddWithValue("@_email", funcionario.Email);
                 comando.Parameters.AddWithValue("@_vinculo", funcionario.TipoVinculo);
-                comando.Parameters.AddWithValue("@_registro", funcionario.Registro);
+                comando.Parameters.AddWithValue("@_registro", funcionario.RegistroProfissional);
                 comando.Parameters.AddWithValue("@_especialidade", funcionario.Especialidade);
                 comando.Parameters.AddWithValue("@_subespecialidade", funcionario.Subespecialidade);
                 comando.Parameters.AddWithValue("@_certificados", funcionario.Certificados);
                 comando.Parameters.AddWithValue("@_datacontratacao", funcionario.DataContratacao);
+                comando.Parameters.AddWithValue("@_id_car", funcionario.Id_Cargo_fk);
 
                 comando.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
                 throw new Exception("Erro ao atualizar funcionário", ex);
+            }
+        }
+        public void Excluir(int id)
+        {
+            try
+            {
+                var comando = _conexao.CreateCommand("DELETE FROM funcionario WHERE id_fun = @_id;");
+                comando.Parameters.AddWithValue("@_id", id);
+
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao excluir funcionário", ex);
             }
         }
 

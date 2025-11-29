@@ -1,9 +1,9 @@
-﻿@page "/cadastrarfuncionario"
+﻿@page "/editar_funcionario/{id:int}"
 
 @using fisioClin.Models
 @inject FuncionariosDAO funcionarioDAO
-@inject CargoDAO cargoDAO
 @inject NavigationManager Nav
+@inject CargoDAO cargoDAO
 
 @using Microsoft.AspNetCore.Components.Forms
 @using System.ComponentModel.DataAnnotations
@@ -12,11 +12,11 @@
 
 <main class="container my-4">
 
-    <h2 class="text-maroon mb-4">Cadastrar Funcionário</h2>
+    <h2 class="text-maroon mb-4">Editar Funcionário</h2>
 
     <section class="position-relative p-4 bg-white rounded shadow-sm">
 
-        <EditForm Model="_funcionario" OnValidSubmit="Cadastrar">
+        <EditForm Model="_funcionario" OnValidSubmit="AtualizarFuncionario">
             <DataAnnotationsValidator />
             <ValidationSummary />
 
@@ -100,46 +100,51 @@
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Cargo</label>
+
                     <InputSelect class="form-select" @bind-Value="_funcionario.Id_Cargo_fk">
-                        <option value="">Selecione</option>
-                        @foreach (var c in _cargos)
+                        <option value="">Selecione um cargo</option>
+
+                        @foreach (var c in cargos)
                         {
                             <option value="@c.Id">@c.Nome</option>
                         }
                     </InputSelect>
+
                     <ValidationMessage For="@(() => _funcionario.Id_Cargo_fk)" />
                 </div>
 
             </div>
 
             <div class="mt-4 d-flex gap-3">
-                <button type="submit" class="btn btn-maroon">Cadastrar</button>
-                <button type="reset" class="btn btn-secondary">Limpar</button>
+                <button type="submit" class="btn btn-maroon">Atualizar</button>
             </div>
 
         </EditForm>
     </section>
 
-    <ModalSucesso @ref="_modal" Mensagem="Funcionário cadastrado com sucesso!" />
+    <ModalSucesso @ref="_modal" Mensagem="Funcionário atualizado com sucesso!" />
 </main>
 
 @code {
+    [Parameter] public int id { get; set; }
+
     private Models.Funcionarios _funcionario = new();
+    private List<Cargo> cargos = new();
     private ModalSucesso _modal;
-    private List<Cargo> _cargos = new();
+
     protected override void OnInitialized()
     {
-        _cargos = cargoDAO.ListarTodos();
+        _funcionario = funcionarioDAO.BuscarPorId(id) ?? new Models.Funcionarios();
+        cargos = cargoDAO.ListarTodos(); // carregando lista de cargos
     }
 
-    private async Task Cadastrar()
+    private async Task AtualizarFuncionario()
     {
         try
         {
-            if (!string.IsNullOrWhiteSpace(_funcionario.Cpf))
-                _funcionario.Cpf = new string(_funcionario.Cpf.Where(char.IsDigit).ToArray());
+           
 
-            funcionarioDAO.Inserir(_funcionario);
+            funcionarioDAO.Atualizar(_funcionario);
 
             _modal.Mostrar();
             await Task.Delay(2000);

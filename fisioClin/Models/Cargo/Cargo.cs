@@ -8,8 +8,7 @@ namespace fisioClin.Models
 
         // NOME ------------------------------------------
         [Required(ErrorMessage = "O nome do cargo é obrigatório")]
-        [StringLength(200, ErrorMessage = "O nome pode ter no máximo 200 caracteres")]
-        [CustomValidation(typeof(Cargo), nameof(ValidarNomeCargo))]
+        [StringLength(200, ErrorMessage = "O nome pode ter no máximo 200 caracteres")]        
         public string Nome { get; set; } = "";
 
         // DEPARTAMENTO ----------------------------------
@@ -33,23 +32,5 @@ namespace fisioClin.Models
         // DESCRIÇÃO -------------------------------------
         [StringLength(300, ErrorMessage = "A descrição pode ter no máximo 300 caracteres")]
         public string Descricao { get; set; } = "";
-
-        // ============================================================
-        // VALIDADORES PERSONALIZADOS
-        // ============================================================
-
-        // Validador de Nome (não permite duplicidade)
-        public static ValidationResult ValidarNomeCargo(string? nome, ValidationContext context)
-        {
-            if (string.IsNullOrWhiteSpace(nome))
-                return new ValidationResult("O nome do cargo é obrigatório");
-
-            var dao = (CargoDAO)context.GetService(typeof(CargoDAO))!;
-
-            if (dao.VerificarNomeExistente(nome))
-                return new ValidationResult("Já existe um cargo cadastrado com esse nome");
-
-            return ValidationResult.Success!;
-        }
     }
 }

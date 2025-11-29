@@ -28,7 +28,7 @@ namespace fisioClin.Models
         public string Cep { get; set; } = "";
 
         // RG --------------------------------------------
-        [CustomValidation(typeof(Paciente), nameof(ValidarRg))]
+        [Required(ErrorMessage = "O RG é obrigatório")]
         public string Rg { get; set; } = "";
 
         // BAIRRO ----------------------------------------
@@ -81,11 +81,6 @@ namespace fisioClin.Models
             if (cpf.Distinct().Count() == 1)
                 return new ValidationResult("CPF inválido");
 
-            // ===== CONSULTA NO BANCO =====
-            var dao = (PacienteDAO)context.GetService(typeof(PacienteDAO))!;
-            if (dao.VerificarCpfExistente(cpf))
-                return new ValidationResult("Já existe um paciente cadastrado com esse CPF");
-
             return ValidationResult.Success!;
         }
 
@@ -104,16 +99,6 @@ namespace fisioClin.Models
             return ValidationResult.Success!;
         }
 
-        public static ValidationResult ValidarRg(string? rg, ValidationContext context)
-        {
-            if (string.IsNullOrWhiteSpace(rg))
-                return new ValidationResult("O RG é obrigatório");
-
-            var dao = (PacienteDAO)context.GetService(typeof(PacienteDAO))!;
-            if (dao.VerificarRgExistente(rg))
-                return new ValidationResult("Já existe um paciente cadastrado com esse RG");
-
-            return ValidationResult.Success!;
-        }
+       
     }
 }

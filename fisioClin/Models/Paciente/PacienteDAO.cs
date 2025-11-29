@@ -1,7 +1,4 @@
-﻿using fisioClin.Components;
-using fisioClin.Components.Pages;
-using fisioClin.Models;
-using FisioClin.Configs;
+﻿using FisioClin.Configs;
 
 namespace fisioClin.Models
 {
@@ -114,7 +111,7 @@ namespace fisioClin.Models
             }
         }
 
-        public void Deletar(int id)
+        public void Excluir(int id)
         {
             try
             {

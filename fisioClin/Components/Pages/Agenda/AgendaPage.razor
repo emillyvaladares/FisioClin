@@ -1,0 +1,200 @@
+﻿@page "/visualizaragenda"
+
+@using fisioClin.Models
+@inject AgendaDAO agendaDAO
+@inject SalaDAO salaDAO
+@inject FuncionariosDAO funcionariosDAO
+@inject NavigationManager Nav
+
+@rendermode InteractiveServer
+
+<PageTitle>Agenda</PageTitle>
+
+<style>
+    .card-agenda {
+        border-left: 6px solid #791c1c;
+        padding: 15px;
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        transition: 0.2s;
+        cursor: pointer;
+    }
+
+        .card-agenda:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+    .agenda-title {
+        color: #791c1c;
+        font-weight: 600;
+    }
+
+    .badge-sala {
+        background-color: #d97b6c;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 12px;
+        height: fit-content;
+    }
+</style>
+
+
+<main class="container my-4">
+
+    <h3 class="agenda-title mb-3">Agenda</h3>
+
+    <!-- FILTROS -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <label class="form-label">Data</label>
+            <InputDate class="form-control" @bind-Value="dataFiltro" />
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Fisioterapeuta</label>
+            <select class="form-select" @bind="filtroFisioterapeuta">
+                <option value="">Todos</option>
+                @foreach (var f in listaFisioterapeutas)
+                {
+                    <option value="@f.Id">@f.Nome</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Sala</label>
+            <select class="form-select" @bind="filtroSala">
+                <option value="">Todas</option>
+                @foreach (var s in listaSalas)
+                {
+                    <option value="@s.Id">@s.Nome</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-3 d-flex align-items-end">
+            <button class="btn btn-primary w-100" @onclick="FiltrarAgenda">Filtrar</button>
+        </div>
+    </div>
+
+    <!-- AGENDA VAZIA -->
+    @if (agendaFiltrada.Count == 0)
+    {
+        <div class="text-center text-muted py-4">
+            <em>Nenhum registro encontrado.</em>
+        </div>
+    }
+
+    <!-- LISTA DE AGENDAS -->
+    <div class="d-flex flex-column gap-3">
+        @foreach (var item in agendaFiltrada)
+        {
+            <div class="card-agenda" @onclick="() => AbrirDetalhes(item.Id)">
+                <div class="d-flex justify-content-between">
+
+                    <!-- ESQUERDA -->
+                    <div>
+                        <h5 class="mb-1">
+                            @item.Data?.ToString("dd/MM/yyyy")
+                            —
+                            @item.Horario
+                        </h5>
+
+                        <p class="mb-1">
+                            <strong>Fisioterapeuta:</strong>
+                            @item.Funcionario?.Nome
+                        </p>
+
+                        <p class="mb-1">
+                            <strong>Observação:</strong>
+                            @item.Observacao
+                        </p>
+                    </div>
+
+                    <!-- DIREITA (SALA) -->
+                    <span class="badge-sala">
+                        @item.Sala?.Nome
+                    </span>
+                </div>
+            </div>
+        }
+    </div>
+</main>
+
+
+@code {
+    private DateTime? dataFiltro;
+    private string filtroSala = "";
+    private string filtroFisioterapeuta = "";
+
+    private List<Agenda> agendaFiltrada = new();
+    private List<Sala> listaSalas = new();
+    private List<Funcionarios> listaFisioterapeutas = new();
+
+    protected override void OnInitialized()
+    {
+        listaSalas = salaDAO.ListarTodos();
+        listaFisioterapeutas = funcionariosDAO.ListarTodos();
+        agendaFiltrada = agendaDAO.ListarTodos();
+
+        // Relaciona as informações sem JOIN
+        foreach (var item in agendaFiltrada)
+        {
+            item.Sala = listaSalas.FirstOrDefault(s => s.Id == item.Id_Sala_fk);
+            item.Funcionario = listaFisioterapeutas.FirstOrDefault(f => f.Id == item.Id_Funcionario_fk);
+        }
+    }
+       
+
+    private void AbrirDetalhes(int id)
+    {
+        Nav.NavigateTo($"/visualizar_agenda/{id}");
+    }
+
+    private void FiltrarAgenda()
+    {
+        // Começa com toda a lista
+        var lista = agendaDAO.ListarTodos();
+
+        // Re-relaciona sala e funcionário para cada item
+        foreach (var item in lista)
+        {
+            item.Sala = listaSalas.FirstOrDefault(s => s.Id == item.Id_Sala_fk);
+            item.Funcionario = listaFisioterapeutas.FirstOrDefault(f => f.Id == item.Id_Funcionario_fk);
+        }
+
+        // Filtro por data
+        if (dataFiltro.HasValue)
+        {
+            lista = lista
+                .Where(a => a.Data.HasValue &&
+                            a.Data.Value.Date == dataFiltro.Value.Date)
+                .ToList();
+        }
+
+        // Filtro por fisioterapeuta
+        if (!string.IsNullOrEmpty(filtroFisioterapeuta))
+        {
+            var idFisio = int.Parse(filtroFisioterapeuta);
+            lista = lista
+                .Where(a => a.Id_Funcionario_fk == idFisio)
+                .ToList();
+        }
+
+        // Filtro por sala
+        if (!string.IsNullOrEmpty(filtroSala))
+        {
+            var idSala = int.Parse(filtroSala);
+            lista = lista
+                .Where(a => a.Id_Sala_fk == idSala)
+                .ToList();
+        }
+
+        // Atualiza a lista filtrada
+        agendaFiltrada = lista;
+    }
+
+}

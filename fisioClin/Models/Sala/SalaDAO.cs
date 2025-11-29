@@ -59,5 +59,45 @@ namespace fisioClin.Models
                 throw;
             }
         }
+        public Sala BuscarPorId(int id)
+        {
+            var sala = new Sala();
+
+            var comando = _conexao.CreateCommand("SELECT * FROM sala WHERE (id_sal = @_id);");
+
+            comando.Parameters.AddWithValue("@_id", id);
+
+            var leitor = comando.ExecuteReader();
+
+            if (leitor.Read())
+            {                
+                sala.Id = leitor.GetInt32("id_sal");
+                sala.Nome = DAOHelper.GetString(leitor, "nome_sal");
+                sala.Numero = DAOHelper.GetString(leitor, "numero_sal");
+                sala.Capacidade = leitor.GetInt32("capacidade_sal");
+                sala.Tipo = DAOHelper.GetString(leitor, "tipo_sal");
+                sala.Disponibilidade = DAOHelper.GetString(leitor, "disponibilidade_sal");
+                sala.Observacao = DAOHelper.GetString(leitor, "observacao_sal");
+                
+            }
+
+            return sala;
+        }
+        public void Excluir(int id)
+        {
+            try
+            {
+                var comando = _conexao.CreateCommand("DELETE FROM sala WHERE id_sal = @_id;");
+                comando.Parameters.AddWithValue("@_id", id);
+
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao excluir sala", ex);
+            }
+        }
     }
+
+  
 }

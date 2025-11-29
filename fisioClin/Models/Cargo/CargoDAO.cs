@@ -85,25 +85,7 @@ namespace fisioClin.Models
             comando.ExecuteNonQuery();
         }
 
-        public bool VerificarNomeExistente(String nome)
-        {
-            try
-            {
-                var comando = _conexao.CreateCommand(
-                    "SELECT COUNT(*) FROM cargo WHERE nome_car = @_nome;"
-                );
-                comando.Parameters.AddWithValue("@_nome", nome);
-
-                var resultado = Convert.ToInt32(comando.ExecuteScalar());
-
-                return resultado > 0;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return false;
-            }
-        }
+     
         public Cargo BuscarPorId(int id)
         {
             var cargo = new Cargo();
@@ -132,5 +114,21 @@ namespace fisioClin.Models
             leitor.Close();
             return null;
         }
+        public void Excluir(int id)
+        {
+            try
+            {
+                var comando = _conexao.CreateCommand("DELETE FROM cargo WHERE id_car = @_id;");
+                comando.Parameters.AddWithValue("@_id", id);
+
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao excluir cargo", ex);
+            }
+        }
+
+
     }
 }

@@ -1,0 +1,157 @@
+﻿@page "/excluirpaciente/{Id:int}"
+@using fisioClin.Models
+@inject PacienteDAO pacienteDAO
+@inject NavigationManager nav
+@rendermode InteractiveServer
+
+<main class="container my-4">
+
+    <h2 class="text-maroon mb-4">Excluir Paciente</h2>
+
+    <section class="position-relative p-4 bg-white rounded shadow-sm">
+
+        @if (_paciente == null)
+        {
+            <p class="text-danger">Paciente não encontrado.</p>
+        }
+        else
+        {
+            <div class="alert alert-warning">
+                <strong>Atenção:</strong> Tem certeza que deseja excluir este paciente?
+                <br />
+                Esta ação não poderá ser desfeita.
+            </div>
+
+            <div class="row g-3">
+
+                <div class="col-12 mb-3">
+                    <label class="form-label">Nome completo</label>
+                    <input class="form-control" value="@_paciente.Nome" disabled />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">CPF</label>
+                    <input class="form-control" value="@_paciente.Cpf" disabled />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">RG</label>
+                    <input class="form-control" value="@_paciente.Rg" disabled />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Data de Nascimento</label>
+                    <input class="form-control" value="@_paciente.DataNascimento" disabled />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Telefone</label>
+                    <input class="form-control" value="@_paciente.Telefone" disabled />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Email</label>
+                    <input class="form-control" value="@_paciente.Email" disabled />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Sexo</label>
+                    <input class="form-control" value="@_paciente.Sexo" disabled />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">CEP</label>
+                    <input class="form-control" value="@_paciente.Cep" disabled />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Bairro</label>
+                    <input class="form-control" value="@_paciente.Bairro" disabled />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Rua</label>
+                    <input class="form-control" value="@_paciente.Rua" disabled />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Número</label>
+                    <input class="form-control" value="@_paciente.Numero" disabled />
+                </div>
+            </div>
+
+            <div class="mt-4 d-flex gap-3">
+                <button class="btn btn-danger" @onclick="Excluir">Excluir</button>
+                <button class="btn btn-secondary" @onclick="Cancelar">Cancelar</button>
+            </div>
+        }
+
+    </section>
+
+    <ModalSucesso @ref="_modal" Mensagem="Paciente excluído com sucesso!" />
+</main>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Paciente _paciente;
+    private ModalSucesso _modal;
+
+    protected override void OnInitialized()
+    {
+        _paciente = pacienteDAO.BuscarPorId(Id);
+    }
+
+    private async Task Excluir()
+    {
+        try
+        {
+            if (_paciente != null)
+            {
+                pacienteDAO.Excluir(_paciente.Id);
+                _modal.Mensagem = "Paciente excluído com sucesso!";
+                _modal.Mostrar();
+
+                await Task.Delay(2000);
+                _modal.Fechar();
+                Cancelar();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.ToString());
+        }
+    }
+
+    private void Cancelar()
+    {
+        nav.NavigateTo("/lista_paciente");
+    }
+}
+
+<style>
+    .text-maroon {
+        color: #6b0010;
+    }
+
+    .btn-danger {
+        background-color: #b00020;
+        border: none;
+        color: white;
+    }
+
+        .btn-danger:hover {
+            background-color: #c20025;
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+</style>

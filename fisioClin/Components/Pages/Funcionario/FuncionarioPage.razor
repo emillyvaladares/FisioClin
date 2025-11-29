@@ -1,0 +1,137 @@
+﻿@page "/funcionarios"
+@using fisioClin.Models
+@inject FuncionariosDAO FuncionariosDAO
+@inject NavigationManager NavigationManager
+
+@rendermode InteractiveServer
+
+@code {
+    private List<Funcionarios> funcionarios = new();
+    private string nomeBusca = "";
+
+    protected override void OnInitialized()
+    {
+        funcionarios = FuncionariosDAO.ListarTodos();
+    }
+
+    private void FiltrarFuncionarios()
+    {
+        var todos = FuncionariosDAO.ListarTodos();
+
+        if (string.IsNullOrWhiteSpace(nomeBusca))
+        {
+            funcionarios = todos;
+        }
+        else
+        {
+            funcionarios = todos
+                .Where(f => f.Nome != null &&
+                            f.Nome.Contains(nomeBusca, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+
+        StateHasChanged();
+    }
+
+    private void Excluir(int id)
+    {
+        try
+        {
+            FuncionariosDAO.Excluir(id);
+            funcionarios = FuncionariosDAO.ListarTodos();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Erro ao excluir: " + ex.Message);
+        }
+    }
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="fw-bold text-maroon">Consultar Funcionários</h3>
+
+        <a href="/cadastrarfuncionario" class="btn btn-primary">
+            <i class="bi bi-person-plus-fill me-1"></i> Cadastrar
+        </a>
+    </div>
+
+    <!-- Barra de Pesquisa -->
+    <div class="input-group mb-4 shadow-sm">
+        <span class="input-group-text bg-white">
+            <i class="bi bi-search"></i>
+        </span>
+        <input type="text"
+               class="form-control"
+               placeholder="Pesquisar Funcionário"
+               @bind="nomeBusca"
+               @bind:event="oninput"
+               @onkeyup="FiltrarFuncionarios" />
+    </div>
+
+    <!-- Tabela -->
+    <div class="table-responsive shadow-sm rounded overflow-hidden">
+        <table class="table table-striped table-hover align-middle mb-0">
+            <thead class="bg-maroon text-white">
+                <tr>
+                    <th style="width:80px;">ID</th>
+                    <th>Nome</th>
+                    <th class="text-end" style="width:200px;">Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (funcionarios == null || funcionarios.Count == 0)
+                {
+                    <tr>
+                        <td colspan="3" class="text-center text-muted py-4">
+                            Nenhum funcionário encontrado.
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var f in funcionarios)
+                    {
+                        <tr>
+                            <td class="text-secondary">@f.Id</td>
+
+                            <!-- Nome clicável -->
+                            <td class="p-0">
+                                <a href="/dadosfuncionario/@f.Id"
+                                   class="d-block px-2 py-2 text-decoration-none text-dark fw-semibold">
+                                    @f.Nome
+                                </a>
+                            </td>
+
+                            <td class="text-end">
+
+                                <a href="/editar_funcionario/@f.Id"
+                                   class="btn btn-warning btn-sm me-2">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+
+                                <button class="btn btn-danger btn-sm" @onclick="() => Excluir(f.Id)">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<style>
+    .text-maroon {
+        color: #6b0f0f;
+    }
+
+    .bg-maroon {
+        background-color: #6b0f0f !important;
+    }
+</style>

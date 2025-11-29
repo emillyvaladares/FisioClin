@@ -1,104 +1,94 @@
-﻿@page "/consultarsala"
+﻿@page "/consultarsala/{Id:int}"
 @using fisioClin.Models
 @using FisioClin.Configs
 @inject Conexao conexao
 
-
-
-
-    <style>
-        body {
-            background-color: #f7f7f7;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .container-custom {
-            background-color: #ffffff;
-            border-radius: 15px;
-            padding: 40px;
-            margin-top: 50px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            color: #6a0000;
-            font-weight: 600;
-            margin-bottom: 25px;
-        }
-
-        table {
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        thead {
-            background-color: #6a0000;
-            color: white;
-        }
-
-        tbody tr:hover {
-            background-color: #f3dcdc;
-            transition: 0.3s;
-        }
-
-        .btn-voltar {
-            background-color: #8b0000;
-            color: white;
-            border-radius: 8px;
-            padding: 10px 25px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-            .btn-voltar:hover {
-                background-color: #a00000;
-                color: #fff;
-            }
-    </style>
-
-
-
-    <div class="container container-custom">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2>Consultar Salas</h2>
-            <a href="/salas" class="btn-voltar">Voltar</a>
-        </div>
-
-        <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nº da Sala</th>
-                    <th>Tipo</th>
-                    <th>Capacidade</th>
-                    <th>Disponibilidade</th>
-                    <th>Observações</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var sala in lista)
-                {
-                    <tr>
-                        <td>@sala.Id</td>
-                        <td>@sala.Numero</td>
-                        <td>@sala.Tipo</td>
-                        <td>@sala.Capacidade</td>
-                        <td>@sala.Disponibilidade</td>
-                        <td>@sala.Observacao</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-
 @code {
+    [Parameter]
+    public int Id { get; set; }
+
     private SalaDAO dao;
-    private List<Sala> lista; 
+    private Sala sala = new Sala();
 
     protected override void OnInitialized()
     {
         dao = new SalaDAO(conexao);
-        lista = dao.ListarTodos();
+
+        if (Id > 0)
+        {
+            var encontrada = dao.BuscarPorId(Id);
+            if (encontrada != null)
+                sala = encontrada;
+        }
     }
 }
+
+<div class="container mt-4">
+
+    <!-- Título -->
+    <div class="d-flex align-items-center mb-4">
+        <h3 class="fw-bold" style="color:#701a1a;">Dados da Sala</h3>
+
+        <input type="text"
+               class="form-control ms-3"
+               style="max-width: 80px;"
+               readonly
+               value="@sala.Id" />
+
+        <input type="text"
+               class="form-control ms-2"
+               readonly
+               value="@sala.Nome" />
+    </div>
+
+    <!-- Card principal -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-9">
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Nome</label>
+                        <input type="text" class="form-control" readonly value="@sala.Nome" />
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Nº da Sala</label>
+                            <input type="text" class="form-control" readonly value="@sala.Numero" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Tipo</label>
+                            <input type="text" class="form-control" readonly value="@sala.Tipo" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Capacidade</label>
+                            <input type="text" class="form-control" readonly value="@sala.Capacidade" />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Disponibilidade</label>
+                        <input type="text" class="form-control" readonly value="@sala.Disponibilidade" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Observações</label>
+                        <textarea class="form-control" rows="4" readonly>@sala.Observacao</textarea>
+                    </div>
+
+                </div>
+
+                <!-- Ícone -->
+                <div class="col-md-3 d-flex flex-column align-items-center mt-3 mt-md-0">
+                    <i class="bi bi-building"
+                       style="font-size: 130px; color: #701a1a;"></i>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

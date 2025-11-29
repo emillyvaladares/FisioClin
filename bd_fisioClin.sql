@@ -9,8 +9,8 @@ create table paciente (
     id_pac int not null auto_increment primary key,
     #atentar-se para os not null e os unique, os unique são para nao deixar cadastrar 2 iguais, então tem que criar uma logica para evitar isso
     nome_pac varchar(200) not null,
-    cpf_pac varchar(15) unique,
-    rg_pac varchar(20) unique,
+    cpf_pac varchar(15),
+    rg_pac varchar(20),
     data_nascimento_pac date,
     sexo_pac varchar(10),
     telefone_pac varchar(20),
@@ -28,7 +28,7 @@ create table paciente (
 #armazena os dados referente as funções de cada FUNCIONARIO
 create table cargo (
     id_car int not null auto_increment primary key,
-    nome_car varchar(200) not null unique,
+    nome_car varchar(200) not null,
     departamento_car varchar(200),
     descricao_car varchar(300),
     carga_horaria_car int,
@@ -44,7 +44,7 @@ create table cargo (
 create table funcionario (
     id_fun int not null auto_increment primary key,
     nome_fun varchar(200) not null,
-    cpf_fun varchar(14) unique,
+    cpf_fun varchar(14),
     rg_fun varchar(20),
     data_nascimento_fun date,
     telefone_fun varchar(20),
@@ -55,8 +55,8 @@ create table funcionario (
     subespecialidade_fun varchar(200),
     certificados_fun varchar(200),
     data_contratacao_fun date,
-    id_car_fk int,
-    foreign key (id_car_fk) references cargo(id_car)
+    id_car_fk int null,
+    foreign key (id_car_fk) references cargo(id_car) on delete set null
 );
 
 --------------------------------------------------------------------------------
@@ -74,20 +74,7 @@ create table sala (
 );
 #default é sobre valor padrao, se nao passar nada ele usa o padrao
 insert into sala values (null, 'fisioterapia', 1, 3, 'não sei', default, 'sala aberta');
---------------------------------------------------------------------------------
--- TABELA LAUDO
---------------------------------------------------------------------------------
-#laudo dos pacientes
-create table laudo (
-    id_lau int not null auto_increment primary key,
-    validade_lau varchar(200),
-    tipo_exame_lau varchar(200),
-    diagnostico_lau varchar(200),
-    observacao_lau varchar(200),
-    status_lau enum('em aberto','finalizado'),
-    id_pac_fk int not null,
-    foreign key (id_pac_fk) references paciente(id_pac)
-);
+
 
 --------------------------------------------------------------------------------
 -- TABELA SESSAO
@@ -99,12 +86,12 @@ create table sessao (
     horario_ses time not null,
     tipo_ses varchar(200),
     observacao_ses varchar(200),
-    id_pac_fk int not null,
-    id_fun_fk int not null,
-    id_sal_fk int not null,
-    foreign key (id_pac_fk) references paciente(id_pac),
-    foreign key (id_fun_fk) references funcionario(id_fun),
-    foreign key (id_sal_fk) references sala(id_sal)
+    id_pac_fk int null,
+    id_fun_fk int null,
+    id_sal_fk int null,
+    foreign key (id_pac_fk) references paciente(id_pac) on delete set null,
+    foreign key (id_fun_fk) references funcionario(id_fun) on delete set null,
+    foreign key (id_sal_fk) references sala(id_sal) on delete set null
 );
 
 --------------------------------------------------------------------------------
@@ -115,58 +102,11 @@ create table agenda (
     id_age int not null auto_increment primary key,
     data_age date,
     horario_age time,
-    id_sal_fk int not null,
-    id_fun_fk int not null,
+    id_sal_fk int null,
+    id_fun_fk int null,
     observacao_age varchar(200),
-    foreign key (id_sal_fk) references sala(id_sal),
-    foreign key (id_fun_fk) references funcionario(id_fun)
-);
-
---------------------------------------------------------------------------------
--- TABELA PRONTUARIO
---------------------------------------------------------------------------------
-#dados de historico de saude dos pacientes
-create table prontuario (
-    id_pro int not null auto_increment primary key,
-    data_pro date,
-    alergias_pro varchar(200),
-    comorbidades_pro varchar(200),
-    doencas_previas_pro varchar(200),
-    historico_familiar_pro varchar(200),
-    habitos_vida_pro varchar(200),
-    avaliacao_pro varchar(200),
-    id_pac_fk int not null,
-    foreign key (id_pac_fk) references paciente(id_pac)
-);
-
---------------------------------------------------------------------------------
--- TABELA PAGAMENTO
---------------------------------------------------------------------------------
-#pagamento
-create table pagamento (
-    id_pag int not null auto_increment primary key,
-    data_pag date,
-    valor_pag float,
-    numero_parcelas_pag int,
-    forma_pag varchar(100),
-    status_pag enum('pendente','pago','em atraso'),
-    observacao_pag varchar(200),
-    id_pac_fk int not null,
-    foreign key (id_pac_fk) references paciente(id_pac)
-);
-
---------------------------------------------------------------------------------
--- TABELA FINANCEIRO
---------------------------------------------------------------------------------
-#caixa principal
-create table financeiro (
-    id_fin int not null auto_increment primary key,
-    descricao_fin varchar(200),
-    tipo_fin enum('receita','despesa'),
-    valor_fin float,
-    data_registro_fin date,
-    id_pag_fk int,
-    foreign key (id_pag_fk) references pagamento(id_pag)
+    foreign key (id_sal_fk) references sala(id_sal) on delete set null,
+    foreign key (id_fun_fk) references funcionario(id_fun) on delete set null
 );
 
 --------------------------------------------------------------------------------
@@ -174,10 +114,10 @@ create table financeiro (
 --------------------------------------------------------------------------------
 create table login_paciente (
     id_lop int not null auto_increment primary key,
-    email_lop varchar(200) not null unique,
+    email_lop varchar(200) not null,
     senha_lop varchar(200) not null,
-    id_pac_fk int not null,
-    foreign key (id_pac_fk) references paciente(id_pac)
+    id_pac_fk int null,
+    foreign key (id_pac_fk) references paciente(id_pac) on delete set null
 );
 
 --------------------------------------------------------------------------------
@@ -185,8 +125,10 @@ create table login_paciente (
 --------------------------------------------------------------------------------
 create table login_funcionario (
     id_lof int not null auto_increment primary key,
-    email_lof varchar(200) not null unique,
+    email_lof varchar(200) not null,
     senha_lof varchar(200) not null,
-    id_fun_fk int not null,
-    foreign key (id_fun_fk) references funcionario(id_fun)
+    id_fun_fk int null,
+    foreign key (id_fun_fk) references funcionario(id_fun) on delete set null
 );
+
+

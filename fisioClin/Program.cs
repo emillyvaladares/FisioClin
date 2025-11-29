@@ -14,6 +14,7 @@ builder.Services.AddScoped<FuncionariosDAO>();
 builder.Services.AddScoped<CargoDAO>();
 builder.Services.AddScoped<SalaDAO>();
 builder.Services.AddScoped<LoginDAO>();
+builder.Services.AddScoped<AgendaDAO>();
 
 
 

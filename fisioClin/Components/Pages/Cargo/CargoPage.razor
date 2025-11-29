@@ -1,0 +1,137 @@
+﻿@page "/cargos"
+@using fisioClin.Models
+@inject CargoDAO cargoDAO
+@inject NavigationManager NavManager
+
+@rendermode InteractiveServer
+
+@code {
+    private List<Cargo> cargos = new();
+    private string nomeBusca = "";
+
+    protected override void OnInitialized()
+    {
+        cargos = cargoDAO.ListarTodos();
+    }
+
+    private void FiltrarCargos()
+    {
+        var todos = cargoDAO.ListarTodos();
+
+        if (string.IsNullOrWhiteSpace(nomeBusca))
+        {
+            cargos = todos;
+        }
+        else
+        {
+            var termo = nomeBusca;
+            cargos = todos
+                .Where(c => c.Nome != null && c.Nome.Contains(termo, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+
+        StateHasChanged();
+    }
+
+    private void EditarCargo(int id)
+    {
+        NavManager.NavigateTo($"/editar_cargo/{id}");
+    }
+
+    private void ExcluirCargo(int id)
+    {
+        try
+        {
+            cargoDAO.Excluir(id); // precisa existir no seu DAO
+            cargos = cargoDAO.ListarTodos(); // atualiza a lista
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Erro ao excluir cargo: " + ex.Message);
+        }
+    }
+}
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="text-maroon fw-bold">Consultar Cargos</h3>
+
+        <a href="/cadastrarcargo" class="btn btn-primary">
+            <i class="bi bi-plus-circle me-1"></i> Cadastrar
+        </a>
+    </div>
+
+    <!-- Barra de Pesquisa -->
+    <div class="input-group mb-4 shadow-sm">
+        <span class="input-group-text bg-white">
+            <i class="bi bi-search"></i>
+        </span>
+        <input type="text" class="form-control" placeholder="Pesquisar Cargo"
+               @bind="nomeBusca" @bind:event="oninput" @onkeyup="FiltrarCargos" />
+    </div>
+
+    <!-- Tabela -->
+    <div class="table-responsive shadow-sm rounded overflow-hidden">
+        <table class="table table-striped table-hover align-middle mb-0">
+            <thead class="header-agenda">
+                <tr>
+                    <th style="width:80px;">ID</th>
+                    <th>Nome</th>
+                    <th class="text-end" style="width:200px;">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (cargos == null || cargos.Count == 0)
+                {
+                    <tr>
+                        <td colspan="3" class="text-center text-muted py-4">
+                            Nenhum cargo cadastrado.
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var c in cargos)
+                    {
+                        <tr>
+                            <td class="text-secondary">@c.Id</td>
+                            <td class="p-0">
+                                <a href="/cargoselecionado/@c.Id" class="d-block px-2 py-2 text-decoration-none text-dark fw-semibold">
+                                    @c.Nome
+                                </a>                                    
+                            </td>
+
+                            <td class="text-end">
+                                <button class="btn btn-warning btn-sm me-2"
+                                        @onclick="() => EditarCargo(c.Id)">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+
+                                <button class="btn btn-danger btn-sm"
+                                        @onclick="() => ExcluirCargo(c.Id)">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+
+<style>
+    :root {
+        --cor-principal: #6b0f0f;
+    }
+
+    .header-agenda {
+        background-color: var(--cor-principal);
+        color: #fff;
+    }
+
+</style>

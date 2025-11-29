@@ -1,5 +1,4 @@
-﻿@page "/cadastrarcargo"
-@page "/cadastrarcargo/{Id:int}"
+﻿@page "/editar_cargo/{Id:int}"
 
 @using fisioClin.Models
 @inject CargoDAO cargoDAO
@@ -7,17 +6,19 @@
 @using Microsoft.AspNetCore.Components.Forms
 @using System.ComponentModel.DataAnnotations
 
+@rendermode InteractiveServer
+
 <main class="container my-4">
-    <h2 class="text-maroon mb-4">@(_cargo.Id > 0 ? "Editar Cargo" : "Cadastrar Cargo")</h2>
+    <h2 class="text-maroon mb-4">Editar Cargo</h2>
 
     <section class="position-relative p-4 bg-white rounded shadow-sm">
-        <EditForm Model="_cargo" OnValidSubmit="SalvarOuAtualizar" FormName="CargoForm">
+        <EditForm Model="_cargo" OnValidSubmit="Atualizar" FormName="CargoForm">
             <DataAnnotationsValidator />
             <ValidationSummary />
 
             <div class="row g-3">
                 <div class="col-12 mb-3">
-                    <label class="form-label">Nome do cargo</label>
+                    <label class="form-label">Nome</label>
                     <InputText class="form-control" @bind-Value="_cargo.Nome" />
                     <ValidationMessage For="@(() => _cargo.Nome)" />
                 </div>
@@ -48,51 +49,33 @@
             </div>
 
             <div class="mt-4 d-flex gap-3">
-                <button type="submit" class="btn btn-maroon">
-                    @(_cargo.Id > 0 ? "Atualizar" : "Cadastrar")
-                </button>
-                <button type="button" class="btn btn-secondary" @onclick="LimparFormulario">Limpar</button>
+                <button type="submit" class="btn bg-primary text-white">Atualizar</button>
             </div>
+
         </EditForm>
     </section>
 </main>
 
 @code {
     [Parameter]
-    public int? Id { get; set; }
+    public int Id { get; set; }
 
     private Cargo _cargo = new Cargo();
 
     protected override void OnInitialized()
     {
-        if (Id.HasValue)
-        {
-            var cargoExistente = cargoDAO.BuscarPorId(Id.Value);
-            if (cargoExistente != null)
-                _cargo = cargoExistente;
-        }
+        var cargoExistente = cargoDAO.BuscarPorId(Id);
+
+        if (cargoExistente != null)
+            _cargo = cargoExistente;
     }
 
-    private void SalvarOuAtualizar()
+    private void Atualizar()
     {
         _cargo.DataAtualizacao = DateTime.Now;
 
-        if (_cargo.Id > 0)
-        {
-            cargoDAO.Atualizar(_cargo);
-        }
-        else
-        {
-            _cargo.DataCriacao = DateTime.Now;
-            cargoDAO.Inserir(_cargo);
-        }
+        cargoDAO.Atualizar(_cargo);
 
-        // Volta para a página de consulta de cargos
-        NavManager.NavigateTo("/consultarcargo");
-    }
-
-    private void LimparFormulario()
-    {
-        _cargo = new Cargo();
+        NavManager.NavigateTo("/cargos");
     }
 }
